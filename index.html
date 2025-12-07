@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хабстор - Корпоративное питание в Санкт-Петербурге</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: #f8f8f8;
+            color: #333;
+            overflow-x: hidden;
+        }
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        header.scrolled {
+            background-color: #fff;
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #000;
+            text-decoration: none;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+        nav ul li {
+            margin-left: 30px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #ff6347;
+        }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background-image: url('https://sun9-38.userapi.com/s/v1/ig2/9W5eDY-1rMrxPt8YYGE9R7erWNUfIA-jBP6N-bCVRjn5UY869UtgSEejp99eFVEZrCKP2rDu5bcB1Pwx89cwfUjG.jpg?quality=95&as=32x16,48x24,72x36,108x54,160x80,240x120,360x180,480x240,540x270,640x320,720x360,1080x540,1280x640,1440x720,2160x1080&from=bu&cs=1280x0');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            clip-path: inset(0 0 5% 0);
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+        .hero p {
+            font-size: 24px;
+            margin-bottom: 40px;
+            animation: fadeInUp 1s ease 0.5s;
+            animation-fill-mode: both;
+        }
+        .cta-button {
+            background-color: #ff6347;
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            animation: fadeIn 1s ease 1s;
+            animation-fill-mode: both;
+        }
+        .cta-button:hover {
+            background-color: #e5533c;
+            transform: scale(1.05);
+        }
+        .watermark {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: #fff;
+            opacity: 0.5;
+            filter: blur(2px);
+            font-size: 24px;
+            z-index: 1;
+        }
+        /* About Section */
+        .about {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 40px 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .about.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .about h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            animation: fadeInLeft 1s ease;
+        }
+        .about p {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeInRight 1s ease 0.5s;
+            animation-fill-mode: both;
+        }
+        /* Gallery Section */
+        .gallery {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .gallery.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .gallery h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            height: 400px; /* Fixed height for uniformity */
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        .gallery-item.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover; /* Cover to maintain aspect ratio without distortion */
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        /* Clients Section */
+        .clients {
+            background-color: #fff;
+            padding: 60px 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .clients.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .clients h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+        .clients-logos {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .client-logo-container {
+            width: 220px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
+        }
+        .client-logo-container.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .client-logo-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .client-logo-img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+        }
+        /* Contact Section */
+        .contact {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 40px 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .contact.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .contact h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .contact p {
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+        .tg-link {
+            display: inline-flex;
+            align-items: center;
+            background-color: #0088cc;
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .tg-link:hover {
+            background-color: #0077bb;
+            transform: scale(1.05);
+        }
+        .tg-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg') no-repeat center;
+            background-size: contain;
+        }
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        footer.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        /* Parallax Effect */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 400px;
+            position: relative;
+            opacity: 0;
+            transition: opacity 1s ease;
+            background-image: url('https://sun9-81.userapi.com/s/v1/ig2/m5DyAYerna8j0RXQnPxytOl0ArtBWdZ1jluH3arAgE_xKipWhUX_onlQhPjYb-Ghw5X4r5Od-rMaXa90oV9dBgKt.jpg?quality=95&as=32x16,48x24,72x36,108x54,160x80,240x120,360x180,480x240,540x270,640x320,720x360,1080x540,1280x640,1440x720,2160x1080&from=bu&cs=1280x0');
+        }
+        .parallax.visible {
+            opacity: 1;
+        }
+        .parallax-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            text-align: center;
+            font-size: 28px;
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.8);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .parallax-content.visible {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            .hero p {
+                font-size: 18px;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .gallery-item {
+                height: 300px; /* Adjust for smaller screens */
+            }
+            .client-logo-container {
+                width: 180px;
+                height: 100px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="#hero" class="logo">Хабстор</a>
+            <nav>
+                <ul>
+                    <li><a href="#about">О нас</a></li>
+                    <li><a href="#gallery">Меню</a></li>
+                    <li><a href="#clients">Нам доверяют</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1>Корпоративное питание в Санкт-Петербурге</h1>
+            <p>Простая современная еда для вашего бизнеса</p>
+            <a href="#contact" class="cta-button">Заказать</a>
+        </div>
+        <div class="watermark">хабстор</div>
+    </section>
+    <section id="about" class="about">
+        <h2>О компании Хабстор</h2>
+        <p>Хабстор — это сервис корпоративного питания в Санкт-Петербурге, специализирующийся на простой и современной еде. Мы предлагаем здоровые, вкусные блюда, приготовленные из свежих ингредиентов, для офисов и корпоративных клиентов. Наша концепция вдохновлена минимализмом и качеством, подобно стилю Моя школа, Cambridge School и маркетплейсы WB в Петербурге. Мы фокусируемся на балансе вкусов, визуальной привлекательности и удобстве доставки.</p>
+    </section>
+    <div class="parallax">
+        <div class="parallax-content">
+            <h3></h3>
+        </div>
+    </div>
+    <!-- Обновленный фрагмент секции "Наше меню" (заменены только позиции меню) -->
+<section id="gallery" class="gallery">
+    <h2>Варианты блюд из нашего меню</h2>
+    <div class="gallery-grid">
+        <div class="gallery-item">
+            <img src="https://sun9-69.userapi.com/s/v1/ig2/BcEYDJVW8-DediUul46J7wfjKCKx-R95gMSjhqhM7ASzn2d58SOAGRkk20-rb6vFc_9lIxNCIJ2UBRMIaq9lx8Yj.jpg?quality=95&as=32x56,48x84,72x126,108x189,160x280,240x420,360x630,457x800&from=bu&cs=457x0" alt="Курица терияки">
+            <div class="gallery-caption">Курица терияки — 130/150 г — 320 руб. (от 50 порций)</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://sun9-22.userapi.com/s/v1/ig2/v8sa7rKnCwREMDAt5IVPHCJLiPSjXRe7qurYDt3yqmb3zz3JLxdLYquKvlomuqgcwPHk1FtdXX-reN0BLNmAd9qg.jpg?quality=95&as=32x52,48x78,72x117,108x176,160x261,240x391,360x586,480x782,540x880,640x1043,720x1173&from=bu&cs=720x0" alt="Говяжьи щечки с картофельным пюре">
+            <div class="gallery-caption">Говяжьи щечки с картофельным пюре — 120/150 г — 390 руб. (от 15 порций)</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://sun9-59.userapi.com/s/v1/ig2/15_kf0fRs5XOmG-lRC_WjCX4uemR6568_4qwJpAbPrinYnutrQn1C-VpMBrMJIryX1Mp1WhnKqyWPZZoXD8anWHn.jpg?quality=95&as=32x51,48x77,72x115,108x173,160x256,240x384,360x576,480x768,540x864,640x1024,720x1152,800x1280&from=bu&cs=800x0" alt="Английский кекс">
+            <div class="gallery-caption">Английский кекс — 100 г — 180 руб.</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://sun9-39.userapi.com/s/v1/ig2/8t_AbbA7Ujtq9PVcow5mpCeH_LKENTA97Ha0KTMlRMkx_HG8WYrL8Ooo4rbdf13Kr3bfjCAUr76sRGB70KiaWf8-.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,600x800&from=bu&cs=600x0" alt="Лапша удон с эдамамэ и татаки из говядины">
+            <div class="gallery-caption">Лапша удон с эдамамэ и татаки из говядины — 120/120 г — 350 руб. (от 15 порций)</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://sun9-83.userapi.com/s/v1/ig2/w-l5rfVzspe4xtIargkTny63wjmDmx0wcjL43RPtjacwh3P2bblKtNJ09tf9h97TcClqKAsdmSS0k6NWSfCQZKD3.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440,1280x1707,1440x1920,1920x2560&from=bu&cs=1280x0" alt="Томленый палтус с кускусом">
+            <div class="gallery-caption">Томленый палтус с кускусом и жюльеном — 100/100/50 г — 380 руб. (от 15 порций)</div>
+        </div>
+        <div class="gallery-item">
+            <img src="https://sun9-82.userapi.com/s/v1/ig2/2cJPBrCeguoHrbD9AA00NH_sQgf4_7biaeGvb6sQgDu4A3H-5VrYfGaLI-GFCI5qqoq0B_ytsWRXzsdvfRZ0RWNW.jpg?quality=95&as=32x44,48x66,72x99,108x148,160x219,240x329,360x493,480x658,540x740,640x877,720x987,864x1184&from=bu&cs=864x0" alt="Кефаль с рисом и овощами">
+            <div class="gallery-caption">Кефаль с рисом и овощами — 100/150 г — 330 руб.</div>
+        </div>
+    </div>
+</section>
+
+    <section id="clients" class="clients">
+        <h2>Нам доверяют</h2>
+        <div class="clients-logos">
+            <div class="client-logo-container">
+                <img src="https://static.tildacdn.com/tild6662-3363-4464-a539-323931393665/__.png" alt="Моя школа в Петербурге" class="client-logo-img">
+            </div>
+            <div class="client-logo-container">
+                <img src="https://cisedu.com/img/host/CIS_fulllogo.png" alt="Cambridge School в Петербурге" class="client-logo-img">
+            </div>
+            <div class="client-logo-container">
+                <img src="https://avatars.mds.yandex.net/get-altay/5110793/2a00000180b2404184506702a4c798d30f9c/M" alt="Школа Мая" class="client-logo-img">
+            </div>
+            <div class="client-logo-container">
+                <img src="https://avatars.mds.yandex.net/i?id=5ef0b33844e2773cd2fece25a3d5bc335a9b120c-5434064-images-thumbs&n=13" alt="Novartis" class="client-logo-img">
+            </div>
+            <div class="client-logo-container">
+                <img src="https://consulting.1c.ru/upload/iblock/73b/hz2li5bojbd2ksksmej91vcvyvqq1pok.png" alt="полисан" class="client-logo-img">
+            </div>
+            <div class="client-logo-container">
+                <img src="https://event-er.ru/wp-content/uploads/2024/04/logo-06-2.png" alt="Garage Eight" class="client-logo-img">
+            </div>
+            <div class="client-logo-container">
+                <img src="https://cdn.modulbank.ru/images-new/marketplace-sit-down/wildberries-1440@2x.webp" alt="WB" class="client-logo-img">
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="contact">
+        <h2>Связаться с нами</h2>
+        <p>По всем вопросам напишите нам в Telegram.</p>
+        <a href="https://t.me/Must_D1e" class="tg-link">
+            <div class="tg-icon"></div>
+            Написать нам
+        </a>
+    </section>
+    <footer>
+        <p>&copy; 2025 Хабстор. Все права защищены.</p>
+    </footer>
+    <script>
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        // Smooth Scroll for Nav Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    const headerOffset = document.querySelector('header').offsetHeight;
+                    const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - headerOffset;
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        // Intersection Observer for Animations
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 100); // Staggered animation
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.about, .about h2, .about p, .parallax, .parallax-content, .gallery, .gallery h2, .gallery-item, .clients, .clients h2, .client-logo-container, .contact, .contact h2, footer').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
