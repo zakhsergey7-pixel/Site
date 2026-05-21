@@ -106,8 +106,8 @@ p{font-size:16px;line-height:1.75;color:#555;}
 .leader-card{border-top:2px solid rgba(147,51,234,.12);padding-top:32px;position:relative;transition:border-color .3s;}
 .leader-card::before{content:'';position:absolute;top:-2px;left:0;right:0;height:2px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease);}
 .leader-card:hover::before{transform:scaleX(1);}
-.leader-photo{width:100%;height:300px;border-radius:16px;overflow:hidden;margin-bottom:28px;}
-.leader-photo img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .7s var(--ease);}
+.leader-photo{width:100%;border-radius:16px;overflow:hidden;margin-bottom:28px;}
+.leader-photo img{width:100%;height:auto;object-fit:contain;display:block;transition:transform .7s var(--ease);}
 .leader-card:hover .leader-photo img{transform:scale(1.05);}
 .leader-name{font-size:20px;font-weight:700;color:var(--ink);margin-bottom:4px;}
 .leader-role{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--pur);margin-bottom:16px;}
