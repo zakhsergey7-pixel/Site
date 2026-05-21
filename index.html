@@ -1,575 +1,611 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Хабстор - Корпоративное питание в Санкт-Петербурге</title>
-    <style>
-        /* Global Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-        html {
-            scroll-behavior: smooth;
-        }
-        body {
-            background-color: #f8f8f8;
-            color: #333;
-            overflow-x: hidden;
-        }
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            transition: background-color 0.3s ease;
-        }
-        header.scrolled {
-            background-color: #fff;
-        }
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #000;
-            text-decoration: none;
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-        }
-        nav ul li {
-            margin-left: 30px;
-        }
-        nav ul li a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-        nav ul li a:hover {
-            color: #ff6347;
-        }
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background-image: url('https://sun9-38.userapi.com/s/v1/ig2/9W5eDY-1rMrxPt8YYGE9R7erWNUfIA-jBP6N-bCVRjn5UY869UtgSEejp99eFVEZrCKP2rDu5bcB1Pwx89cwfUjG.jpg?quality=95&as=32x16,48x24,72x36,108x54,160x80,240x120,360x180,480x240,540x270,640x320,720x360,1080x540,1280x640,1440x720,2160x1080&from=bu&cs=1280x0');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #fff;
-            position: relative;
-            clip-path: inset(0 0 5% 0);
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-        }
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            animation: fadeInDown 1s ease;
-        }
-        .hero p {
-            font-size: 24px;
-            margin-bottom: 40px;
-            animation: fadeInUp 1s ease 0.5s;
-            animation-fill-mode: both;
-        }
-        .cta-button {
-            background-color: #ff6347;
-            color: #fff;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            animation: fadeIn 1s ease 1s;
-            animation-fill-mode: both;
-        }
-        .cta-button:hover {
-            background-color: #e5533c;
-            transform: scale(1.05);
-        }
-        .watermark {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            color: #fff;
-            opacity: 0.5;
-            filter: blur(2px);
-            font-size: 24px;
-            z-index: 1;
-        }
-        /* About Section */
-        .about {
-            max-width: 1200px;
-            margin: 100px auto;
-            padding: 40px 20px;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .about.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .about h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            animation: fadeInLeft 1s ease;
-        }
-        .about p {
-            font-size: 18px;
-            line-height: 1.6;
-            max-width: 800px;
-            margin: 0 auto;
-            animation: fadeInRight 1s ease 0.5s;
-            animation-fill-mode: both;
-        }
-        /* Gallery Section */
-        .gallery {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .gallery.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .gallery h2 {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 40px;
-        }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            height: 400px; /* Fixed height for uniformity */
-            opacity: 0;
-            transform: translateY(20px) scale(0.95);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-        }
-        .gallery-item.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-        .gallery-item:hover {
-            transform: scale(1.05);
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            display: block;
-            object-fit: cover; /* Cover to maintain aspect ratio without distortion */
-            transition: transform 0.5s ease;
-        }
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
-            color: #fff;
-            padding: 15px;
-            text-align: center;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        .gallery-item:hover .gallery-caption {
-            transform: translateY(0);
-        }
-        /* Clients Section */
-        .clients {
-            background-color: #fff;
-            padding: 60px 20px;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .clients.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .clients h2 {
-            font-size: 36px;
-            margin-bottom: 40px;
-        }
-        .clients-logos {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 30px;
-        }
-        .client-logo-container {
-            width: 220px;
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            opacity: 0;
-            transform: scale(0.8);
-            transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
-        }
-        .client-logo-container.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-        .client-logo-container:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-        .client-logo-img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-        }
-        /* Contact Section */
-        .contact {
-            max-width: 1200px;
-            margin: 100px auto;
-            padding: 40px 20px;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .contact.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .contact h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-        .contact p {
-            font-size: 18px;
-            margin-bottom: 40px;
-        }
-        .tg-link {
-            display: inline-flex;
-            align-items: center;
-            background-color: #0088cc;
-            color: #fff;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-        .tg-link:hover {
-            background-color: #0077bb;
-            transform: scale(1.05);
-        }
-        .tg-icon {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg') no-repeat center;
-            background-size: contain;
-        }
-        /* Footer */
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 20px;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        footer.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        /* Animations */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-        /* Parallax Effect */
-        .parallax {
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            height: 400px;
-            position: relative;
-            opacity: 0;
-            transition: opacity 1s ease;
-            background-image: url('https://sun9-81.userapi.com/s/v1/ig2/m5DyAYerna8j0RXQnPxytOl0ArtBWdZ1jluH3arAgE_xKipWhUX_onlQhPjYb-Ghw5X4r5Od-rMaXa90oV9dBgKt.jpg?quality=95&as=32x16,48x24,72x36,108x54,160x80,240x120,360x180,480x240,540x270,640x320,720x360,1080x540,1280x640,1440x720,2160x1080&from=bu&cs=1280x0');
-        }
-        .parallax.visible {
-            opacity: 1;
-        }
-        .parallax-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #fff;
-            text-align: center;
-            font-size: 28px;
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0.8);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        .parallax-content.visible {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-        }
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 36px;
-            }
-            .hero p {
-                font-size: 18px;
-            }
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
-            .gallery-item {
-                height: 300px; /* Adjust for smaller screens */
-            }
-            .client-logo-container {
-                width: 180px;
-                height: 100px;
-            }
-        }
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORGANI'CARE — Гастрономическая культура питания</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ═══ TOKENS ═══ */
+:root {
+  --pur: #9333ea; --vio: #c451ff; --pink: #e879f9;
+  --light: #fdf5ff; --cream: #faf9f7; --white: #ffffff;
+  --ink: #1a1a2e; --muted: #6b6b8a;
+  --grad: linear-gradient(135deg,#9333ea,#c451ff,#e879f9);
+  --ease: cubic-bezier(.22,1,.36,1);
+  --ease2: cubic-bezier(.76,0,.24,1);
+}
+
+/* ═══ RESET ═══ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{overflow-x:hidden;scroll-behavior:smooth;}
+body{font-family:'Montserrat',sans-serif;background:var(--white);color:var(--ink);-webkit-font-smoothing:antialiased;cursor:none;}
+a{color:inherit;text-decoration:none;}img{display:block;max-width:100%;}
+p{font-size:16px;line-height:1.75;color:#555;}
+
+/* ═══ CURSOR ═══ */
+#cDot{position:fixed;width:8px;height:8px;background:var(--pur);border-radius:50%;top:0;left:0;z-index:99999;pointer-events:none;transform:translate(-50%,-50%);}
+#cRing{position:fixed;width:40px;height:40px;border:1.5px solid rgba(147,51,234,.4);border-radius:50%;top:0;left:0;z-index:99998;pointer-events:none;transform:translate(-50%,-50%);transition:width .4s var(--ease),height .4s var(--ease);}
+#cRing.big{width:58px;height:58px;border-color:var(--pur);}
+@media(hover:none){#cDot,#cRing{display:none;}body{cursor:auto;}}
+
+/* ═══ LOADER ═══ */
+#loader{position:fixed;inset:0;z-index:9999;display:grid;grid-template-columns:1fr 1fr;pointer-events:all;}
+.ll,.lr{background:var(--ink);transition:transform 1.3s var(--ease2);}
+#loader.out .ll{transform:translateX(-100%);}
+#loader.out .lr{transform:translateX(100%);}
+.lc{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:1;pointer-events:none;}
+.llogo{opacity:0;transform:translateY(14px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
+.llogo.s{opacity:1;transform:none;}
+.llogo img{height:52px;filter:brightness(0) invert(1);margin:0 auto;}
+.lpct{font-size:10px;letter-spacing:.3em;color:rgba(255,255,255,.2);margin-top:18px;font-weight:500;}
+.lbar{width:160px;height:1px;background:rgba(255,255,255,.08);margin:10px auto 0;overflow:hidden;}
+.lfill{height:100%;background:var(--grad);width:0;}
+
+/* ═══ HEADER ═══ */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:1000;height:76px;padding:0 48px;display:flex;align-items:center;justify-content:space-between;transition:background .5s,box-shadow .5s;}
+.hdr.scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(0,0,0,.07);}
+.hdr-logo img{height:44px;transition:transform .4s var(--ease);}
+.hdr-logo:hover img{transform:scale(1.04);}
+.hdr-nav{display:flex;gap:32px;list-style:none;}
+.hdr-nav a{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.75);position:relative;transition:color .3s;}
+.hdr-nav a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--pur);transition:width .35s var(--ease);}
+.hdr-nav a:hover,.hdr-nav a:hover::after{color:var(--pur);width:100%;}
+.hdr.scrolled .hdr-nav a{color:var(--ink);}
+.hdr.scrolled .hdr-nav a:hover{color:var(--pur);}
+.hdr-cta{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--grad);padding:11px 26px;border-radius:999px;transition:all .4s var(--ease);}
+.hdr-cta:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(147,51,234,.45);}
+.hdr-burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:none;padding:4px;}
+.hdr-burger span{display:block;width:24px;height:2px;background:rgba(255,255,255,.8);transition:.4s var(--ease);}
+.hdr.scrolled .hdr-burger span{background:var(--ink);}
+.hdr-burger.o span:nth-child(1){transform:rotate(45deg) translate(5px,4.5px);}
+.hdr-burger.o span:nth-child(2){opacity:0;}
+.hdr-burger.o span:nth-child(3){transform:rotate(-45deg) translate(5px,-4.5px);}
+.mob-nav{position:fixed;inset:0;z-index:990;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;opacity:0;pointer-events:none;transition:opacity .5s var(--ease);}
+.mob-nav.o{opacity:1;pointer-events:all;}
+.mob-nav a{font-size:clamp(22px,5vw,36px);font-weight:700;color:rgba(255,255,255,.75);letter-spacing:.04em;text-transform:uppercase;transition:color .3s;}
+.mob-nav a:hover{color:var(--vio);}
+
+/* ═══ HERO ═══ */
+.hero{height:100vh;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;color:white;overflow:hidden;}
+.hero iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;z-index:-2;filter:brightness(1.25);}
+.hero::before{content:'';position:absolute;inset:0;background:url('https://grainy-gradients.vercel.app/noise.svg');opacity:.08;z-index:1;pointer-events:none;}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.38) 0%,rgba(0,0,0,.7) 100%);z-index:-1;}
+.hero-content{position:relative;z-index:2;max-width:960px;padding:0 24px;animation:fadeUp 1.4s cubic-bezier(.4,0,.2,1) forwards;}
+.hero-logo{margin-bottom:28px;}
+.hero-logo img{width:420px;max-width:82%;height:auto;filter:brightness(1.05) drop-shadow(0 12px 40px rgba(0,0,0,.65));transition:transform .5s ease;margin:0 auto;}
+.hero-logo img:hover{transform:scale(1.04);}
+.hero-subtitle{font-size:18px;font-weight:400;color:rgba(255,255,255,.9);line-height:1.6;margin-bottom:36px;letter-spacing:.01em;}
+.hero-btn{display:inline-flex;align-items:center;justify-content:center;padding:20px 52px;font-family:'Montserrat',sans-serif;font-size:16px;font-weight:600;letter-spacing:.04em;color:white;border-radius:60px;background:var(--grad);position:relative;overflow:hidden;transition:all .4s var(--ease);box-shadow:0 12px 40px rgba(147,51,234,.4);}
+.hero-btn::before{content:'';position:absolute;top:0;left:-120%;width:120%;height:100%;background:linear-gradient(120deg,transparent,rgba(255,255,255,.25),transparent);transition:.8s;}
+.hero-btn:hover::before{left:120%;}
+.hero-btn:hover{transform:translateY(-4px);box-shadow:0 25px 60px rgba(168,85,247,.5);}
+
+/* ═══ MARQUEE ═══ */
+.dbl-mq{overflow:hidden;border-top:1px solid rgba(147,51,234,.15);border-bottom:1px solid rgba(147,51,234,.15);background:var(--light);}
+.mq-row{display:flex;padding:13px 0;overflow:hidden;}
+.mq-track{display:inline-flex;white-space:nowrap;}
+.mq-row:nth-child(1) .mq-track{animation:mql 24s linear infinite;}
+.mq-row:nth-child(2) .mq-track{animation:mqr 24s linear infinite;}
+.mq-row:hover .mq-track{animation-play-state:paused;}
+.mi{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;padding:0 28px;color:rgba(147,51,234,.35);}
+.mi.ac{color:var(--pur);}
+.ms{color:rgba(147,51,234,.2);}
+
+/* ═══ SHARED SECTION STYLES ═══ */
+.sec-wrap{max-width:1400px;margin:0 auto;padding:0 52px;}
+.sec-lbl{font-size:10px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--pur);display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+.sec-lbl::before{content:'';width:24px;height:1.5px;background:var(--pur);}
+.sec-h2{font-size:clamp(36px,4.5vw,60px);font-weight:800;letter-spacing:-.02em;line-height:1.05;color:var(--ink);}
+
+/* ═══ TRUST / CLIENTS ═══ */
+.trust{background:var(--light);padding:80px 0;border-bottom:1px solid rgba(147,51,234,.1);}
+.cl-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:44px;}
+.cl-lbl{font-size:10px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);}
+.cl-big{font-size:80px;font-weight:800;color:rgba(147,51,234,.08);letter-spacing:-.04em;line-height:1;}
+.logos-mask{overflow:hidden;mask:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent);}
+.logos-track{display:flex;gap:56px;align-items:center;width:max-content;animation:logoS 32s linear infinite;}
+.logos-track img{height:38px;object-fit:contain;opacity:.65;transition:opacity .4s;}
+.logos-track img:hover{opacity:1;}
+
+/* ═══ DIFFERENCE ═══ */
+.diff{background:var(--white);padding:120px 0;}
+.diff-top{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:80px;}
+.diff-sub{font-size:15px;color:var(--muted);line-height:1.85;max-width:400px;text-align:right;}
+.diff-cards{display:grid;grid-template-columns:repeat(3,1fr);}
+.diff-card{padding:48px 40px 48px 0;border-top:1px solid rgba(0,0,0,.08);position:relative;transition:background .4s;}
+.diff-card:last-child{padding-right:0;}
+.diff-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease);}
+.diff-card:hover::before{transform:scaleX(1);}
+.diff-card:hover{background:rgba(147,51,234,.025);}
+.dc-photo{width:100%;height:220px;border-radius:12px;overflow:hidden;margin-bottom:24px;}
+.dc-photo img{width:100%;height:100%;object-fit:cover;object-position:center center;transition:transform .7s var(--ease);}
+.diff-card:hover .dc-photo img{transform:scale(1.06);}
+.dc-num{font-size:52px;font-weight:800;color:rgba(147,51,234,.1);line-height:1;margin-bottom:8px;letter-spacing:-.04em;}
+.dc-tag{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--vio);margin-bottom:14px;}
+.dc-title{font-size:18px;font-weight:700;color:var(--ink);margin-bottom:10px;}
+.dc-text{font-size:14px;color:var(--muted);line-height:1.8;}
+
+/* ═══ SERVICE CULTURE (photo bg) ═══ */
+.svc-cult{position:relative;padding:120px 0;overflow:hidden;}
+.svc-cult-bg{position:absolute;top:0;left:0;width:100%;height:100%;
+  background-image:url('https://sun9-60.vkuserphoto.ru/s/v1/ig2/uu96qPaCTeGHEFF-pczHYB64J4dnrLH0STxsWBEJZbEw46hP5VUl9jzEr7BVCJpLCEQsHW1RBx-jz1R0dCcCVJ4c.jpg?quality=95&as=32x21,48x32,72x48,108x72,160x107,240x160,360x240,480x320,540x360,640x427,720x480,1080x720,1280x853,1440x960,2560x1707&from=bu&cs=1280x0');
+  background-size:cover;background-position:center;background-repeat:no-repeat;
+  z-index:0;}
+.svc-cult-ov{position:absolute;inset:0;background:linear-gradient(160deg,rgba(20,5,50,.52) 0%,rgba(30,8,65,.42) 50%,rgba(20,5,50,.48) 100%);z-index:1;}
+.svc-cult-in{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 52px;}
+.svc-cult-lbl{font-size:10px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.svc-cult-lbl::before{content:'';width:24px;height:1px;background:rgba(255,255,255,.35);}
+.svc-cult-h2{font-size:clamp(30px,4vw,52px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:56px;letter-spacing:-.02em;}
+.cult-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:0;}
+.cc{background:transparent;backdrop-filter:none;border:none;border-left:1px solid rgba(255,255,255,.14);padding:32px 28px;transition:background .4s,transform .4s var(--ease);}
+.cc:first-child{border-left:none;}
+.cc:hover{background:rgba(255,255,255,.06);transform:translateY(-4px);}
+.cc-n{font-size:48px;font-weight:800;color:rgba(255,255,255,.1);line-height:1;margin-bottom:10px;letter-spacing:-.04em;}
+.cc-t{font-size:14px;font-weight:700;color:#fff;margin-bottom:10px;text-shadow:0 1px 8px rgba(0,0,0,.5);}
+.cc-b{font-size:12px;color:rgba(255,255,255,.75);line-height:1.75;text-shadow:0 1px 6px rgba(0,0,0,.45);}
+.cc-tag{font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pink);margin-top:18px;display:flex;align-items:center;gap:8px;}
+.cc-tag::before{content:'';width:14px;height:1px;background:var(--pink);}
+
+/* ═══ MISSION ═══ */
+.mission{background:var(--white);padding:120px 0;}
+.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.mission-lbl{font-size:10px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--pur);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.mission-lbl::before{content:'';width:24px;height:1.5px;background:var(--pur);}
+.mission-h2{font-size:clamp(32px,4vw,52px);font-weight:800;letter-spacing:-.02em;color:var(--ink);margin-bottom:24px;line-height:1.1;}
+.mission-desc{font-size:16px;color:var(--muted);line-height:1.9;margin-bottom:32px;}
+.mission-attr{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(0,0,0,.2);}
+.mission-photo{position:relative;height:580px;border-radius:0;overflow:visible;display:flex;align-items:stretch;}
+.mission-photo::after{display:none;}
+.mission-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 18%,black 78%,transparent 100%),linear-gradient(to right,transparent 0%,black 10%,black 90%,transparent 100%);
+  -webkit-mask-composite:destination-in;
+  mask-image:linear-gradient(to bottom,transparent 0%,black 18%,black 78%,transparent 100%),linear-gradient(to right,transparent 0%,black 10%,black 90%,transparent 100%);
+  mask-composite:intersect;
+  filter:drop-shadow(0 6px 28px rgba(147,51,234,.22)) drop-shadow(0 0 14px rgba(147,51,234,.12));
+  transition:transform 9s var(--ease);}
+.mission-photo:hover img{transform:scale(1.02);}
+.mission-photo-tag{display:none;}
+
+/* ═══ SERVICES (photo bg) ═══ */
+.services{position:relative;padding:120px 0;overflow:hidden;color:white;}
+.services-bg{position:absolute;top:0;left:0;width:100%;height:100%;
+  background-image:url('https://sun9-54.vkuserphoto.ru/s/v1/ig2/fTCcl1-TViNs8Xkfm969SVBLBtK1EzM7Iz7BDqxWGQ6_AHVQo8YL3IBzOkAvIslxS0oWTf-vTDNWQ2JhdKM1fDJd.jpg?quality=95&as=32x21,48x32,72x48,108x72,160x106,240x160,360x240,480x319,540x359,640x426,720x479,1080x719,1280x852,1440x958,2000x1331&from=bu&cs=1280x0');
+  background-size:cover;background-position:center;background-repeat:no-repeat;
+  z-index:0;}
+.services-ov{position:absolute;inset:0;background:linear-gradient(160deg,rgba(20,5,50,.52) 0%,rgba(30,8,65,.42) 50%,rgba(20,5,50,.48) 100%);z-index:1;}
+.services-in{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 52px;}
+.svc-head{display:flex;align-items:flex-end;justify-content:space-between;gap:48px;margin-bottom:64px;}
+.svc-head-lbl{font-size:10px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.svc-head-lbl::before{content:'';width:24px;height:1px;background:rgba(255,255,255,.3);}
+.svc-h2{font-size:clamp(32px,4vw,54px);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-.02em;}
+.svc-desc{font-size:14px;color:rgba(255,255,255,.42);line-height:1.75;max-width:260px;text-align:right;}
+#svc-prev{position:fixed;z-index:800;width:300px;height:210px;border-radius:16px;overflow:hidden;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.88);transition:opacity .35s var(--ease),transform .35s var(--ease);box-shadow:0 28px 70px rgba(0,0,0,.45);}
+#svc-prev.show{opacity:1;transform:translate(-50%,-50%) scale(1);}
+#svc-prev img{width:100%;height:100%;object-fit:cover;}
+.svc-list{border-top:1px solid rgba(255,255,255,.12);}
+.svc-row{display:grid;grid-template-columns:72px 1fr 60px;align-items:center;gap:32px;padding:30px 0;border-bottom:1px solid rgba(255,255,255,.12);position:relative;overflow:hidden;transition:padding-left .5s var(--ease);}
+.svc-row::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:rgba(255,255,255,.07);z-index:0;transition:width .6s var(--ease2);}
+.svc-row:hover::before{width:100%;}.svc-row:hover{padding-left:18px;}
+.svc-n{font-size:18px;font-weight:300;color:rgba(255,255,255,.22);position:relative;z-index:1;transition:color .4s;}
+.svc-row:hover .svc-n{color:var(--pink);}
+.svc-body{position:relative;z-index:1;}
+.svc-name{font-size:clamp(18px,2.2vw,28px);font-weight:700;color:rgba(255,255,255,.9);display:block;letter-spacing:-.01em;}
+.svc-sub{font-size:13px;color:rgba(255,255,255,.35);margin-top:5px;max-width:500px;line-height:1.65;display:block;max-height:0;overflow:hidden;opacity:0;transition:max-height .5s var(--ease),opacity .4s;}
+.svc-row:hover .svc-sub{max-height:52px;opacity:1;color:rgba(255,255,255,.85);}
+.svc-circ{width:48px;height:48px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;transition:all .4s var(--ease);margin-left:auto;position:relative;z-index:1;}
+.svc-row:hover .svc-circ{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.5);transform:rotate(45deg);}
+.svc-circ svg{width:16px;height:16px;stroke:#fff;stroke-width:2;fill:none;}
+
+/* ═══ GUARANTEE (photo bg, light overlay) ═══ */
+.guarantee{position:relative;padding:140px 0;overflow:hidden;color:#fff;}
+.guar-bg{position:absolute;top:0;left:0;width:100%;height:100%;
+  background-image:url('https://sun9-74.userapi.com/s/v1/ig2/dOv863Yp3KbTVV2bFZNKO8jkugToTD5Ip45Tw69FB58rNtL1ILnVgtOLINn6stOXgGuZErO1QXajd34I_TBkgmzu.jpg?quality=95&as=32x21,48x32,72x48,108x72,160x106,240x160,360x240,480x319,540x359,640x426,720x479,1080x719,1280x852,1440x958,1537x1023&from=bu&cs=1537x0');
+  background-size:cover;background-position:center;background-repeat:no-repeat;
+  z-index:0;}
+.guar-ov{position:absolute;inset:0;background:linear-gradient(160deg,rgba(15,5,40,.62) 0%,rgba(25,8,60,.52) 50%,rgba(15,5,40,.58) 100%);z-index:1;}
+.guar-in{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 52px;}
+.guar-head{display:flex;align-items:flex-end;justify-content:space-between;gap:48px;margin-bottom:72px;}
+.guar-h2{font-size:clamp(36px,4.5vw,60px);font-weight:800;letter-spacing:-.02em;color:#fff;line-height:1.05;}
+.guar-sub{font-size:15px;color:rgba(255,255,255,.65);line-height:1.8;max-width:380px;text-align:right;}
+.guar-grid{display:grid;grid-template-columns:repeat(4,1fr);}
+.gi{padding:40px 32px 40px 0;border-right:1px solid rgba(255,255,255,.14);}
+.gi:last-child{border-right:none;}
+.gi-n{font-size:48px;font-weight:800;color:rgba(255,255,255,.14);line-height:1;margin-bottom:16px;letter-spacing:-.04em;}
+.gi-t{font-size:16px;font-weight:700;color:#fff;margin-bottom:10px;}
+.gi-b{font-size:13px;color:rgba(255,255,255,.65);line-height:1.75;}
+
+/* ═══ CONTACTS / CTA ═══ */
+.cta-sec{background:var(--light);padding:120px 0;position:relative;overflow:hidden;}
+.cta-sec::before{content:'';position:absolute;width:600px;height:600px;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(196,81,255,.1),transparent 65%);}
+.cta-in{position:relative;z-index:1;max-width:860px;margin:0 auto;padding:0 52px;text-align:center;}
+.cta-tag{font-size:10px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:12px;}
+.cta-tag::before,.cta-tag::after{content:'';flex:1;max-width:36px;height:1px;background:rgba(147,51,234,.25);}
+.cta-h{font-size:clamp(40px,6vw,80px);font-weight:800;letter-spacing:-.03em;line-height:.95;color:var(--ink);margin-bottom:18px;}
+.cta-sub{font-size:16px;color:var(--muted);line-height:1.85;margin-bottom:44px;max-width:500px;margin-left:auto;margin-right:auto;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-grad{display:inline-flex;align-items:center;gap:10px;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:700;letter-spacing:.06em;color:#fff;background:var(--grad);padding:18px 44px;border-radius:999px;box-shadow:0 12px 36px rgba(147,51,234,.4);transition:all .5s var(--ease);}
+.btn-grad:hover{transform:translateY(-3px);box-shadow:0 22px 52px rgba(196,81,255,.58);}
+.btn-out{display:inline-flex;align-items:center;gap:10px;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:600;letter-spacing:.06em;color:var(--ink);padding:18px 36px;border-radius:999px;border:2px solid rgba(0,0,0,.15);transition:all .4s var(--ease);}
+.btn-out:hover{border-color:var(--pur);color:var(--pur);}
+.cta-note{font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(147,51,234,.3);margin-top:22px;}
+
+/* ═══ SOCIAL ═══ */
+.social{background:var(--white);padding:100px 0;border-top:1px solid rgba(0,0,0,.06);}
+.soc-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.soc-h2{font-size:clamp(32px,4vw,52px);font-weight:800;letter-spacing:-.02em;color:var(--ink);line-height:1.1;margin-bottom:16px;}
+.soc-txt{font-size:15px;color:var(--muted);line-height:1.85;}
+.soc-links{border-top:1px solid rgba(0,0,0,.07);}
+.soc-row{display:flex;align-items:center;justify-content:space-between;padding:24px 0;border-bottom:1px solid rgba(0,0,0,.07);font-size:24px;font-weight:700;color:var(--ink);transition:color .3s,padding-left .4s var(--ease);}
+.soc-row:hover{color:var(--pur);padding-left:10px;}
+.soc-arr{font-size:18px;transition:transform .4s var(--ease);}
+.soc-row:hover .soc-arr{transform:translate(5px,-5px);}
+
+/* ═══ FOOTER ═══ */
+.ft{background:var(--ink);padding:64px 0 40px;}
+.ft-in{max-width:1400px;margin:0 auto;padding:0 52px;}
+.ft-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:36px;}
+.ft-logo img{height:40px;opacity:.72;filter:brightness(0) invert(1);transition:opacity .3s;}
+.ft-logo:hover img{opacity:1;}
+.ft-nav{display:flex;gap:28px;}
+.ft-nav a{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.28);transition:color .3s;font-weight:600;}
+.ft-nav a:hover{color:rgba(255,255,255,.72);}
+.ft-soc{display:flex;gap:10px;}
+.ft-soc a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:rgba(255,255,255,.28);transition:all .3s;}
+.ft-soc a:hover{border-color:var(--vio);color:var(--vio);}
+.ft-bot{display:flex;align-items:center;justify-content:space-between;}
+.ft-copy{font-size:11px;color:rgba(255,255,255,.16);letter-spacing:.04em;}
+.ft-em a{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.22);font-weight:600;transition:color .3s;}
+.ft-em a:hover{color:var(--pink);}
+
+/* ═══ BTT ═══ */
+.btt{position:fixed;bottom:36px;right:36px;z-index:500;width:48px;height:48px;border-radius:50%;background:var(--grad);border:none;cursor:none;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(147,51,234,.4);opacity:0;pointer-events:none;transition:all .4s var(--ease);}
+.btt.on{opacity:1;pointer-events:all;}
+.btt:hover{transform:translateY(-4px);}
+.btt svg{width:20px;height:20px;stroke:#fff;stroke-width:2;fill:none;}
+
+/* ═══ REVEAL ═══ */
+[data-r]{opacity:0;transform:translateY(44px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
+[data-r=l]{transform:translateX(-36px);}[data-r=r]{transform:translateX(36px);}
+[data-r].in{opacity:1;transform:none;}
+[data-stag]>[data-r]{transition-delay:calc(var(--i,0)*.1s);}
+
+/* ═══ KEYFRAMES ═══ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:none;}}
+@keyframes mql{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@keyframes mqr{from{transform:translateX(-50%);}to{transform:translateX(0);}}
+@keyframes logoS{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:1100px){
+  .diff-top{grid-template-columns:1fr;}.diff-sub{text-align:left;max-width:none;}
+  .cult-grid{grid-template-columns:repeat(3,1fr);}
+  .mission-grid{grid-template-columns:1fr;}.mission-photo{height:340px;}
+  .guar-grid{grid-template-columns:1fr 1fr;}.gi:nth-child(2n){border-right:none;}
+  .soc-grid{grid-template-columns:1fr;}
+  .guar-head{flex-direction:column;align-items:flex-start;}.guar-sub{text-align:left;}
+}
+@media(max-width:900px){
+  .hdr{padding:0 24px;}.hdr-nav,.hdr-cta{display:none;}.hdr-burger{display:flex;}
+  .sec-wrap,.svc-cult-in,.services-in,.guar-in,.cta-in,.ft-in{padding-left:24px;padding-right:24px;}
+  .svc-head{flex-direction:column;align-items:flex-start;}.svc-desc{text-align:left;}
+  .diff-cards{grid-template-columns:1fr;}.diff-card{padding:36px 0;}
+  .cult-grid{grid-template-columns:1fr 1fr;}
+  .svc-row{grid-template-columns:56px 1fr 48px;gap:16px;}
+  .ft-top{flex-direction:column;gap:24px;text-align:center;}.ft-nav{flex-wrap:wrap;justify-content:center;}
+  .ft-bot{flex-direction:column;gap:10px;text-align:center;}
+}
+@media(max-width:640px){
+  .cult-grid{grid-template-columns:1fr;}
+  .guar-grid{grid-template-columns:1fr;}.gi{border-right:none;border-bottom:1px solid rgba(147,51,234,.15);}
+}
+</style>
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <a href="#hero" class="logo">Хабстор</a>
-            <nav>
-                <ul>
-                    <li><a href="#about">О нас</a></li>
-                    <li><a href="#gallery">Меню</a></li>
-                    <li><a href="#clients">Нам доверяют</a></li>
-                    <li><a href="#contact">Контакты</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <section class="hero" id="hero">
-        <div class="hero-content">
-            <h1>Корпоративное питание в Санкт-Петербурге</h1>
-            <p>Простая современная еда для вашего бизнеса</p>
-            <a href="#contact" class="cta-button">Заказать</a>
-        </div>
-        <div class="watermark">хабстор</div>
-    </section>
-    <section id="about" class="about">
-        <h2>О компании Хабстор</h2>
-        <p>Хабстор — это сервис корпоративного питания в Санкт-Петербурге, специализирующийся на простой и современной еде. Мы предлагаем здоровые, вкусные блюда, приготовленные из свежих ингредиентов, для офисов и корпоративных клиентов. Наша концепция вдохновлена минимализмом и качеством, подобно стилю Моя школа, Cambridge School и маркетплейсы WB в Петербурге. Мы фокусируемся на балансе вкусов, визуальной привлекательности и удобстве доставки.</p>
-    </section>
-    <div class="parallax">
-        <div class="parallax-content">
-            <h3></h3>
-        </div>
+
+<div id="cDot"></div><div id="cRing"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="ll"></div><div class="lr"></div>
+  <div class="lc">
+    <div class="llogo" id="lLogo"><img src="https://static.tildacdn.com/tild3932-3934-4433-a637-626234386530/-02.png" alt="ORGANI'CARE"></div>
+    <div class="lpct"><span id="lNum">0</span></div>
+    <div class="lbar"><div class="lfill" id="lFill"></div></div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="hdr" id="hdr">
+  <a href="index.html" class="hdr-logo"><img src="https://static.tildacdn.com/tild3932-3934-4433-a637-626234386530/-02.png" alt="ORGANI'CARE"></a>
+  <ul class="hdr-nav">
+    <li><a href="about.html">О нас</a></li>
+    <li><a href="nutritionist.html">Лечебное питание</a></li>
+    <li><a href="corporate.html">Корпоративное</a></li>
+    <li><a href="canteen.html">Столовые</a></li>
+    <li><a href="contacts.html">Контакты</a></li>
+  </ul>
+  <a href="contacts.html" class="hdr-cta">Заказать питание</a>
+  <button class="hdr-burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+</header>
+<nav class="mob-nav" id="mobNav">
+  <a href="about.html">О нас</a><a href="nutritionist.html">Лечебное питание</a>
+  <a href="corporate.html">Корпоративное питание</a><a href="canteen.html">Столовые</a><a href="contacts.html">Контакты</a>
+</nav>
+
+<!-- 1. HERO — лого + subtitle как в оригинале -->
+<section class="hero">
+  <iframe src="https://kinescope.io/odhNn36kVhxzJr1Y3bxrVW?autoplay=1&muted=1&loop=1&controls=0&ui=0"
+    allow="autoplay; encrypted-media" frameborder="0" tabindex="-1" aria-hidden="true"></iframe>
+  <div class="hero-content">
+    <div class="hero-logo">
+      <img src="https://static.tildacdn.com/tild3932-3934-4433-a637-626234386530/-02.png" alt="ORGANI'CARE" class="hero-logo-img">
     </div>
-    <!-- Обновленный фрагмент секции "Наше меню" (заменены только позиции меню) -->
-<section id="gallery" class="gallery">
-    <h2>Варианты блюд из нашего меню</h2>
-    <div class="gallery-grid">
-        <div class="gallery-item">
-            <img src="https://sun9-69.userapi.com/s/v1/ig2/BcEYDJVW8-DediUul46J7wfjKCKx-R95gMSjhqhM7ASzn2d58SOAGRkk20-rb6vFc_9lIxNCIJ2UBRMIaq9lx8Yj.jpg?quality=95&as=32x56,48x84,72x126,108x189,160x280,240x420,360x630,457x800&from=bu&cs=457x0" alt="Курица терияки">
-            <div class="gallery-caption">Курица терияки — 130/150 г — 320 руб. (от 50 порций)</div>
-        </div>
-        <div class="gallery-item">
-            <img src="https://sun9-22.userapi.com/s/v1/ig2/v8sa7rKnCwREMDAt5IVPHCJLiPSjXRe7qurYDt3yqmb3zz3JLxdLYquKvlomuqgcwPHk1FtdXX-reN0BLNmAd9qg.jpg?quality=95&as=32x52,48x78,72x117,108x176,160x261,240x391,360x586,480x782,540x880,640x1043,720x1173&from=bu&cs=720x0" alt="Говяжьи щечки с картофельным пюре">
-            <div class="gallery-caption">Говяжьи щечки с картофельным пюре — 120/150 г — 390 руб. (от 15 порций)</div>
-        </div>
-        <div class="gallery-item">
-            <img src="https://sun9-59.userapi.com/s/v1/ig2/15_kf0fRs5XOmG-lRC_WjCX4uemR6568_4qwJpAbPrinYnutrQn1C-VpMBrMJIryX1Mp1WhnKqyWPZZoXD8anWHn.jpg?quality=95&as=32x51,48x77,72x115,108x173,160x256,240x384,360x576,480x768,540x864,640x1024,720x1152,800x1280&from=bu&cs=800x0" alt="Английский кекс">
-            <div class="gallery-caption">Английский кекс — 100 г — 180 руб.</div>
-        </div>
-        <div class="gallery-item">
-            <img src="https://sun9-39.userapi.com/s/v1/ig2/8t_AbbA7Ujtq9PVcow5mpCeH_LKENTA97Ha0KTMlRMkx_HG8WYrL8Ooo4rbdf13Kr3bfjCAUr76sRGB70KiaWf8-.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,600x800&from=bu&cs=600x0" alt="Лапша удон с эдамамэ и татаки из говядины">
-            <div class="gallery-caption">Лапша удон с эдамамэ и татаки из говядины — 120/120 г — 350 руб. (от 15 порций)</div>
-        </div>
-        <div class="gallery-item">
-            <img src="https://sun9-83.userapi.com/s/v1/ig2/w-l5rfVzspe4xtIargkTny63wjmDmx0wcjL43RPtjacwh3P2bblKtNJ09tf9h97TcClqKAsdmSS0k6NWSfCQZKD3.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440,1280x1707,1440x1920,1920x2560&from=bu&cs=1280x0" alt="Томленый палтус с кускусом">
-            <div class="gallery-caption">Томленый палтус с кускусом и жюльеном — 100/100/50 г — 380 руб. (от 15 порций)</div>
-        </div>
-        <div class="gallery-item">
-            <img src="https://sun9-82.userapi.com/s/v1/ig2/2cJPBrCeguoHrbD9AA00NH_sQgf4_7biaeGvb6sQgDu4A3H-5VrYfGaLI-GFCI5qqoq0B_ytsWRXzsdvfRZ0RWNW.jpg?quality=95&as=32x44,48x66,72x99,108x148,160x219,240x329,360x493,480x658,540x740,640x877,720x987,864x1184&from=bu&cs=864x0" alt="Кефаль с рисом и овощами">
-            <div class="gallery-caption">Кефаль с рисом и овощами — 100/150 г — 330 руб.</div>
-        </div>
-    </div>
+    <p class="hero-subtitle">Гастрономическая культура корпоративного и лечебного питания</p>
+    <a href="#contacts" class="hero-btn">Заказать пробную неделю</a>
+  </div>
 </section>
 
-    <section id="clients" class="clients">
-        <h2>Нам доверяют</h2>
-        <div class="clients-logos">
-            <div class="client-logo-container">
-                <img src="https://static.tildacdn.com/tild6662-3363-4464-a539-323931393665/__.png" alt="Моя школа в Петербурге" class="client-logo-img">
-            </div>
-            <div class="client-logo-container">
-                <img src="https://cisedu.com/img/host/CIS_fulllogo.png" alt="Cambridge School в Петербурге" class="client-logo-img">
-            </div>
-            <div class="client-logo-container">
-                <img src="https://avatars.mds.yandex.net/get-altay/5110793/2a00000180b2404184506702a4c798d30f9c/M" alt="Школа Мая" class="client-logo-img">
-            </div>
-            <div class="client-logo-container">
-                <img src="https://avatars.mds.yandex.net/i?id=5ef0b33844e2773cd2fece25a3d5bc335a9b120c-5434064-images-thumbs&n=13" alt="Novartis" class="client-logo-img">
-            </div>
-            <div class="client-logo-container">
-                <img src="https://consulting.1c.ru/upload/iblock/73b/hz2li5bojbd2ksksmej91vcvyvqq1pok.png" alt="полисан" class="client-logo-img">
-            </div>
-            <div class="client-logo-container">
-                <img src="https://event-er.ru/wp-content/uploads/2024/04/logo-06-2.png" alt="Garage Eight" class="client-logo-img">
-            </div>
-            <div class="client-logo-container">
-                <img src="https://cdn.modulbank.ru/images-new/marketplace-sit-down/wildberries-1440@2x.webp" alt="WB" class="client-logo-img">
-            </div>
-        </div>
-    </section>
-    <section id="contact" class="contact">
-        <h2>Связаться с нами</h2>
-        <p>По всем вопросам напишите нам в Telegram.</p>
-        <a href="https://t.me/Must_D1e" class="tg-link">
-            <div class="tg-icon"></div>
-            Написать нам
-        </a>
-    </section>
-    <footer>
-        <p>&copy; 2025 Хабстор. Все права защищены.</p>
-    </footer>
-    <script>
-        // Header Scroll Effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        // Smooth Scroll for Nav Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href').substring(1);
-                const target = document.getElementById(targetId);
-                if (target) {
-                    const headerOffset = document.querySelector('header').offsetHeight;
-                    const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
-                    const offsetPosition = elementPosition - headerOffset;
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        // Intersection Observer for Animations
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, index * 100); // Staggered animation
-                }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.about, .about h2, .about p, .parallax, .parallax-content, .gallery, .gallery h2, .gallery-item, .clients, .clients h2, .client-logo-container, .contact, .contact h2, footer').forEach(el => {
-            observer.observe(el);
-        });
-    </script>
+<!-- DOUBLE MARQUEE -->
+<div class="dbl-mq" aria-hidden="true">
+  <div class="mq-row"><div class="mq-track">
+    <span class="mi ac">Корпоративное питание</span><span class="ms"> ✦ </span><span class="mi">Лечебное питание</span><span class="ms"> ✦ </span><span class="mi ac">Столовые под ключ</span><span class="ms"> ✦ </span><span class="mi">Ресторанное качество</span><span class="ms"> ✦ </span><span class="mi ac">Санкт-Петербург</span><span class="ms"> ✦ </span><span class="mi">С 2016 года</span><span class="ms"> ✦ </span>
+    <span class="mi ac">Корпоративное питание</span><span class="ms"> ✦ </span><span class="mi">Лечебное питание</span><span class="ms"> ✦ </span><span class="mi ac">Столовые под ключ</span><span class="ms"> ✦ </span><span class="mi">Ресторанное качество</span><span class="ms"> ✦ </span><span class="mi ac">Санкт-Петербург</span><span class="ms"> ✦ </span><span class="mi">С 2016 года</span><span class="ms"> ✦ </span>
+  </div></div>
+  <div class="mq-row"><div class="mq-track">
+    <span class="mi">Европейский вкус</span><span class="ms"> ✦ </span><span class="mi ac">Шеф Four Seasons</span><span class="ms"> ✦ </span><span class="mi">Свежесть из-под ножа</span><span class="ms"> ✦ </span><span class="mi ac">Telegram-бот с КБЖУ</span><span class="ms"> ✦ </span><span class="mi">Гарантия качества</span><span class="ms"> ✦ </span><span class="mi ac">Личный менеджер</span><span class="ms"> ✦ </span>
+    <span class="mi">Европейский вкус</span><span class="ms"> ✦ </span><span class="mi ac">Шеф Four Seasons</span><span class="ms"> ✦ </span><span class="mi">Свежесть из-под ножа</span><span class="ms"> ✦ </span><span class="mi ac">Telegram-бот с КБЖУ</span><span class="ms"> ✦ </span><span class="mi">Гарантия качества</span><span class="ms"> ✦ </span><span class="mi ac">Личный менеджер</span><span class="ms"> ✦ </span>
+  </div></div>
+</div>
+
+<!-- 2. TRUST / CLIENTS -->
+<section class="trust">
+  <div class="sec-wrap">
+    <div class="cl-head" data-r><span class="cl-lbl">Нам доверяют</span><span class="cl-big">10+</span></div>
+    <div class="logos-mask"><div class="logos-track">
+      <img src="https://thb.tildacdn.com/tild3065-3137-4266-b037-316434393431/dx_primary_logo_on_w.png" alt="Devexperts">
+      <img src="https://thb.tildacdn.com/tild3266-6437-4666-b430-653733313737/OW_Logotype_RGB_99x2.png" alt="Openway">
+      <img src="https://thb.tildacdn.com/tild3861-3236-4632-b538-666333303763/Playrix-Logowine.png" alt="Playrix">
+      <img src="https://thb.tildacdn.com/tild3231-3764-4666-b937-663564646466/arrival-logo-1300x70.png" alt="Arrival">
+      <img src="https://thb.tildacdn.com/tild3037-3964-4465-b336-326235626665/5076328F-1C74-4BEC-B.jpeg" alt="">
+      <img src="https://thb.tildacdn.com/tild3837-3364-4638-b261-343334383661/ya.png" alt="Яндекс">
+      <img src="https://thb.tildacdn.com/tild3230-6336-4537-b733-306563333130/_--04.png" alt="">
+      <img src="https://thb.tildacdn.com/tild6262-3937-4139-b131-326230643462/AAF57E73-D785-47E0-8.png" alt="">
+      <img src="https://thb.tildacdn.com/tild3363-3938-4561-a663-376165376365/4.png" alt="">
+      <img src="https://thb.tildacdn.com/tild3834-6366-4732-b739-303064353561/2.png" alt="">
+      <img src="https://thb.tildacdn.com/tild3065-3137-4266-b037-316434393431/dx_primary_logo_on_w.png" alt="">
+      <img src="https://thb.tildacdn.com/tild3266-6437-4666-b430-653733313737/OW_Logotype_RGB_99x2.png" alt="">
+      <img src="https://thb.tildacdn.com/tild3861-3236-4632-b538-666333303763/Playrix-Logowine.png" alt="">
+      <img src="https://thb.tildacdn.com/tild3231-3764-4666-b937-663564646466/arrival-logo-1300x70.png" alt="">
+      <img src="https://thb.tildacdn.com/tild3037-3964-4465-b336-326235626665/5076328F-1C74-4BEC-B.jpeg" alt="">
+      <img src="https://thb.tildacdn.com/tild3837-3364-4638-b261-343334383661/ya.png" alt="">
+      <img src="https://thb.tildacdn.com/tild3230-6336-4537-b733-306563333130/_--04.png" alt="">
+      <img src="https://thb.tildacdn.com/tild6262-3937-4139-b131-326230643462/AAF57E73-D785-47E0-8.png" alt="">
+      <img src="https://thb.tildacdn.com/tild3363-3938-4561-a663-376165376365/4.png" alt="">
+      <img src="https://thb.tildacdn.com/tild3834-6366-4732-b739-303064353561/2.png" alt="">
+    </div></div>
+  </div>
+</section>
+
+<!-- 3. DIFFERENCE -->
+<section class="diff">
+  <div class="sec-wrap">
+    <div class="diff-top">
+      <div data-r="l"><div class="sec-lbl">В чём наше отличие?</div><h2 class="sec-h2">Европейский вкус,<br>ресторанное качество</h2></div>
+      <p class="diff-sub" data-r="r">Сервисная культура как ежедневная философия всей команды ORGANI'CARE.</p>
+    </div>
+    <div class="diff-cards" data-stag>
+      <div class="diff-card" data-r>
+        <div class="dc-photo"><img src="https://sun9-86.userapi.com/s/v1/ig2/o0jTN3M66XvaQjH7dm7IeNyj_gvbqQFqRYaJD66bT6XyP3cxE3RrUujc0ojaT1vQiCOWyxtneA9MZQwuDQYa4vut.jpg?quality=95&as=32x47,48x70,72x105,108x157,160x233,240x350,360x525,480x699,540x787,640x932,720x1049,1080x1574,1280x1865,1440x2098,1757x2560&from=bu&cs=1280x0" referrerpolicy="no-referrer" loading="eager"></div>
+        <div class="dc-num">01</div><div class="dc-tag">Вкус</div>
+        <div class="dc-title">Современная гастрономия</div>
+        <p class="dc-text">Европейский вкус от шеф-повара Four Seasons. Авторские блюда — результат 10 лет изучения клиентских предпочтений.</p>
+      </div>
+      <div class="diff-card" data-r>
+        <div class="dc-photo"><img src="https://sun9-1.userapi.com/s/v1/ig2/pFwAuo2981rtRy7FJCBjNVCTN9A_B0Ph2zzjFCCAkPYeXl4VrDC8Cii8-voE2tm4uFOGL6WHpv-SBW8TXIRXpgFG.jpg?quality=95&as=32x29,48x43,72x65,108x97,160x144,240x215,360x323,480x431,540x484,640x574,720x646,1080x969,1280x1148,1440x1292,1693x1519&from=bu&cs=1280x0" referrerpolicy="no-referrer" loading="eager"></div>
+        <div class="dc-num">02</div><div class="dc-tag">Свежесть</div>
+        <div class="dc-title">Готовим из-под ножа</div>
+        <p class="dc-text">Цикл заготовок не более 12 часов. Рыбные и мясные блюда, салаты готовим перед отдачей.</p>
+      </div>
+      <div class="diff-card" data-r>
+        <div class="dc-photo"><img src="https://sun9-66.userapi.com/s/v1/ig2/dDoM1iTqogXoU2fy140Whghcn6HXAdeNq2AmxmuQrh22POG3LbVqCgpYt4mKNvnMj-rUaE3bHIsVtxWXBOwQr8Jk.jpg?quality=95&as=32x44,48x66,72x99,108x149,160x221,240x331,360x497,480x662,540x745,640x883,720x993,1080x1490,1280x1766,1440x1986,1856x2560&from=bu&cs=1280x0" referrerpolicy="no-referrer" loading="eager"></div>
+        <div class="dc-num">03</div><div class="dc-tag">Сервис</div>
+        <div class="dc-title">Сервис — как культура</div>
+        <p class="dc-text">Забота о наших клиентах — это не просто слова. Это ежедневная философия всей команды ORGANI'CARE.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. SERVICE CULTURE -->
+<section class="svc-cult">
+  <div class="svc-cult-bg"></div>
+  <div class="svc-cult-ov"></div>
+  <div class="svc-cult-in">
+    <div class="svc-cult-head" data-r>
+      <div class="svc-cult-lbl">Сервисная культура</div>
+      <h2 class="svc-cult-h2">Мы делаем сервис частью философии</h2>
+    </div>
+    <div class="cult-grid" data-stag>
+      <div class="cc" data-r><div class="cc-n">01</div><div class="cc-t">Индивидуальный подход</div><div class="cc-b">Возможность заказать конкретное блюдо под запрос пациента в рамках формата лечебного питания.</div><div class="cc-tag">Клиент</div></div>
+      <div class="cc" data-r><div class="cc-n">02</div><div class="cc-t">Быстрая обратная связь</div><div class="cc-b">Личный менеджер в Telegram отвечает на вопросы по заказам за 15 минут. Обучаем менеджеров эмпатичности.</div><div class="cc-tag">Сервис</div></div>
+      <div class="cc" data-r><div class="cc-n">03</div><div class="cc-t">Telegram-бот с КБЖУ</div><div class="cc-b">По QR-коду — меню на неделю, альтернативные блюда для диет, состав и КБЖУ блюд.</div><div class="cc-tag">Технологии</div></div>
+      <div class="cc" data-r><div class="cc-n">04</div><div class="cc-t">Гарантия качества</div><div class="cc-b">Если блюдо не соответствует заявленному — привезём новое без вопросов или вычтем из стоимости.</div><div class="cc-tag">Гарантия</div></div>
+      <div class="cc" data-r><div class="cc-n">05</div><div class="cc-t">Экономия ресурса</div><div class="cc-b">Берём на себя фасовку в индивидуальные пакеты с названием блюда, составом и КБЖУ.</div><div class="cc-tag">Экономия</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. MISSION -->
+<section class="mission">
+  <div class="sec-wrap">
+    <div class="mission-grid">
+      <div data-r="l">
+        <div class="mission-lbl">Философия бренда</div>
+        <h2 class="mission-h2">Наша миссия</h2>
+        <p class="mission-desc">Заботиться о счастье клиентов и сотрудников вашего бизнеса через корпоративное и лечебное питание, повышая уровень сервисной культуры, развивая современную гастрономию.</p>
+        <div class="mission-attr">— Команда ORGANI'CARE</div>
+      </div>
+      <div class="mission-photo" data-r="r">
+        <img src="https://sun9-39.userapi.com/impg/J1GapkpuIVHmWzi49b5dWDHWafgffmk7CWVRjQ/QPAZpdEqcv4.jpg?size=924x1080&quality=95&sign=282f088241e09a9257a24d2d23dd62bb&type=album" loading="eager" alt="Команда ORGANI'CARE" referrerpolicy="no-referrer">
+        <div class="mission-photo-tag">Команда ORGANI'CARE</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. SERVICES (photo bg) -->
+<section class="services" id="services">
+  <div class="services-bg"></div>
+  <div class="services-ov"></div>
+  <div id="svc-prev"><img id="svcImg" src="" alt=""></div>
+  <div class="services-in">
+    <div class="svc-head" data-r>
+      <div><div class="svc-head-lbl">Наши услуги</div><h2 class="svc-h2">Что мы предлагаем</h2></div>
+      <p class="svc-desc">Полный цикл от открытия кухни до ежедневной подачи блюд</p>
+    </div>
+    <div class="svc-list">
+      <a href="nutritionist.html" class="svc-row" data-img="https://sun9-86.userapi.com/s/v1/ig2/o0jTN3M66XvaQjH7dm7IeNyj_gvbqQFqRYaJD66bT6XyP3cxE3RrUujc0ojaT1vQiCOWyxtneA9MZQwuDQYa4vut.jpg?quality=95">
+        <span class="svc-n">01</span>
+        <div class="svc-body"><span class="svc-name">Открытие кухни в клинике</span><span class="svc-sub">Организация пищеблока на территории медицинского учреждения. Наши повара готовят в клинике лечебное питание.</span></div>
+        <span class="svc-circ"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+      </a>
+      <a href="nutritionist.html" class="svc-row" data-img="https://sun9-74.userapi.com/s/v1/ig2/dOv863Yp3KbTVV2bFZNKO8jkugToTD5Ip45Tw69FB58rNtL1ILnVgtOLINn6stOXgGuZErO1QXajd34I_TBkgmzu.jpg?quality=95">
+        <span class="svc-n">02</span>
+        <div class="svc-body"><span class="svc-name">Лечебное питание в роддома</span><span class="svc-sub">Доставка лечебного питания в индивидуальной упаковке для пациентов. Контроль КБЖУ нутрициологом.</span></div>
+        <span class="svc-circ"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+      </a>
+      <a href="canteen.html" class="svc-row" data-img="https://sun9-60.vkuserphoto.ru/s/v1/ig2/uu96qPaCTeGHEFF-pczHYB64J4dnrLH0STxsWBEJZbEw46hP5VUl9jzEr7BVCJpLCEQsHW1RBx-jz1R0dCcCVJ4c.jpg?quality=95">
+        <span class="svc-n">03</span>
+        <div class="svc-body"><span class="svc-name">Буфет-столовая в клинике</span><span class="svc-sub">Открытие буфета-столовой на территории клиники: кофейня, фингер-фуд, wellness питание. Полный цикл.</span></div>
+        <span class="svc-circ"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+      </a>
+      <a href="corporate.html" class="svc-row" data-img="https://sun9-54.vkuserphoto.ru/s/v1/ig2/fTCcl1-TViNs8Xkfm969SVBLBtK1EzM7Iz7BDqxWGQ6_AHVQo8YL3IBzOkAvIslxS0oWTf-vTDNWQ2JhdKM1fDJd.jpg?quality=95">
+        <span class="svc-n">04</span>
+        <div class="svc-body"><span class="svc-name">Корпоративное питание</span><span class="svc-sub">Питание для сотрудников компаний, организация школьного питания, микромаркеты. Ресторанное качество.</span></div>
+        <span class="svc-circ"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 7. GUARANTEE (light rose bg) -->
+<section class="guarantee">
+  <div class="guar-bg"></div>
+  <div class="guar-ov"></div>
+  <div class="guar-in">
+    <div class="guar-head" data-r>
+      <h2 class="guar-h2">Мы гарантируем</h2>
+      <p class="guar-sub">Авторские блюда, гибкость меню и персонализированный сервис — каждый день.</p>
+    </div>
+    <div class="guar-grid" data-stag>
+      <div class="gi" data-r><div class="gi-n">I</div><div class="gi-t">Гастровпечатление</div><div class="gi-b">Авторские блюда с европейским вкусом, приготовленные из-под ножа.</div></div>
+      <div class="gi" data-r><div class="gi-n">II</div><div class="gi-t">Забота</div><div class="gi-b">Гибкость меню, возможность заказа под исключения, расширенная фасовка.</div></div>
+      <div class="gi" data-r><div class="gi-n">III</div><div class="gi-t">Персонализация</div><div class="gi-b">Telegram-бот для первичного опроса пациентов и подбора блюд.</div></div>
+      <div class="gi" data-r><div class="gi-n">IV</div><div class="gi-t">Сервисная культура</div><div class="gi-b">Предугадывание потребностей. Ответ на любой вопрос — за 15 минут.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. CONTACTS / CTA -->
+<section class="cta-sec" id="contacts">
+  <div class="cta-in">
+    <div class="cta-tag" data-r>Узнайте стоимость</div>
+    <h2 class="cta-h" data-r>Питание одного сотрудника</h2>
+    <p class="cta-sub" data-r>Оставьте заявку — рассчитаем стоимость питания для вашей компании на одного сотрудника.</p>
+    <div class="cta-btns" data-r>
+      <a href="contacts.html" class="btn-grad">Оставить заявку →</a>
+      <a href="tel:88127507000" class="btn-out">Позвонить</a>
+    </div>
+    <p class="cta-note" data-r>Ответим в течение 1 рабочего часа</p>
+  </div>
+</section>
+
+<!-- 9. SOCIAL -->
+<section class="social">
+  <div class="sec-wrap">
+    <div class="soc-grid">
+      <div data-r="l"><div class="sec-lbl" style="margin-bottom:20px;">Наши соц.сети</div><h2 class="soc-h2">Подписывайся и смотри</h2><p class="soc-txt">Live-фотографии блюд, behind-the-scenes кухни и новинки меню.</p></div>
+      <div class="soc-links" data-r="r">
+        <a href="https://vk.com/organi.care" class="soc-row" target="_blank">ВКонтакте <span class="soc-arr">↗</span></a>
+        <a href="https://www.instagram.com/organi_care/" class="soc-row" target="_blank">Instagram <span class="soc-arr">↗</span></a>
+        <a href="https://web.telegram.org/z/#5665927340" class="soc-row" target="_blank">Telegram <span class="soc-arr">↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ft">
+  <div class="ft-in">
+    <div class="ft-top">
+      <a href="index.html" class="ft-logo"><img src="https://static.tildacdn.com/tild3932-3934-4433-a637-626234386530/-02.png" alt="ORGANI'CARE"></a>
+      <nav class="ft-nav"><a href="about.html">О нас</a><a href="nutritionist.html">Лечебное питание</a><a href="corporate.html">Корпоративное</a><a href="canteen.html">Столовые</a><a href="contacts.html">Контакты</a></nav>
+      <div class="ft-soc"><a href="https://vk.com/organi.care" target="_blank">VK</a><a href="https://www.instagram.com/organi_care/" target="_blank">IG</a><a href="https://web.telegram.org/z/#5665927340" target="_blank">TG</a></div>
+    </div>
+    <div class="ft-bot"><span class="ft-copy">© 2026 ORGANI'CARE — Корпоративное и лечебное питание в Санкт-Петербурге</span><div class="ft-em"><a href="mailto:iron@organicare.ru">iron@organicare.ru</a></div></div>
+  </div>
+</footer>
+
+<button class="btt" id="btt" aria-label="Наверх"><svg viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg></button>
+
+<script>
+/* LOADER */
+(function(){
+  const loader=document.getElementById('loader'),lL=document.getElementById('lLogo'),lF=document.getElementById('lFill'),lN=document.getElementById('lNum');
+  let p=0; document.body.style.overflow='hidden';
+  setTimeout(()=>lL.classList.add('s'),200);
+  const iv=setInterval(()=>{
+    p+=Math.random()*3+1.5; if(p>=100){p=100;clearInterval(iv);
+      setTimeout(()=>{loader.classList.add('out');setTimeout(()=>{loader.style.display='none';document.body.style.overflow='';},1400);},320);}
+    lF.style.width=p+'%'; lN.textContent=Math.floor(p);
+  },35);
+})();
+
+/* CURSOR */
+const cDot=document.getElementById('cDot'),cRing=document.getElementById('cRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cDot.style.left=mx+'px';cDot.style.top=my+'px';});
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cRing.classList.add('big'));
+  el.addEventListener('mouseleave',()=>cRing.classList.remove('big'));
+});
+(function ar(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cRing.style.left=rx+'px';cRing.style.top=ry+'px';requestAnimationFrame(ar);})();
+
+/* HEADER */
+const hdr=document.getElementById('hdr');
+window.addEventListener('scroll',()=>{
+  hdr.classList.toggle('scrolled',scrollY>60);
+  document.getElementById('btt').classList.toggle('on',scrollY>500);
+},{passive:true});
+
+/* MOBILE NAV */
+const burger=document.getElementById('burger'),mob=document.getElementById('mobNav');
+burger.addEventListener('click',()=>{burger.classList.toggle('o');mob.classList.toggle('o');document.body.style.overflow=mob.classList.contains('o')?'hidden':'';});
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('o');mob.classList.remove('o');document.body.style.overflow='';}));
+
+/* SERVICES cursor-follow preview */
+(function(){
+  const prev=document.getElementById('svc-prev'),img=document.getElementById('svcImg');
+  let px=0,py=0,cx=window.innerWidth/2,cy=window.innerHeight/2;
+  document.addEventListener('mousemove',e=>{cx=e.clientX;cy=e.clientY;});
+  (function ap(){px+=(cx-px)*.12;py+=(cy-py)*.12;prev.style.left=px+'px';prev.style.top=py+'px';requestAnimationFrame(ap);})();
+  document.querySelectorAll('.svc-row').forEach(row=>{
+    row.addEventListener('mouseenter',()=>{img.src=row.dataset.img;prev.classList.add('show');});
+    row.addEventListener('mouseleave',()=>prev.classList.remove('show'));
+  });
+})();
+
+/* SCROLL REVEAL */
+(function(){
+  document.querySelectorAll('[data-stag]').forEach(s=>s.querySelectorAll('[data-r]').forEach((el,i)=>el.style.setProperty('--i',i)));
+  const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('[data-r]').forEach(el=>obs.observe(el));
+})();
+
+/* BTT */
+document.getElementById('btt').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+</script>
 </body>
 </html>
