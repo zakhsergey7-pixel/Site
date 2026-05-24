@@ -176,6 +176,15 @@ p{font-size:16px;line-height:1.75;color:#555;}
 /* ── TIME BADGE ── */
 .meal-time-badge{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(147,51,234,.4);}
 
+/* ── SNACK OPTION ROWS ── */
+.snack-options{display:flex;flex-direction:column;gap:5px;margin-top:6px;}
+.snack-opt{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:5px 10px;border-radius:8px;background:rgba(147,51,234,.04);border:1px solid rgba(147,51,234,.08);}
+.snack-opt-alt{background:rgba(16,185,129,.04);border-color:rgba(16,185,129,.1);}
+.snack-opt-label{font-size:10px;font-weight:700;letter-spacing:.06em;color:var(--ink);white-space:nowrap;}
+.snack-opt-alt .snack-opt-label{color:#059669;}
+.snack-opt-kbzhu{font-size:9.5px;color:var(--muted);font-weight:600;text-align:right;}
+.snack-single-kbzhu{font-size:9.5px;color:var(--muted);font-weight:600;margin-top:4px;}
+
 /* ═══ PRICING ═══ */
 .pricing-sec{background:var(--light);padding:120px 0;border-top:1px solid rgba(147,51,234,.08);}
 .pricing-head{text-align:center;margin-bottom:60px;}
@@ -418,24 +427,35 @@ p{font-size:16px;line-height:1.75;color:#555;}
               </div>
               <div class="meal-time-badge">16:00 — 17:00</div>
               <div class="kbzhu-row">
-              <span class="kbzhu-pill k"><span class="pill-label">К</span><span class="pill-val">180 ккал</span></span>
-              <span class="kbzhu-pill b"><span class="pill-label">Б</span><span class="pill-val">8 г</span></span>
-              <span class="kbzhu-pill zh"><span class="pill-label">Ж</span><span class="pill-val">6 г</span></span>
-              <span class="kbzhu-pill u"><span class="pill-label">У</span><span class="pill-val">22 г</span></span>
+              <span class="kbzhu-pill k"><span class="pill-label">К</span><span class="pill-val">~328 ккал</span></span>
+              <span class="kbzhu-pill b"><span class="pill-label">Б</span><span class="pill-val">4,1 г</span></span>
+              <span class="kbzhu-pill zh"><span class="pill-label">Ж</span><span class="pill-val">7,2 г</span></span>
+              <span class="kbzhu-pill u"><span class="pill-label">У</span><span class="pill-val">59,9 г</span></span>
             </div>
             </div>
             <div class="meal-card-body">
               <div class="meal-card-body-inner">
-                <div class="dish-list">
-                  <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
-                    <div class="dish-name">Творожный мусс с ягодами</div>
-                    <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
-                    <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Творог, сметана, мёд, клубника свежая</div></div>
+                                <div class="dish-list">
+                  <div class="dish-row snack-drink-row"><div class="dish-num">1</div><div class="dish-info">
+                    <div class="dish-name">Морс клюквенный</div>
+                    <div class="snack-options">
+                      <div class="snack-opt">
+                        <span class="snack-opt-label">С сахаром</span>
+                        <span class="snack-opt-kbzhu">К: 122,9 ккал &nbsp;Б: 0,5 г &nbsp;Ж: 0,1 г &nbsp;У: 29,9 г</span>
+                      </div>
+                      <div class="snack-opt snack-opt-alt">
+                        <span class="snack-opt-label">Без сахара</span>
+                        <span class="snack-opt-kbzhu">К: 58 ккал &nbsp;Б: 0,3 г &nbsp;Ж: 0,1 г &nbsp;У: 15 г</span>
+                      </div>
+                    </div>
                   </div></div>
                   <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
-                    <div class="dish-name">Цельнозерновой хлебец</div>
-                    <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
-                    <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Хлеб цельнозерновой, масло сливочное</div></div>
+                    <div class="dish-name">Печенье Белвита</div>
+                    <div class="snack-single-kbzhu">К: 205 ккал &nbsp;Б: 3,6 г &nbsp;Ж: 7,1 г &nbsp;У: 30 г</div>
+                  </div></div>
+                  <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                    <div class="dish-name">Чай</div>
+                    <div class="snack-single-kbzhu">К: — &nbsp;Б: — &nbsp;Ж: — &nbsp;У: —</div>
                   </div></div>
                 </div>
               </div>
@@ -591,24 +611,35 @@ p{font-size:16px;line-height:1.75;color:#555;}
               </div>
               <div class="meal-time-badge">16:00 — 17:00</div>
               <div class="kbzhu-row">
-              <span class="kbzhu-pill k"><span class="pill-label">К</span><span class="pill-val">180 ккал</span></span>
-              <span class="kbzhu-pill b"><span class="pill-label">Б</span><span class="pill-val">8 г</span></span>
-              <span class="kbzhu-pill zh"><span class="pill-label">Ж</span><span class="pill-val">6 г</span></span>
-              <span class="kbzhu-pill u"><span class="pill-label">У</span><span class="pill-val">22 г</span></span>
+              <span class="kbzhu-pill k"><span class="pill-label">К</span><span class="pill-val">~328 ккал</span></span>
+              <span class="kbzhu-pill b"><span class="pill-label">Б</span><span class="pill-val">4,1 г</span></span>
+              <span class="kbzhu-pill zh"><span class="pill-label">Ж</span><span class="pill-val">7,2 г</span></span>
+              <span class="kbzhu-pill u"><span class="pill-label">У</span><span class="pill-val">59,9 г</span></span>
             </div>
             </div>
             <div class="meal-card-body">
               <div class="meal-card-body-inner">
-                <div class="dish-list">
-                  <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
-                    <div class="dish-name">Йогурт натуральный с гранолой</div>
-                    <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
-                    <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Йогурт 3.2%, мюсли, мёд</div></div>
+                                <div class="dish-list">
+                  <div class="dish-row snack-drink-row"><div class="dish-num">1</div><div class="dish-info">
+                    <div class="dish-name">Компот из сухофруктов</div>
+                    <div class="snack-options">
+                      <div class="snack-opt">
+                        <span class="snack-opt-label">С сахаром</span>
+                        <span class="snack-opt-kbzhu">К: 122,9 ккал &nbsp;Б: 0,5 г &nbsp;Ж: 0,1 г &nbsp;У: 29,9 г</span>
+                      </div>
+                      <div class="snack-opt snack-opt-alt">
+                        <span class="snack-opt-label">Без сахара</span>
+                        <span class="snack-opt-kbzhu">К: 58 ккал &nbsp;Б: 0,3 г &nbsp;Ж: 0,1 г &nbsp;У: 15 г</span>
+                      </div>
+                    </div>
                   </div></div>
                   <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
-                    <div class="dish-name">Яблоко свежее</div>
-                    <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
-                    <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Яблоко</div></div>
+                    <div class="dish-name">Печенье Белвита</div>
+                    <div class="snack-single-kbzhu">К: 205 ккал &nbsp;Б: 3,6 г &nbsp;Ж: 7,1 г &nbsp;У: 30 г</div>
+                  </div></div>
+                  <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                    <div class="dish-name">Чай</div>
+                    <div class="snack-single-kbzhu">К: — &nbsp;Б: — &nbsp;Ж: — &nbsp;У: —</div>
                   </div></div>
                 </div>
               </div>
@@ -764,24 +795,35 @@ p{font-size:16px;line-height:1.75;color:#555;}
               </div>
               <div class="meal-time-badge">16:00 — 17:00</div>
               <div class="kbzhu-row">
-              <span class="kbzhu-pill k"><span class="pill-label">К</span><span class="pill-val">180 ккал</span></span>
-              <span class="kbzhu-pill b"><span class="pill-label">Б</span><span class="pill-val">8 г</span></span>
-              <span class="kbzhu-pill zh"><span class="pill-label">Ж</span><span class="pill-val">6 г</span></span>
-              <span class="kbzhu-pill u"><span class="pill-label">У</span><span class="pill-val">22 г</span></span>
+              <span class="kbzhu-pill k"><span class="pill-label">К</span><span class="pill-val">~328 ккал</span></span>
+              <span class="kbzhu-pill b"><span class="pill-label">Б</span><span class="pill-val">4,1 г</span></span>
+              <span class="kbzhu-pill zh"><span class="pill-label">Ж</span><span class="pill-val">7,2 г</span></span>
+              <span class="kbzhu-pill u"><span class="pill-label">У</span><span class="pill-val">59,9 г</span></span>
             </div>
             </div>
             <div class="meal-card-body">
               <div class="meal-card-body-inner">
-                <div class="dish-list">
-                  <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
-                    <div class="dish-name">Банан и горсть орехов</div>
-                    <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
-                    <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Банан, грецкий орех, миндаль</div></div>
+                                <div class="dish-list">
+                  <div class="dish-row snack-drink-row"><div class="dish-num">1</div><div class="dish-info">
+                    <div class="dish-name">Отвар шиповника</div>
+                    <div class="snack-options">
+                      <div class="snack-opt">
+                        <span class="snack-opt-label">С сахаром</span>
+                        <span class="snack-opt-kbzhu">К: 122,9 ккал &nbsp;Б: 0,5 г &nbsp;Ж: 0,1 г &nbsp;У: 29,9 г</span>
+                      </div>
+                      <div class="snack-opt snack-opt-alt">
+                        <span class="snack-opt-label">Без сахара</span>
+                        <span class="snack-opt-kbzhu">К: 58 ккал &nbsp;Б: 0,3 г &nbsp;Ж: 0,1 г &nbsp;У: 15 г</span>
+                      </div>
+                    </div>
                   </div></div>
                   <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
-                    <div class="dish-name">Кефир 1%</div>
-                    <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
-                    <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Кефир нежирный</div></div>
+                    <div class="dish-name">Печенье Белвита</div>
+                    <div class="snack-single-kbzhu">К: 205 ккал &nbsp;Б: 3,6 г &nbsp;Ж: 7,1 г &nbsp;У: 30 г</div>
+                  </div></div>
+                  <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                    <div class="dish-name">Чай</div>
+                    <div class="snack-single-kbzhu">К: — &nbsp;Б: — &nbsp;Ж: — &nbsp;У: —</div>
                   </div></div>
                 </div>
               </div>
@@ -937,24 +979,35 @@ p{font-size:16px;line-height:1.75;color:#555;}
               </div>
               <div class="meal-time-badge">16:00 — 17:00</div>
               <div class="kbzhu-row">
-              <span class="kbzhu-pill k"><span class="pill-label">К</span><span class="pill-val">180 ккал</span></span>
-              <span class="kbzhu-pill b"><span class="pill-label">Б</span><span class="pill-val">8 г</span></span>
-              <span class="kbzhu-pill zh"><span class="pill-label">Ж</span><span class="pill-val">6 г</span></span>
-              <span class="kbzhu-pill u"><span class="pill-label">У</span><span class="pill-val">22 г</span></span>
+              <span class="kbzhu-pill k"><span class="pill-label">К</span><span class="pill-val">~328 ккал</span></span>
+              <span class="kbzhu-pill b"><span class="pill-label">Б</span><span class="pill-val">4,1 г</span></span>
+              <span class="kbzhu-pill zh"><span class="pill-label">Ж</span><span class="pill-val">7,2 г</span></span>
+              <span class="kbzhu-pill u"><span class="pill-label">У</span><span class="pill-val">59,9 г</span></span>
             </div>
             </div>
             <div class="meal-card-body">
               <div class="meal-card-body-inner">
-                <div class="dish-list">
-                  <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
-                    <div class="dish-name">Морковные палочки с хумусом</div>
-                    <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
-                    <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Морковь, нут, кунжутная паста, лимон, оливковое масло</div></div>
+                                <div class="dish-list">
+                  <div class="dish-row snack-drink-row"><div class="dish-num">1</div><div class="dish-info">
+                    <div class="dish-name">Морс</div>
+                    <div class="snack-options">
+                      <div class="snack-opt">
+                        <span class="snack-opt-label">С сахаром</span>
+                        <span class="snack-opt-kbzhu">К: 122,9 ккал &nbsp;Б: 0,5 г &nbsp;Ж: 0,1 г &nbsp;У: 29,9 г</span>
+                      </div>
+                      <div class="snack-opt snack-opt-alt">
+                        <span class="snack-opt-label">Без сахара</span>
+                        <span class="snack-opt-kbzhu">К: 58 ккал &nbsp;Б: 0,3 г &nbsp;Ж: 0,1 г &nbsp;У: 15 г</span>
+                      </div>
+                    </div>
                   </div></div>
                   <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
-                    <div class="dish-name">Ряженка</div>
-                    <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
-                    <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Ряженка</div></div>
+                    <div class="dish-name">Печенье Белвита</div>
+                    <div class="snack-single-kbzhu">К: 205 ккал &nbsp;Б: 3,6 г &nbsp;Ж: 7,1 г &nbsp;У: 30 г</div>
+                  </div></div>
+                  <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                    <div class="dish-name">Чай</div>
+                    <div class="snack-single-kbzhu">К: — &nbsp;Б: — &nbsp;Ж: — &nbsp;У: —</div>
                   </div></div>
                 </div>
               </div>
@@ -1110,24 +1163,35 @@ p{font-size:16px;line-height:1.75;color:#555;}
               </div>
               <div class="meal-time-badge">16:00 — 17:00</div>
               <div class="kbzhu-row">
-              <span class="kbzhu-pill k"><span class="pill-label">К</span><span class="pill-val">180 ккал</span></span>
-              <span class="kbzhu-pill b"><span class="pill-label">Б</span><span class="pill-val">8 г</span></span>
-              <span class="kbzhu-pill zh"><span class="pill-label">Ж</span><span class="pill-val">6 г</span></span>
-              <span class="kbzhu-pill u"><span class="pill-label">У</span><span class="pill-val">22 г</span></span>
+              <span class="kbzhu-pill k"><span class="pill-label">К</span><span class="pill-val">~328 ккал</span></span>
+              <span class="kbzhu-pill b"><span class="pill-label">Б</span><span class="pill-val">4,1 г</span></span>
+              <span class="kbzhu-pill zh"><span class="pill-label">Ж</span><span class="pill-val">7,2 г</span></span>
+              <span class="kbzhu-pill u"><span class="pill-label">У</span><span class="pill-val">59,9 г</span></span>
             </div>
             </div>
             <div class="meal-card-body">
               <div class="meal-card-body-inner">
-                <div class="dish-list">
-                  <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
-                    <div class="dish-name">Творожная запеканка 70 г</div>
-                    <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
-                    <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Творог, манная крупа, яйцо, сметана, сахар</div></div>
+                                <div class="dish-list">
+                  <div class="dish-row snack-drink-row"><div class="dish-num">1</div><div class="dish-info">
+                    <div class="dish-name">Компот из сухофруктов</div>
+                    <div class="snack-options">
+                      <div class="snack-opt">
+                        <span class="snack-opt-label">С сахаром</span>
+                        <span class="snack-opt-kbzhu">К: 122,9 ккал &nbsp;Б: 0,5 г &nbsp;Ж: 0,1 г &nbsp;У: 29,9 г</span>
+                      </div>
+                      <div class="snack-opt snack-opt-alt">
+                        <span class="snack-opt-label">Без сахара</span>
+                        <span class="snack-opt-kbzhu">К: 58 ккал &nbsp;Б: 0,3 г &nbsp;Ж: 0,1 г &nbsp;У: 15 г</span>
+                      </div>
+                    </div>
                   </div></div>
                   <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
-                    <div class="dish-name">Компот из сухофруктов</div>
-                    <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
-                    <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Курага, чернослив, изюм, вода</div></div>
+                    <div class="dish-name">Печенье Белвита</div>
+                    <div class="snack-single-kbzhu">К: 205 ккал &nbsp;Б: 3,6 г &nbsp;Ж: 7,1 г &nbsp;У: 30 г</div>
+                  </div></div>
+                  <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                    <div class="dish-name">Чай</div>
+                    <div class="snack-single-kbzhu">К: — &nbsp;Б: — &nbsp;Ж: — &nbsp;У: —</div>
                   </div></div>
                 </div>
               </div>
@@ -1283,24 +1347,35 @@ p{font-size:16px;line-height:1.75;color:#555;}
               </div>
               <div class="meal-time-badge">16:00 — 17:00</div>
               <div class="kbzhu-row">
-              <span class="kbzhu-pill k"><span class="pill-label">К</span><span class="pill-val">180 ккал</span></span>
-              <span class="kbzhu-pill b"><span class="pill-label">Б</span><span class="pill-val">8 г</span></span>
-              <span class="kbzhu-pill zh"><span class="pill-label">Ж</span><span class="pill-val">6 г</span></span>
-              <span class="kbzhu-pill u"><span class="pill-label">У</span><span class="pill-val">22 г</span></span>
+              <span class="kbzhu-pill k"><span class="pill-label">К</span><span class="pill-val">~328 ккал</span></span>
+              <span class="kbzhu-pill b"><span class="pill-label">Б</span><span class="pill-val">4,1 г</span></span>
+              <span class="kbzhu-pill zh"><span class="pill-label">Ж</span><span class="pill-val">7,2 г</span></span>
+              <span class="kbzhu-pill u"><span class="pill-label">У</span><span class="pill-val">59,9 г</span></span>
             </div>
             </div>
             <div class="meal-card-body">
               <div class="meal-card-body-inner">
-                <div class="dish-list">
-                  <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
-                    <div class="dish-name">Пшеничные хлебцы с авокадо</div>
-                    <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
-                    <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Хлебцы, авокадо, лимонный сок, соль</div></div>
+                                <div class="dish-list">
+                  <div class="dish-row snack-drink-row"><div class="dish-num">1</div><div class="dish-info">
+                    <div class="dish-name">Отвар шиповника</div>
+                    <div class="snack-options">
+                      <div class="snack-opt">
+                        <span class="snack-opt-label">С сахаром</span>
+                        <span class="snack-opt-kbzhu">К: 122,9 ккал &nbsp;Б: 0,5 г &nbsp;Ж: 0,1 г &nbsp;У: 29,9 г</span>
+                      </div>
+                      <div class="snack-opt snack-opt-alt">
+                        <span class="snack-opt-label">Без сахара</span>
+                        <span class="snack-opt-kbzhu">К: 58 ккал &nbsp;Б: 0,3 г &nbsp;Ж: 0,1 г &nbsp;У: 15 г</span>
+                      </div>
+                    </div>
                   </div></div>
                   <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
-                    <div class="dish-name">Зелёный смузи</div>
-                    <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
-                    <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Шпинат, яблоко, огурец, лимон, вода</div></div>
+                    <div class="dish-name">Печенье Белвита</div>
+                    <div class="snack-single-kbzhu">К: 205 ккал &nbsp;Б: 3,6 г &nbsp;Ж: 7,1 г &nbsp;У: 30 г</div>
+                  </div></div>
+                  <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                    <div class="dish-name">Чай</div>
+                    <div class="snack-single-kbzhu">К: — &nbsp;Б: — &nbsp;Ж: — &nbsp;У: —</div>
                   </div></div>
                 </div>
               </div>
@@ -1456,24 +1531,35 @@ p{font-size:16px;line-height:1.75;color:#555;}
               </div>
               <div class="meal-time-badge">16:00 — 17:00</div>
               <div class="kbzhu-row">
-              <span class="kbzhu-pill k"><span class="pill-label">К</span><span class="pill-val">180 ккал</span></span>
-              <span class="kbzhu-pill b"><span class="pill-label">Б</span><span class="pill-val">8 г</span></span>
-              <span class="kbzhu-pill zh"><span class="pill-label">Ж</span><span class="pill-val">6 г</span></span>
-              <span class="kbzhu-pill u"><span class="pill-label">У</span><span class="pill-val">22 г</span></span>
+              <span class="kbzhu-pill k"><span class="pill-label">К</span><span class="pill-val">~328 ккал</span></span>
+              <span class="kbzhu-pill b"><span class="pill-label">Б</span><span class="pill-val">4,1 г</span></span>
+              <span class="kbzhu-pill zh"><span class="pill-label">Ж</span><span class="pill-val">7,2 г</span></span>
+              <span class="kbzhu-pill u"><span class="pill-label">У</span><span class="pill-val">59,9 г</span></span>
             </div>
             </div>
             <div class="meal-card-body">
               <div class="meal-card-body-inner">
-                <div class="dish-list">
-                  <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
-                    <div class="dish-name">Ягодный парфе</div>
-                    <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
-                    <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Йогурт, чернослив, малина, мюсли</div></div>
+                                <div class="dish-list">
+                  <div class="dish-row snack-drink-row"><div class="dish-num">1</div><div class="dish-info">
+                    <div class="dish-name">Морс</div>
+                    <div class="snack-options">
+                      <div class="snack-opt">
+                        <span class="snack-opt-label">С сахаром</span>
+                        <span class="snack-opt-kbzhu">К: 122,9 ккал &nbsp;Б: 0,5 г &nbsp;Ж: 0,1 г &nbsp;У: 29,9 г</span>
+                      </div>
+                      <div class="snack-opt snack-opt-alt">
+                        <span class="snack-opt-label">Без сахара</span>
+                        <span class="snack-opt-kbzhu">К: 58 ккал &nbsp;Б: 0,3 г &nbsp;Ж: 0,1 г &nbsp;У: 15 г</span>
+                      </div>
+                    </div>
                   </div></div>
                   <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
-                    <div class="dish-name">Хлебцы с мягким сыром</div>
-                    <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
-                    <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Хлебцы рисовые, сыр рикотта, зелень</div></div>
+                    <div class="dish-name">Печенье Белвита</div>
+                    <div class="snack-single-kbzhu">К: 205 ккал &nbsp;Б: 3,6 г &nbsp;Ж: 7,1 г &nbsp;У: 30 г</div>
+                  </div></div>
+                  <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                    <div class="dish-name">Чай</div>
+                    <div class="snack-single-kbzhu">К: — &nbsp;Б: — &nbsp;Ж: — &nbsp;У: —</div>
                   </div></div>
                 </div>
               </div>
