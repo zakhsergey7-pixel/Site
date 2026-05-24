@@ -104,9 +104,13 @@ p{font-size:16px;line-height:1.75;color:#555;}
 .day-short{font-size:10px;color:rgba(196,81,255,.7);margin-top:4px;letter-spacing:.1em;}
 .meal-slot{padding:13px 14px;border-bottom:1px solid rgba(147,51,234,.06);}
 .meal-slot:last-child{border-bottom:none;}
-.meal-type{font-size:9px;font-weight:700;letter-spacing:.18em;color:var(--pur);text-transform:uppercase;margin-bottom:6px;}
+.meal-type{font-size:9px;font-weight:700;letter-spacing:.18em;color:var(--pur);text-transform:uppercase;margin-bottom:8px;}
 .meal-placeholder{height:34px;background:var(--light);border-radius:8px;border:1px dashed rgba(147,51,234,.18);display:flex;align-items:center;justify-content:center;}
 .meal-placeholder span{font-size:11px;color:rgba(147,51,234,.3);}
+.meal-dish{margin-bottom:8px;padding-bottom:8px;border-bottom:1px dashed rgba(147,51,234,.08);}
+.meal-dish:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.meal-dish-name{font-size:11px;font-weight:700;color:var(--ink);line-height:1.4;margin-bottom:3px;}
+.meal-dish-comp{font-size:9.5px;color:var(--muted);line-height:1.45;}
 
 /* ═══ PRICING ═══ */
 .pricing-sec{background:var(--light);padding:120px 0;border-top:1px solid rgba(147,51,234,.08);}
@@ -233,55 +237,182 @@ p{font-size:16px;line-height:1.75;color:#555;}
       <p class="menu-sub">Меню обновляется еженедельно. Здесь будет размещено актуальное меню на каждый день.</p>
     </div>
     <div class="days-grid" data-stag>
+
+      <!-- ПОНЕДЕЛЬНИК -->
       <div class="day-card" data-r>
         <div class="day-header"><div class="day-name">Понедельник</div><div class="day-short">ПН</div></div>
-        <div class="meal-slot"><div class="meal-type">Завтрак</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Обед</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Полдник</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Ужин</div><div class="meal-placeholder"><span>—</span></div></div>
+        <div class="meal-slot">
+          <div class="meal-type">Завтрак</div>
+          <div class="meal-dish"><div class="meal-dish-name">Каша геркулесовая 250 г</div><div class="meal-dish-comp">Хлопья геркулесовые, молоко, сливочное масло, соль, сахар</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Манник с творогом 100 г</div><div class="meal-dish-comp">Крупа манная, кефир, творог, яйцо, сахар, масло растительное, изюм</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Омлет с ветчиной и томатами 170 г</div><div class="meal-dish-comp">Молоко, яйцо, ветчина, томаты, масло растительное, соль</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Боул с курицей терияки</div><div class="meal-dish-comp">Куриная грудка, киноа, томат, эдамамэ, дайкон, кукуруза, соус терияки</div></div>
+        </div>
+        <div class="meal-slot">
+          <div class="meal-type">Обед</div>
+          <div class="meal-dish"><div class="meal-dish-name">Салат тыквенный с сыром</div><div class="meal-dish-comp">Тыква запечёная, сыр фета, руккола, тыквенные семечки, масло растительное</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Борщ с курицей</div><div class="meal-dish-comp">Курица, картофель, лук, морковь, свекла, капуста, томатная паста, лимон</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Котлета домашняя</div><div class="meal-dish-comp">Говядина лопатка, куриное бедро и грудка, батон, лук, соль, перец</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Спагетти</div><div class="meal-dish-comp">Макаронные изделия спагетти, соль, масло растительное</div></div>
+        </div>
+        <div class="meal-slot">
+          <div class="meal-type">Ужин</div>
+          <div class="meal-dish"><div class="meal-dish-name">Салат с киноа и булгуром</div><div class="meal-dish-comp">Киноа, булгур, дайкон, кукуруза, морковь, сельдерей, мёд, лимон, масло</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Треска с копчёным бататом</div><div class="meal-dish-comp">Филе трески, картофель батат, молоко, сливки, соль</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Рис отварной с зеленью и сливочным маслом</div><div class="meal-dish-comp">Рис длиннозерный, сливочное масло, укроп, петрушка, соль</div></div>
+        </div>
       </div>
+
+      <!-- ВТОРНИК -->
       <div class="day-card" data-r>
         <div class="day-header"><div class="day-name">Вторник</div><div class="day-short">ВТ</div></div>
-        <div class="meal-slot"><div class="meal-type">Завтрак</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Обед</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Полдник</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Ужин</div><div class="meal-placeholder"><span>—</span></div></div>
+        <div class="meal-slot">
+          <div class="meal-type">Завтрак</div>
+          <div class="meal-dish"><div class="meal-dish-name">Рисовая каша 250 г</div><div class="meal-dish-comp">Крупа рисовая, молоко, сливочное масло, соль, сахар</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Тыквенно-морковный кекс 100 г</div><div class="meal-dish-comp">Тыква, морковь, яйцо, мука, сахар, соль, разрыхлитель, масло растительное</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Омлет с перцем и ветчиной 170 г</div><div class="meal-dish-comp">Молоко, яйцо, ветчина, перец болгарский, масло растительное, соль</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Боул овощной</div><div class="meal-dish-comp">Киноа, томаты, огурец, перец болгарский, фриллис, морковь, яйцо</div></div>
+        </div>
+        <div class="meal-slot">
+          <div class="meal-type">Обед</div>
+          <div class="meal-dish"><div class="meal-dish-name">Салат с треской и рикоттой</div><div class="meal-dish-comp">Рис, треска, кукуруза, укроп, яйцо, капуста китайская, рикотта, соль</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Суп минестроне</div><div class="meal-dish-comp">Картофель, морковь, лук, болгарский перец, цветная капуста, брокколи, томатная паста</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Говядина демигляс</div><div class="meal-dish-comp">Говядина лопатка, соус демигляс, вода, соль, перец молотый</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Картофельное пюре</div><div class="meal-dish-comp">Картофель, молоко, масло сливочное, соль</div></div>
+        </div>
+        <div class="meal-slot">
+          <div class="meal-type">Ужин</div>
+          <div class="meal-dish"><div class="meal-dish-name">Салат греческий</div><div class="meal-dish-comp">Томаты розовые, огурец, перец болгарский, брынза, айсберг, орегано, масло</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Судак терияки</div><div class="meal-dish-comp">Филе судака, соус терияки, соль, масло растительное</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Кус-кус с овощами</div><div class="meal-dish-comp">Крупа кускус, соль, морковь, перец болгарский, масло растительное</div></div>
+        </div>
       </div>
+
+      <!-- СРЕДА -->
       <div class="day-card" data-r>
         <div class="day-header"><div class="day-name">Среда</div><div class="day-short">СР</div></div>
-        <div class="meal-slot"><div class="meal-type">Завтрак</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Обед</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Полдник</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Ужин</div><div class="meal-placeholder"><span>—</span></div></div>
+        <div class="meal-slot">
+          <div class="meal-type">Завтрак</div>
+          <div class="meal-dish"><div class="meal-dish-name">Каша пшенная 250 г</div><div class="meal-dish-comp">Крупа пшенная, молоко, сливочное масло, соль, сахар</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Шоколадный кекс 100 г</div><div class="meal-dish-comp">Мука, какао, масло растительное, сахар, яйцо</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Омлет с томатами и зеленью 170 г</div><div class="meal-dish-comp">Молоко, яйцо, томат, петрушка, масло растительное, соль</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Боул овощной</div><div class="meal-dish-comp">Киноа, томаты, огурец, перец болгарский, фриллис, морковь, яйцо</div></div>
+        </div>
+        <div class="meal-slot">
+          <div class="meal-type">Обед</div>
+          <div class="meal-dish"><div class="meal-dish-name">Овощной салат</div><div class="meal-dish-comp">Айсберг, дайкон, огурец, томаты, перец болгарский, редис, масло растительное</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Суп куриный с лапшой</div><div class="meal-dish-comp">Курица, яйцо, лук, морковь, куриный бульон, лапша, соль, лавровый лист</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Фрикадельки куриные с соусом бешамель</div><div class="meal-dish-comp">Куриная грудка и бедро, лук, молоко, мука, масло сливочное, мускатный орех</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Гречка</div><div class="meal-dish-comp">Крупа гречневая, соль</div></div>
+        </div>
+        <div class="meal-slot">
+          <div class="meal-type">Ужин</div>
+          <div class="meal-dish"><div class="meal-dish-name">Салат азиатский</div><div class="meal-dish-comp">Китайская капуста, огурец, морковь, дайкон, соевый соус, кунжут</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Кефаль запечённая</div><div class="meal-dish-comp">Кефаль, растительное масло, соль</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Рис с овощами</div><div class="meal-dish-comp">Рис длиннозерный, лук, морковь, фасоль стручковая, масло растительное, соль</div></div>
+        </div>
       </div>
+
+      <!-- ЧЕТВЕРГ -->
       <div class="day-card" data-r>
         <div class="day-header"><div class="day-name">Четверг</div><div class="day-short">ЧТ</div></div>
-        <div class="meal-slot"><div class="meal-type">Завтрак</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Обед</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Полдник</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Ужин</div><div class="meal-placeholder"><span>—</span></div></div>
+        <div class="meal-slot">
+          <div class="meal-type">Завтрак</div>
+          <div class="meal-dish"><div class="meal-dish-name">Каша геркулесовая 250 г</div><div class="meal-dish-comp">Хлопья геркулесовые, молоко, сливочное масло, соль, сахар</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Банановый кекс 100 г</div><div class="meal-dish-comp">Масло сливочное, мука, бананы, сахар, яйцо, разрыхлитель</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Омлет с брокколи и курицей 170 г</div><div class="meal-dish-comp">Молоко, яйцо, брокколи, куриное филе, масло растительное, соль</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Боул с курицей терияки</div><div class="meal-dish-comp">Куриная грудка, киноа, томат, эдамамэ, дайкон, кукуруза, соус терияки</div></div>
+        </div>
+        <div class="meal-slot">
+          <div class="meal-type">Обед</div>
+          <div class="meal-dish"><div class="meal-dish-name">Салат грузинский</div><div class="meal-dish-comp">Томат, огурец, грецкий орех, укроп, петрушка, кинза, масло растительное</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Уха с томатами</div><div class="meal-dish-comp">Судак, треска, картофель, лук, морковь, томаты, рыбный бульон, укроп</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Фрикасе куриное</div><div class="meal-dish-comp">Куриное бедро, лук репчатый, масло растительное, соль, перец, мука</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Отварной картофель с зеленью</div><div class="meal-dish-comp">Картофель, масло сливочное, петрушка, укроп, соль</div></div>
+        </div>
+        <div class="meal-slot">
+          <div class="meal-type">Ужин</div>
+          <div class="meal-dish"><div class="meal-dish-name">Салат витаминный</div><div class="meal-dish-comp">Капуста б/к, морковь, укроп, масло растительное, соль, лимон</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Индейка тушёная с овощами</div><div class="meal-dish-comp">Индейка, лук, морковь, перец болгарский, вода, соль, масло растительное</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Булгур отварной</div><div class="meal-dish-comp">Крупа булгур, масло растительное, соль</div></div>
+        </div>
       </div>
+
+      <!-- ПЯТНИЦА -->
       <div class="day-card" data-r>
         <div class="day-header"><div class="day-name">Пятница</div><div class="day-short">ПТ</div></div>
-        <div class="meal-slot"><div class="meal-type">Завтрак</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Обед</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Полдник</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Ужин</div><div class="meal-placeholder"><span>—</span></div></div>
+        <div class="meal-slot">
+          <div class="meal-type">Завтрак</div>
+          <div class="meal-dish"><div class="meal-dish-name">Каша гречневая 250 г</div><div class="meal-dish-comp">Крупа гречневая, молоко, сливочное масло, соль, сахар</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Шарлотка с яблоками 100 г</div><div class="meal-dish-comp">Яблоки, мука, яйцо, сахар, корица</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Омлет с ветчиной и томатами 170 г</div><div class="meal-dish-comp">Молоко, яйцо, ветчина, томаты, масло растительное, соль</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Боул овощной</div><div class="meal-dish-comp">Киноа, томаты, огурец, перец болгарский, фриллис, морковь, яйцо</div></div>
+        </div>
+        <div class="meal-slot">
+          <div class="meal-type">Обед</div>
+          <div class="meal-dish"><div class="meal-dish-name">Микс-салат с моцареллой</div><div class="meal-dish-comp">Моцарелла, томаты черри, огурец, фриллис, айсберг, руккола, мёд, лимон</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Суп-крем брокколи</div><div class="meal-dish-comp">Брокколи, шпинат, картофель, морковь, лук, соль, масло растительное</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Судак со сливочно-шпинатным соусом</div><div class="meal-dish-comp">Филе судака, сливки, шпинат, соль, масло растительное</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Рис отварной с кукурузой</div><div class="meal-dish-comp">Рис длиннозерный, кукуруза, соль</div></div>
+        </div>
+        <div class="meal-slot">
+          <div class="meal-type">Ужин</div>
+          <div class="meal-dish"><div class="meal-dish-name">Салат свекольный с апельсинами</div><div class="meal-dish-comp">Свекла запечёная, апельсин, руккола, грецкий орех, масло растительное, соль</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Суфле куриное</div><div class="meal-dish-comp">Куриная грудка и бедро, лук, молоко, мука, батон, соль, перец</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Пюре из сельдерея</div><div class="meal-dish-comp">Корень сельдерея, сливки, молоко, масло сливочное, лук, соль</div></div>
+        </div>
       </div>
+
+      <!-- СУББОТА -->
       <div class="day-card" data-r>
         <div class="day-header"><div class="day-name">Суббота</div><div class="day-short">СБ</div></div>
-        <div class="meal-slot"><div class="meal-type">Завтрак</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Обед</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Полдник</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Ужин</div><div class="meal-placeholder"><span>—</span></div></div>
+        <div class="meal-slot">
+          <div class="meal-type">Завтрак</div>
+          <div class="meal-dish"><div class="meal-dish-name">Рисовая каша 250 г</div><div class="meal-dish-comp">Крупа рисовая, молоко, сливочное масло, соль, сахар</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Запеканка творожная 70 г</div><div class="meal-dish-comp">Творог, манная крупа, сметана, яйцо, сахар</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Омлет с томатами и зеленью 170 г</div><div class="meal-dish-comp">Молоко, яйцо, томат, петрушка, масло растительное, соль</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Боул с курицей терияки</div><div class="meal-dish-comp">Куриная грудка, киноа, томат, эдамамэ, дайкон, кукуруза, соус терияки</div></div>
+        </div>
+        <div class="meal-slot">
+          <div class="meal-type">Обед</div>
+          <div class="meal-dish"><div class="meal-dish-name">Салат тыквенный с сыром</div><div class="meal-dish-comp">Тыква запечёная, сыр фета, руккола, тыквенные семечки, масло растительное</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Щи с курицей</div><div class="meal-dish-comp">Курица, капуста б/к, картофель, морковь, лук, томатная паста, перец болгарский</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Индейка духовая в укропном масле</div><div class="meal-dish-comp">Филе индейки, соль, перец, масло растительное, укроп, прованские травы</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Спагетти</div><div class="meal-dish-comp">Макаронные изделия спагетти, соль, масло растительное</div></div>
+        </div>
+        <div class="meal-slot">
+          <div class="meal-type">Ужин</div>
+          <div class="meal-dish"><div class="meal-dish-name">Салат зелёный с кукурузой</div><div class="meal-dish-comp">Капуста китайская, кукуруза, огурец свежий, масло растительное</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Треска запечённая с соусом вьерж</div><div class="meal-dish-comp">Треска, томаты, уксус бальзамический, масло растительное, соль</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Овощи запечённые</div><div class="meal-dish-comp">Морковь, перец болгарский, баклажан, цветная капуста, брокколи, масло, соль</div></div>
+        </div>
       </div>
+
+      <!-- ВОСКРЕСЕНЬЕ -->
       <div class="day-card" data-r>
         <div class="day-header"><div class="day-name">Воскресенье</div><div class="day-short">ВС</div></div>
-        <div class="meal-slot"><div class="meal-type">Завтрак</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Обед</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Полдник</div><div class="meal-placeholder"><span>—</span></div></div>
-        <div class="meal-slot"><div class="meal-type">Ужин</div><div class="meal-placeholder"><span>—</span></div></div>
+        <div class="meal-slot">
+          <div class="meal-type">Завтрак</div>
+          <div class="meal-dish"><div class="meal-dish-name">Каша пшенная 250 г</div><div class="meal-dish-comp">Крупа пшенная, молоко, сливочное масло, соль, сахар</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Тыквенно-морковный кекс 100 г</div><div class="meal-dish-comp">Тыква, морковь, яйцо, мука, сахар, соль, разрыхлитель, масло растительное</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Омлет овощной 170 г</div><div class="meal-dish-comp">Молоко, яйцо, кукуруза, горошек, перец болгарский, зелень, соль, масло</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Боул овощной</div><div class="meal-dish-comp">Киноа, томаты, огурец, перец болгарский, фриллис, морковь, яйцо</div></div>
+        </div>
+        <div class="meal-slot">
+          <div class="meal-type">Обед</div>
+          <div class="meal-dish"><div class="meal-dish-name">Овощной салат</div><div class="meal-dish-comp">Айсберг, дайкон, огурец, томаты, перец болгарский, редис, масло растительное</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Тыквенный крем-суп</div><div class="meal-dish-comp">Тыква, лук, морковь, соль, масло растительное, мускатный орех, овощной бульон</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Фрикасе из индейки</div><div class="meal-dish-comp">Индейка бедро, лук репчатый, масло растительное, соль, перец, мука</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Картофель запечённый</div><div class="meal-dish-comp">Картофель, паприка, масло растительное, соль</div></div>
+        </div>
+        <div class="meal-slot">
+          <div class="meal-type">Ужин</div>
+          <div class="meal-dish"><div class="meal-dish-name">Салат свекольный с сырным муссом</div><div class="meal-dish-comp">Свекла, чернослив, мангольд, грецкий орех, апельсиновый сок, фета, сливки</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Рулет куриный с сыром и брокколи</div><div class="meal-dish-comp">Куриная грудка и бедро, брокколи, сыр гауда, лук, яйцо, сливки, батон</div></div>
+          <div class="meal-dish"><div class="meal-dish-name">Гречка</div><div class="meal-dish-comp">Крупа гречневая, соль</div></div>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
