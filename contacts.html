@@ -37,8 +37,9 @@ p{font-size:16px;line-height:1.75;color:#555;}
 /* HEADER */
 .hdr{position:fixed;top:0;left:0;right:0;z-index:1000;height:76px;padding:0 48px;display:flex;align-items:center;justify-content:space-between;transition:background .5s,box-shadow .5s;}
 .hdr.scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(0,0,0,.07);}
-.hdr-logo img{height:44px;transition:transform .4s var(--ease);}
+.hdr-logo img{height:44px;transition:transform .4s var(--ease),opacity .4s var(--ease);}
 .hdr-logo:hover img{transform:scale(1.04);}
+.hdr:not(.scrolled) .hdr-logo img{opacity:0;pointer-events:none;}
 .hdr-nav{display:flex;gap:32px;list-style:none;}
 .hdr-nav a{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.75);position:relative;transition:color .3s;}
 .hdr-nav a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--pur);transition:width .35s var(--ease);}
@@ -195,7 +196,7 @@ p{font-size:16px;line-height:1.75;color:#555;}
 
 <!-- HERO -->
 <section class="page-hero">
-  <div class="page-hero-bg" style="background-image:url('https://sun9-24.vkuserphoto.ru/s/v1/ig2/Qo9m1VEm0PHA3G8YLLioZR7-OCCwsUdZ8CYAnXwDQ_NoDQcJsEMyCiuuXKdCmZPWKveEJ2c5Lg15w5GQvXvp5ZqT.jpg?quality=95&as=32x18,48x27,72x40,108x61,160x90,240x135,360x202,480x270,540x304,640x360,720x405,1080x607,1280x720,1440x810,1920x1080&from=bu&cs=1280x0');"></div>
+  <div class="page-hero-bg" style="background:#1a1a2e;"></div>
   <div class="page-hero-in">
     <div class="page-hero-lbl">Свяжитесь с нами</div>
     <h1>Контакты</h1>
