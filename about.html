@@ -36,8 +36,9 @@ p{font-size:16px;line-height:1.75;color:#555;}
 /* HEADER */
 .hdr{position:fixed;top:0;left:0;right:0;z-index:1000;height:76px;padding:0 48px;display:flex;align-items:center;justify-content:space-between;transition:background .5s,box-shadow .5s;}
 .hdr.scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(0,0,0,.07);}
-.hdr-logo img{height:44px;transition:transform .4s var(--ease);}
+.hdr-logo img{height:44px;transition:transform .4s var(--ease),opacity .4s var(--ease);}
 .hdr-logo:hover img{transform:scale(1.04);}
+.hdr:not(.scrolled) .hdr-logo img{opacity:0;pointer-events:none;}
 .hdr-nav{display:flex;gap:32px;list-style:none;}
 .hdr-nav a{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.75);position:relative;transition:color .3s;}
 .hdr-nav a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--pur);transition:width .35s var(--ease);}
@@ -106,9 +107,9 @@ p{font-size:16px;line-height:1.75;color:#555;}
 .leader-card{border-top:2px solid rgba(147,51,234,.12);padding-top:32px;position:relative;transition:border-color .3s;}
 .leader-card::before{content:'';position:absolute;top:-2px;left:0;right:0;height:2px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease);}
 .leader-card:hover::before{transform:scaleX(1);}
-.leader-photo{width:100%;height:360px;border-radius:16px;overflow:hidden;margin-bottom:28px;}
-.leader-photo img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .7s var(--ease);}
-.leader-card:hover .leader-photo img{transform:scale(1.05);}
+.leader-photo{width:100%;height:480px;border-radius:16px;overflow:hidden;margin-bottom:28px;}
+.leader-photo img{width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .7s var(--ease);}
+.leader-card:hover .leader-photo img{transform:scale(1.03);}
 .leader-name{font-size:20px;font-weight:700;color:var(--ink);margin-bottom:4px;}
 .leader-role{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--pur);margin-bottom:16px;}
 .leader-desc{font-size:14px;color:var(--muted);line-height:1.8;}
@@ -262,7 +263,7 @@ p{font-size:16px;line-height:1.75;color:#555;}
 
 <!-- TEAM QUOTE -->
 <section class="about-team-quote">
-  <div class="about-team-quote-bg" style="background-image:url('https://sun9-81.userapi.com/s/v1/ig2/m5DyAYerna8j0RXQnPxytOl0ArtBWdZ1jluH3arAgE_xKipWhUX_onlQhPjYb-Ghw5X4r5Od-rMaXa90oV9dBgKt.jpg?quality=95&cs=1280x0&from=bu');"></div>
+  <div class="about-team-quote-bg" style="background-image:url('https://sun9-38.userapi.com/s/v1/ig2/9W5eDY-1rMrxPt8YYGE9R7erWNUfIA-jBP6N-bCVRjn5UY869UtgSEejp99eFVEZrCKP2rDu5bcB1Pwx89cwfUjG.jpg?quality=95&as=32x16,48x24,72x36,108x54,160x80,240x120,360x180,480x240,540x270,640x320,720x360,1080x540,1280x640,1440x720,2160x1080&from=bu&cs=1280x0');"></div>
   <div class="about-team-quote-in" data-r>
     <p class="about-team-quote-text">В нашем штате собрались люди разных профессий — квалифицированные повара горячих и холодных цехов, кондитеры, управляющий, менеджеры и бухгалтера, сотрудники отдела доставки, клининга и безопасности.</p>
   </div>
@@ -324,8 +325,8 @@ p{font-size:16px;line-height:1.75;color:#555;}
 <section class="page-cta">
   <div class="page-cta-in">
     <div class="page-cta-tag" data-r>Узнайте стоимость</div>
-    <h2 data-r>Питание одного сотрудника</h2>
-    <p data-r>Оставьте заявку — рассчитаем стоимость питания для вашей компании на одного сотрудника.</p>
+    <h2 data-r>УЗНАЙ СТОИМОСТЬ ПИТАНИЯ НА ОДНОГО ЧЕЛОВЕКА</h2>
+    <p data-r>Оставьте заявку и мы рассчитаем стоимость питания для вашей компании на одного сотрудника.</p>
     <div data-r><a href="contacts.html" class="btn-grad">Оставить заявку →</a></div>
     <p class="cta-note" data-r>Ответим в течение 1 рабочего часа</p>
   </div>
