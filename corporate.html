@@ -92,55 +92,73 @@ p{font-size:16px;line-height:1.75;color:#555;}
 
 /* ═══ MENU SECTION ═══ */
 .menu-sec{background:var(--white);padding:120px 0;}
-.menu-head{text-align:center;margin-bottom:60px;}
+.menu-head{text-align:center;margin-bottom:56px;}
 .menu-sub{font-size:15px;color:var(--muted);max-width:520px;margin:12px auto 0;text-align:center;}
 
-/* DAY TABS */
-.day-tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:48px;}
-.day-tab{background:none;border:1.5px solid rgba(147,51,234,.15);border-radius:50px;padding:10px 22px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);cursor:none;transition:all .35s var(--ease);position:relative;overflow:hidden;}
-.day-tab::before{content:'';position:absolute;inset:0;background:var(--grad);opacity:0;transition:opacity .35s var(--ease);z-index:0;}
+/* ── DAY TABS ── */
+.day-tabs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:48px;}
+.day-tab{background:none;border:1.5px solid rgba(147,51,234,.15);border-radius:50px;padding:11px 24px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);cursor:none;transition:all .3s var(--ease);position:relative;overflow:hidden;}
+.day-tab::before{content:'';position:absolute;inset:0;background:var(--grad);opacity:0;transition:opacity .3s var(--ease);z-index:0;}
 .day-tab span{position:relative;z-index:1;}
-.day-tab:hover{border-color:var(--pur);color:var(--pur);}
-.day-tab.active{border-color:transparent;color:#fff;}
+.day-tab:hover{border-color:var(--pur);color:var(--pur);transform:translateY(-1px);}
+.day-tab.active{border-color:transparent;color:#fff;transform:translateY(-1px);box-shadow:0 8px 24px rgba(147,51,234,.35);}
 .day-tab.active::before{opacity:1;}
 
-/* DAY PANEL */
+/* ── DAY PANELS ── */
 .day-panels{position:relative;}
-.day-panel{display:none;animation:panelIn .45s var(--ease) both;}
-.day-panel.active{display:block;}
-@keyframes panelIn{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
+.day-panel{display:none;}
+.day-panel.active{display:block;animation:panelIn .4s var(--ease) both;}
+@keyframes panelIn{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
 
-/* MEAL ACCORDION */
-.meal-accordion{display:flex;flex-direction:column;gap:12px;max-width:860px;margin:0 auto;}
-.meal-block{border-radius:20px;border:1px solid rgba(147,51,234,.1);overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.04);transition:box-shadow .35s var(--ease);}
-.meal-block:hover{box-shadow:0 12px 40px rgba(147,51,234,.1);}
-.meal-toggle{width:100%;background:none;border:none;padding:20px 28px;display:flex;align-items:center;gap:18px;cursor:none;text-align:left;transition:background .3s;}
-.meal-toggle:hover{background:rgba(147,51,234,.03);}
-.meal-block.open .meal-toggle{background:var(--ink);}
-.meal-icon{width:40px;height:40px;border-radius:12px;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;transition:background .3s;}
-.meal-block.open .meal-icon{background:rgba(255,255,255,.1);}
-.meal-toggle-title{flex:1;}
-.meal-toggle-name{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);transition:color .3s;}
-.meal-block.open .meal-toggle-name{color:#fff;}
-.meal-toggle-count{font-size:11px;color:var(--muted);margin-top:2px;transition:color .3s;}
-.meal-block.open .meal-toggle-count{color:rgba(255,255,255,.5);}
-.meal-arrow{width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(147,51,234,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .4s var(--ease);}
-.meal-arrow svg{width:14px;height:14px;stroke:var(--pur);stroke-width:2.5;fill:none;transition:transform .4s var(--ease);}
-.meal-block.open .meal-arrow{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);}
-.meal-block.open .meal-arrow svg{stroke:#fff;transform:rotate(180deg);}
+/* ── MEAL ACCORDION ── */
+.meal-accordion{display:flex;flex-direction:column;gap:10px;max-width:780px;margin:0 auto;}
 
-/* MEAL BODY */
-.meal-body{max-height:0;overflow:hidden;transition:max-height .55s cubic-bezier(.4,0,.2,1);}
-.meal-block.open .meal-body{max-height:1200px;}
-.meal-body-inner{padding:0 20px 20px;}
-.dish-row{display:flex;align-items:flex-start;gap:14px;padding:14px 16px;border-radius:14px;transition:background .3s;cursor:default;position:relative;}
-.dish-row:hover{background:rgba(147,51,234,.04);}
-.dish-row+.dish-row{margin-top:4px;}
-.dish-num{font-size:11px;font-weight:800;color:rgba(147,51,234,.25);width:20px;flex-shrink:0;padding-top:2px;}
-.dish-info{flex:1;}
-.dish-name{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:5px;line-height:1.35;}
-.dish-comp{font-size:12px;color:var(--muted);line-height:1.6;}
-.dish-comp-label{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(147,51,234,.4);display:block;margin-bottom:2px;}
+.meal-block{border-radius:18px;border:1px solid rgba(147,51,234,.1);overflow:hidden;background:var(--white);box-shadow:0 2px 12px rgba(0,0,0,.04);transition:box-shadow .3s var(--ease);}
+.meal-block:hover{box-shadow:0 8px 32px rgba(147,51,234,.09);}
+
+.meal-toggle{width:100%;background:none;border:none;padding:18px 24px;display:flex;align-items:center;gap:16px;cursor:none;text-align:left;transition:background .25s;}
+.meal-toggle:hover{background:rgba(147,51,234,.025);}
+.meal-block.open>.meal-toggle{background:var(--ink);}
+
+.meal-icon{width:42px;height:42px;border-radius:13px;background:var(--light);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;transition:background .25s;}
+.meal-block.open>.meal-toggle .meal-icon{background:rgba(255,255,255,.1);}
+
+.meal-toggle-title{flex:1;min-width:0;}
+.meal-toggle-name{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);transition:color .25s;}
+.meal-block.open>.meal-toggle .meal-toggle-name{color:#fff;}
+.meal-toggle-count{font-size:11px;color:var(--muted);margin-top:2px;transition:color .25s;}
+.meal-block.open>.meal-toggle .meal-toggle-count{color:rgba(255,255,255,.45);}
+
+.meal-arrow{width:30px;height:30px;border-radius:50%;border:1.5px solid rgba(147,51,234,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .35s var(--ease);}
+.meal-arrow svg{width:13px;height:13px;stroke:var(--pur);stroke-width:2.5;fill:none;transition:transform .35s var(--ease);}
+.meal-block.open>.meal-toggle .meal-arrow{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);}
+.meal-block.open>.meal-toggle .meal-arrow svg{stroke:#fff;transform:rotate(180deg);}
+
+/* ── MEAL BODY – smooth height animation via grid trick ── */
+.meal-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .48s cubic-bezier(.4,0,.2,1);}
+.meal-block.open>.meal-body{grid-template-rows:1fr;}
+.meal-body-inner{overflow:hidden;padding:0 18px 18px;}
+
+/* ── DISH ROWS ── */
+.dish-row{display:flex;align-items:flex-start;gap:12px;padding:12px 14px;border-radius:12px;transition:background .25s;cursor:default;position:relative;}
+.dish-row:hover{background:rgba(147,51,234,.045);}
+.dish-row+.dish-row{margin-top:3px;}
+.dish-num{font-size:10px;font-weight:800;color:rgba(147,51,234,.22);width:18px;flex-shrink:0;padding-top:3px;}
+.dish-info{flex:1;min-width:0;}
+.dish-name{font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.35;margin-bottom:0;}
+
+/* Состав блюда — раскрывается при клике / наведении */
+.dish-comp-wrap{max-height:0;overflow:hidden;transition:max-height .38s cubic-bezier(.4,0,.2,1),opacity .3s;}
+.dish-comp-wrap.open{max-height:200px;}
+.dish-comp{font-size:11.5px;color:var(--muted);line-height:1.65;padding-top:5px;}
+.dish-comp-label{font-size:9px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(147,51,234,.38);display:block;margin-bottom:3px;}
+
+/* toggle hint */
+.dish-toggle-hint{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:600;letter-spacing:.06em;color:rgba(147,51,234,.38);margin-top:4px;cursor:none;transition:color .2s;user-select:none;}
+.dish-row:hover .dish-toggle-hint{color:var(--pur);}
+.dish-toggle-hint svg{width:10px;height:10px;stroke:currentColor;stroke-width:2.5;fill:none;transition:transform .3s var(--ease);}
+.dish-row.di-open .dish-toggle-hint svg{transform:rotate(180deg);}
+.dish-row.di-open .dish-toggle-hint{color:var(--pur);}
 
 /* ═══ PRICING ═══ */
 .pricing-sec{background:var(--light);padding:120px 0;border-top:1px solid rgba(147,51,234,.08);}
@@ -202,9 +220,8 @@ p{font-size:16px;line-height:1.75;color:#555;}
 .btt svg{width:20px;height:20px;stroke:#fff;stroke-width:2.5;fill:none;}
 
 /* ═══ MEDIA ═══ */
-@media(max-width:1200px){.days-grid{grid-template-columns:repeat(4,1fr);}}
-@media(max-width:900px){.sec-wrap{padding:0 24px;}.hdr{padding:0 24px;}.hdr-nav,.hdr-cta{display:none;}.hdr-burger{display:flex;}.days-grid{grid-template-columns:repeat(3,1fr);}.price-card.featured{transform:scale(1);}}
-@media(max-width:600px){.days-grid{grid-template-columns:repeat(2,1fr);}.ft-in{padding:40px 24px;}.cta-h{font-size:28px;}}
+@media(max-width:900px){.sec-wrap{padding:0 24px;}.hdr{padding:0 24px;}.hdr-nav,.hdr-cta{display:none;}.hdr-burger{display:flex;}.price-card.featured{transform:scale(1);}.day-tabs{gap:5px;}.day-tab{padding:9px 16px;font-size:10px;}}
+@media(max-width:600px){.ft-in{padding:40px 24px;}.cta-h{font-size:28px;}.meal-accordion{gap:8px;}}
 </style>
 </head>
 <body>
@@ -259,194 +276,495 @@ p{font-size:16px;line-height:1.75;color:#555;}
 </section>
 
 <!-- MENU SECTION -->
-<section class="menu-sec">
+<section class="menu-sec" id="menu">
   <div class="sec-wrap">
     <div class="menu-head" data-r>
       <div class="sec-lbl" style="justify-content:center;">Рацион питания</div>
       <h2 class="sec-h2">Состав рациона на день</h2>
-      <p class="menu-sub">Меню обновляется еженедельно. Здесь будет размещено актуальное меню на каждый день.</p>
+      <p class="menu-sub">Меню обновляется еженедельно. Выберите день — и посмотрите, что вас ждёт.</p>
     </div>
-    <div class="days-grid" data-stag>
 
-      <!-- ПОНЕДЕЛЬНИК -->
-      <div class="day-card" data-r>
-        <div class="day-header"><div class="day-name">Понедельник</div><div class="day-short">ПН</div></div>
-        <div class="meal-slot">
-          <div class="meal-type">Завтрак</div>
-          <div class="meal-dish"><div class="meal-dish-name">Каша геркулесовая 250 г</div><div class="meal-dish-comp">Хлопья геркулесовые, молоко, сливочное масло, соль, сахар</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Манник с творогом 100 г</div><div class="meal-dish-comp">Крупа манная, кефир, творог, яйцо, сахар, масло растительное, изюм</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Омлет с ветчиной и томатами 170 г</div><div class="meal-dish-comp">Молоко, яйцо, ветчина, томаты, масло растительное, соль</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Боул с курицей терияки</div><div class="meal-dish-comp">Куриная грудка, киноа, томат, эдамамэ, дайкон, кукуруза, соус терияки</div></div>
-        </div>
-        <div class="meal-slot">
-          <div class="meal-type">Обед</div>
-          <div class="meal-dish"><div class="meal-dish-name">Салат тыквенный с сыром</div><div class="meal-dish-comp">Тыква запечёная, сыр фета, руккола, тыквенные семечки, масло растительное</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Борщ с курицей</div><div class="meal-dish-comp">Курица, картофель, лук, морковь, свекла, капуста, томатная паста, лимон</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Котлета домашняя</div><div class="meal-dish-comp">Говядина лопатка, куриное бедро и грудка, батон, лук, соль, перец</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Спагетти</div><div class="meal-dish-comp">Макаронные изделия спагетти, соль, масло растительное</div></div>
-        </div>
-        <div class="meal-slot">
-          <div class="meal-type">Ужин</div>
-          <div class="meal-dish"><div class="meal-dish-name">Салат с киноа и булгуром</div><div class="meal-dish-comp">Киноа, булгур, дайкон, кукуруза, морковь, сельдерей, мёд, лимон, масло</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Треска с копчёным бататом</div><div class="meal-dish-comp">Филе трески, картофель батат, молоко, сливки, соль</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Рис отварной с зеленью и сливочным маслом</div><div class="meal-dish-comp">Рис длиннозерный, сливочное масло, укроп, петрушка, соль</div></div>
-        </div>
-      </div>
-
-      <!-- ВТОРНИК -->
-      <div class="day-card" data-r>
-        <div class="day-header"><div class="day-name">Вторник</div><div class="day-short">ВТ</div></div>
-        <div class="meal-slot">
-          <div class="meal-type">Завтрак</div>
-          <div class="meal-dish"><div class="meal-dish-name">Рисовая каша 250 г</div><div class="meal-dish-comp">Крупа рисовая, молоко, сливочное масло, соль, сахар</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Тыквенно-морковный кекс 100 г</div><div class="meal-dish-comp">Тыква, морковь, яйцо, мука, сахар, соль, разрыхлитель, масло растительное</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Омлет с перцем и ветчиной 170 г</div><div class="meal-dish-comp">Молоко, яйцо, ветчина, перец болгарский, масло растительное, соль</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Боул овощной</div><div class="meal-dish-comp">Киноа, томаты, огурец, перец болгарский, фриллис, морковь, яйцо</div></div>
-        </div>
-        <div class="meal-slot">
-          <div class="meal-type">Обед</div>
-          <div class="meal-dish"><div class="meal-dish-name">Салат с треской и рикоттой</div><div class="meal-dish-comp">Рис, треска, кукуруза, укроп, яйцо, капуста китайская, рикотта, соль</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Суп минестроне</div><div class="meal-dish-comp">Картофель, морковь, лук, болгарский перец, цветная капуста, брокколи, томатная паста</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Говядина демигляс</div><div class="meal-dish-comp">Говядина лопатка, соус демигляс, вода, соль, перец молотый</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Картофельное пюре</div><div class="meal-dish-comp">Картофель, молоко, масло сливочное, соль</div></div>
-        </div>
-        <div class="meal-slot">
-          <div class="meal-type">Ужин</div>
-          <div class="meal-dish"><div class="meal-dish-name">Салат греческий</div><div class="meal-dish-comp">Томаты розовые, огурец, перец болгарский, брынза, айсберг, орегано, масло</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Судак терияки</div><div class="meal-dish-comp">Филе судака, соус терияки, соль, масло растительное</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Кус-кус с овощами</div><div class="meal-dish-comp">Крупа кускус, соль, морковь, перец болгарский, масло растительное</div></div>
-        </div>
-      </div>
-
-      <!-- СРЕДА -->
-      <div class="day-card" data-r>
-        <div class="day-header"><div class="day-name">Среда</div><div class="day-short">СР</div></div>
-        <div class="meal-slot">
-          <div class="meal-type">Завтрак</div>
-          <div class="meal-dish"><div class="meal-dish-name">Каша пшенная 250 г</div><div class="meal-dish-comp">Крупа пшенная, молоко, сливочное масло, соль, сахар</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Шоколадный кекс 100 г</div><div class="meal-dish-comp">Мука, какао, масло растительное, сахар, яйцо</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Омлет с томатами и зеленью 170 г</div><div class="meal-dish-comp">Молоко, яйцо, томат, петрушка, масло растительное, соль</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Боул овощной</div><div class="meal-dish-comp">Киноа, томаты, огурец, перец болгарский, фриллис, морковь, яйцо</div></div>
-        </div>
-        <div class="meal-slot">
-          <div class="meal-type">Обед</div>
-          <div class="meal-dish"><div class="meal-dish-name">Овощной салат</div><div class="meal-dish-comp">Айсберг, дайкон, огурец, томаты, перец болгарский, редис, масло растительное</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Суп куриный с лапшой</div><div class="meal-dish-comp">Курица, яйцо, лук, морковь, куриный бульон, лапша, соль, лавровый лист</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Фрикадельки куриные с соусом бешамель</div><div class="meal-dish-comp">Куриная грудка и бедро, лук, молоко, мука, масло сливочное, мускатный орех</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Гречка</div><div class="meal-dish-comp">Крупа гречневая, соль</div></div>
-        </div>
-        <div class="meal-slot">
-          <div class="meal-type">Ужин</div>
-          <div class="meal-dish"><div class="meal-dish-name">Салат азиатский</div><div class="meal-dish-comp">Китайская капуста, огурец, морковь, дайкон, соевый соус, кунжут</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Кефаль запечённая</div><div class="meal-dish-comp">Кефаль, растительное масло, соль</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Рис с овощами</div><div class="meal-dish-comp">Рис длиннозерный, лук, морковь, фасоль стручковая, масло растительное, соль</div></div>
-        </div>
-      </div>
-
-      <!-- ЧЕТВЕРГ -->
-      <div class="day-card" data-r>
-        <div class="day-header"><div class="day-name">Четверг</div><div class="day-short">ЧТ</div></div>
-        <div class="meal-slot">
-          <div class="meal-type">Завтрак</div>
-          <div class="meal-dish"><div class="meal-dish-name">Каша геркулесовая 250 г</div><div class="meal-dish-comp">Хлопья геркулесовые, молоко, сливочное масло, соль, сахар</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Банановый кекс 100 г</div><div class="meal-dish-comp">Масло сливочное, мука, бананы, сахар, яйцо, разрыхлитель</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Омлет с брокколи и курицей 170 г</div><div class="meal-dish-comp">Молоко, яйцо, брокколи, куриное филе, масло растительное, соль</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Боул с курицей терияки</div><div class="meal-dish-comp">Куриная грудка, киноа, томат, эдамамэ, дайкон, кукуруза, соус терияки</div></div>
-        </div>
-        <div class="meal-slot">
-          <div class="meal-type">Обед</div>
-          <div class="meal-dish"><div class="meal-dish-name">Салат грузинский</div><div class="meal-dish-comp">Томат, огурец, грецкий орех, укроп, петрушка, кинза, масло растительное</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Уха с томатами</div><div class="meal-dish-comp">Судак, треска, картофель, лук, морковь, томаты, рыбный бульон, укроп</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Фрикасе куриное</div><div class="meal-dish-comp">Куриное бедро, лук репчатый, масло растительное, соль, перец, мука</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Отварной картофель с зеленью</div><div class="meal-dish-comp">Картофель, масло сливочное, петрушка, укроп, соль</div></div>
-        </div>
-        <div class="meal-slot">
-          <div class="meal-type">Ужин</div>
-          <div class="meal-dish"><div class="meal-dish-name">Салат витаминный</div><div class="meal-dish-comp">Капуста б/к, морковь, укроп, масло растительное, соль, лимон</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Индейка тушёная с овощами</div><div class="meal-dish-comp">Индейка, лук, морковь, перец болгарский, вода, соль, масло растительное</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Булгур отварной</div><div class="meal-dish-comp">Крупа булгур, масло растительное, соль</div></div>
-        </div>
-      </div>
-
-      <!-- ПЯТНИЦА -->
-      <div class="day-card" data-r>
-        <div class="day-header"><div class="day-name">Пятница</div><div class="day-short">ПТ</div></div>
-        <div class="meal-slot">
-          <div class="meal-type">Завтрак</div>
-          <div class="meal-dish"><div class="meal-dish-name">Каша гречневая 250 г</div><div class="meal-dish-comp">Крупа гречневая, молоко, сливочное масло, соль, сахар</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Шарлотка с яблоками 100 г</div><div class="meal-dish-comp">Яблоки, мука, яйцо, сахар, корица</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Омлет с ветчиной и томатами 170 г</div><div class="meal-dish-comp">Молоко, яйцо, ветчина, томаты, масло растительное, соль</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Боул овощной</div><div class="meal-dish-comp">Киноа, томаты, огурец, перец болгарский, фриллис, морковь, яйцо</div></div>
-        </div>
-        <div class="meal-slot">
-          <div class="meal-type">Обед</div>
-          <div class="meal-dish"><div class="meal-dish-name">Микс-салат с моцареллой</div><div class="meal-dish-comp">Моцарелла, томаты черри, огурец, фриллис, айсберг, руккола, мёд, лимон</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Суп-крем брокколи</div><div class="meal-dish-comp">Брокколи, шпинат, картофель, морковь, лук, соль, масло растительное</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Судак со сливочно-шпинатным соусом</div><div class="meal-dish-comp">Филе судака, сливки, шпинат, соль, масло растительное</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Рис отварной с кукурузой</div><div class="meal-dish-comp">Рис длиннозерный, кукуруза, соль</div></div>
-        </div>
-        <div class="meal-slot">
-          <div class="meal-type">Ужин</div>
-          <div class="meal-dish"><div class="meal-dish-name">Салат свекольный с апельсинами</div><div class="meal-dish-comp">Свекла запечёная, апельсин, руккола, грецкий орех, масло растительное, соль</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Суфле куриное</div><div class="meal-dish-comp">Куриная грудка и бедро, лук, молоко, мука, батон, соль, перец</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Пюре из сельдерея</div><div class="meal-dish-comp">Корень сельдерея, сливки, молоко, масло сливочное, лук, соль</div></div>
-        </div>
-      </div>
-
-      <!-- СУББОТА -->
-      <div class="day-card" data-r>
-        <div class="day-header"><div class="day-name">Суббота</div><div class="day-short">СБ</div></div>
-        <div class="meal-slot">
-          <div class="meal-type">Завтрак</div>
-          <div class="meal-dish"><div class="meal-dish-name">Рисовая каша 250 г</div><div class="meal-dish-comp">Крупа рисовая, молоко, сливочное масло, соль, сахар</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Запеканка творожная 70 г</div><div class="meal-dish-comp">Творог, манная крупа, сметана, яйцо, сахар</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Омлет с томатами и зеленью 170 г</div><div class="meal-dish-comp">Молоко, яйцо, томат, петрушка, масло растительное, соль</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Боул с курицей терияки</div><div class="meal-dish-comp">Куриная грудка, киноа, томат, эдамамэ, дайкон, кукуруза, соус терияки</div></div>
-        </div>
-        <div class="meal-slot">
-          <div class="meal-type">Обед</div>
-          <div class="meal-dish"><div class="meal-dish-name">Салат тыквенный с сыром</div><div class="meal-dish-comp">Тыква запечёная, сыр фета, руккола, тыквенные семечки, масло растительное</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Щи с курицей</div><div class="meal-dish-comp">Курица, капуста б/к, картофель, морковь, лук, томатная паста, перец болгарский</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Индейка духовая в укропном масле</div><div class="meal-dish-comp">Филе индейки, соль, перец, масло растительное, укроп, прованские травы</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Спагетти</div><div class="meal-dish-comp">Макаронные изделия спагетти, соль, масло растительное</div></div>
-        </div>
-        <div class="meal-slot">
-          <div class="meal-type">Ужин</div>
-          <div class="meal-dish"><div class="meal-dish-name">Салат зелёный с кукурузой</div><div class="meal-dish-comp">Капуста китайская, кукуруза, огурец свежий, масло растительное</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Треска запечённая с соусом вьерж</div><div class="meal-dish-comp">Треска, томаты, уксус бальзамический, масло растительное, соль</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Овощи запечённые</div><div class="meal-dish-comp">Морковь, перец болгарский, баклажан, цветная капуста, брокколи, масло, соль</div></div>
-        </div>
-      </div>
-
-      <!-- ВОСКРЕСЕНЬЕ -->
-      <div class="day-card" data-r>
-        <div class="day-header"><div class="day-name">Воскресенье</div><div class="day-short">ВС</div></div>
-        <div class="meal-slot">
-          <div class="meal-type">Завтрак</div>
-          <div class="meal-dish"><div class="meal-dish-name">Каша пшенная 250 г</div><div class="meal-dish-comp">Крупа пшенная, молоко, сливочное масло, соль, сахар</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Тыквенно-морковный кекс 100 г</div><div class="meal-dish-comp">Тыква, морковь, яйцо, мука, сахар, соль, разрыхлитель, масло растительное</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Омлет овощной 170 г</div><div class="meal-dish-comp">Молоко, яйцо, кукуруза, горошек, перец болгарский, зелень, соль, масло</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Боул овощной</div><div class="meal-dish-comp">Киноа, томаты, огурец, перец болгарский, фриллис, морковь, яйцо</div></div>
-        </div>
-        <div class="meal-slot">
-          <div class="meal-type">Обед</div>
-          <div class="meal-dish"><div class="meal-dish-name">Овощной салат</div><div class="meal-dish-comp">Айсберг, дайкон, огурец, томаты, перец болгарский, редис, масло растительное</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Тыквенный крем-суп</div><div class="meal-dish-comp">Тыква, лук, морковь, соль, масло растительное, мускатный орех, овощной бульон</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Фрикасе из индейки</div><div class="meal-dish-comp">Индейка бедро, лук репчатый, масло растительное, соль, перец, мука</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Картофель запечённый</div><div class="meal-dish-comp">Картофель, паприка, масло растительное, соль</div></div>
-        </div>
-        <div class="meal-slot">
-          <div class="meal-type">Ужин</div>
-          <div class="meal-dish"><div class="meal-dish-name">Салат свекольный с сырным муссом</div><div class="meal-dish-comp">Свекла, чернослив, мангольд, грецкий орех, апельсиновый сок, фета, сливки</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Рулет куриный с сыром и брокколи</div><div class="meal-dish-comp">Куриная грудка и бедро, брокколи, сыр гауда, лук, яйцо, сливки, батон</div></div>
-          <div class="meal-dish"><div class="meal-dish-name">Гречка</div><div class="meal-dish-comp">Крупа гречневая, соль</div></div>
-        </div>
-      </div>
-
+    <div class="day-tabs" role="tablist">
+      <button class="day-tab active" data-day="mon"><span>Понедельник</span></button>
+      <button class="day-tab" data-day="tue"><span>Вторник</span></button>
+      <button class="day-tab" data-day="wed"><span>Среда</span></button>
+      <button class="day-tab" data-day="thu"><span>Четверг</span></button>
+      <button class="day-tab" data-day="fri"><span>Пятница</span></button>
+      <button class="day-tab" data-day="sat"><span>Суббота</span></button>
+      <button class="day-tab" data-day="sun"><span>Воскресенье</span></button>
     </div>
+
+    <div class="day-panels">
+      <!-- Day panel mon -->
+      <div class="day-panel active" id="panel-mon">
+        <div class="meal-accordion">
+          <div class="meal-block open">
+            <button class="meal-toggle" aria-expanded="true">
+              <div class="meal-icon">🌅</div>
+              <div class="meal-toggle-title"><div class="meal-toggle-name">Завтрак</div><div class="meal-toggle-count">4 блюда</div></div>
+              <div class="meal-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </button>
+            <div class="meal-body"><div class="meal-body-inner">
+              <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
+                <div class="dish-name">Каша геркулесовая 250 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Хлопья геркулесовые, молоко, сливочное масло, соль, сахар</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
+                <div class="dish-name">Манник с творогом 100 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Крупа манная, кефир, творог, яйцо, сахар, масло растительное, изюм</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                <div class="dish-name">Омлет с ветчиной и томатами 170 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Молоко, яйцо, ветчина, томаты, масло растительное, соль</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">4</div><div class="dish-info">
+                <div class="dish-name">Боул с курицей терияки</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Куриная грудка, киноа, томат, эдамамэ, дайкон, кукуруза, соус терияки</div></div>
+              </div></div>
+            </div></div>
+          </div>
+          <div class="meal-block">
+            <button class="meal-toggle" aria-expanded="false">
+              <div class="meal-icon">☀️</div>
+              <div class="meal-toggle-title"><div class="meal-toggle-name">Обед</div><div class="meal-toggle-count">4 блюда</div></div>
+              <div class="meal-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </button>
+            <div class="meal-body"><div class="meal-body-inner">
+              <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
+                <div class="dish-name">Салат тыквенный с сыром</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Тыква запечёная, сыр фета, руккола, тыквенные семечки, масло растительное</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
+                <div class="dish-name">Борщ с курицей</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Курица, картофель, лук, морковь, свекла, капуста, томатная паста, лимон</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                <div class="dish-name">Котлета домашняя</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Говядина лопатка, куриное бедро и грудка, батон, лук, соль, перец</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">4</div><div class="dish-info">
+                <div class="dish-name">Спагетти</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Макаронные изделия спагетти, соль, масло растительное</div></div>
+              </div></div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day panel tue -->
+      <div class="day-panel" id="panel-tue">
+        <div class="meal-accordion">
+          <div class="meal-block open">
+            <button class="meal-toggle" aria-expanded="true">
+              <div class="meal-icon">🌅</div>
+              <div class="meal-toggle-title"><div class="meal-toggle-name">Завтрак</div><div class="meal-toggle-count">4 блюда</div></div>
+              <div class="meal-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </button>
+            <div class="meal-body"><div class="meal-body-inner">
+              <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
+                <div class="dish-name">Рисовая каша 250 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Крупа рисовая, молоко, сливочное масло, соль, сахар</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
+                <div class="dish-name">Тыквенно-морковный кекс 100 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Тыква, морковь, яйцо, мука, сахар, соль, разрыхлитель, масло растительное</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                <div class="dish-name">Омлет с перцем и ветчиной 170 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Молоко, яйцо, ветчина, перец болгарский, масло растительное, соль</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">4</div><div class="dish-info">
+                <div class="dish-name">Боул овощной</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Киноа, томаты, огурец, перец болгарский, фриллис, морковь, яйцо</div></div>
+              </div></div>
+            </div></div>
+          </div>
+          <div class="meal-block">
+            <button class="meal-toggle" aria-expanded="false">
+              <div class="meal-icon">☀️</div>
+              <div class="meal-toggle-title"><div class="meal-toggle-name">Обед</div><div class="meal-toggle-count">4 блюда</div></div>
+              <div class="meal-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </button>
+            <div class="meal-body"><div class="meal-body-inner">
+              <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
+                <div class="dish-name">Салат с треской и рикоттой</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Рис, треска, кукуруза, укроп, яйцо, капуста китайская, рикотта, соль</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
+                <div class="dish-name">Суп минестроне</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Картофель, морковь, лук, болгарский перец, цветная капуста, брокколи, томатная паста</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                <div class="dish-name">Говядина демигляс</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Говядина лопатка, соус демигляс, вода, соль, перец молотый</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">4</div><div class="dish-info">
+                <div class="dish-name">Картофельное пюре</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Картофель, молоко, масло сливочное, соль</div></div>
+              </div></div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day panel wed -->
+      <div class="day-panel" id="panel-wed">
+        <div class="meal-accordion">
+          <div class="meal-block open">
+            <button class="meal-toggle" aria-expanded="true">
+              <div class="meal-icon">🌅</div>
+              <div class="meal-toggle-title"><div class="meal-toggle-name">Завтрак</div><div class="meal-toggle-count">4 блюда</div></div>
+              <div class="meal-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </button>
+            <div class="meal-body"><div class="meal-body-inner">
+              <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
+                <div class="dish-name">Каша пшенная 250 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Крупа пшенная, молоко, сливочное масло, соль, сахар</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
+                <div class="dish-name">Шоколадный кекс 100 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Мука, какао, масло растительное, сахар, яйцо</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                <div class="dish-name">Омлет с томатами и зеленью 170 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Молоко, яйцо, томат, петрушка, масло растительное, соль</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">4</div><div class="dish-info">
+                <div class="dish-name">Боул овощной</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Киноа, томаты, огурец, перец болгарский, фриллис, морковь, яйцо</div></div>
+              </div></div>
+            </div></div>
+          </div>
+          <div class="meal-block">
+            <button class="meal-toggle" aria-expanded="false">
+              <div class="meal-icon">☀️</div>
+              <div class="meal-toggle-title"><div class="meal-toggle-name">Обед</div><div class="meal-toggle-count">4 блюда</div></div>
+              <div class="meal-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </button>
+            <div class="meal-body"><div class="meal-body-inner">
+              <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
+                <div class="dish-name">Овощной салат</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Айсберг, дайкон, огурец, томаты, перец болгарский, редис, масло растительное</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
+                <div class="dish-name">Суп куриный с лапшой</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Курица, яйцо, лук, морковь, куриный бульон, лапша, соль, лавровый лист</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                <div class="dish-name">Фрикадельки куриные с соусом бешамель</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Куриная грудка и бедро, лук, молоко, мука, масло сливочное, мускатный орех</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">4</div><div class="dish-info">
+                <div class="dish-name">Гречка</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Крупа гречневая, соль</div></div>
+              </div></div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day panel thu -->
+      <div class="day-panel" id="panel-thu">
+        <div class="meal-accordion">
+          <div class="meal-block open">
+            <button class="meal-toggle" aria-expanded="true">
+              <div class="meal-icon">🌅</div>
+              <div class="meal-toggle-title"><div class="meal-toggle-name">Завтрак</div><div class="meal-toggle-count">4 блюда</div></div>
+              <div class="meal-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </button>
+            <div class="meal-body"><div class="meal-body-inner">
+              <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
+                <div class="dish-name">Каша геркулесовая 250 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Хлопья геркулесовые, молоко, сливочное масло, соль, сахар</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
+                <div class="dish-name">Банановый кекс 100 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Масло сливочное, мука, бананы, сахар, яйцо, разрыхлитель</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                <div class="dish-name">Омлет с брокколи и курицей 170 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Молоко, яйцо, брокколи, куриное филе, масло растительное, соль</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">4</div><div class="dish-info">
+                <div class="dish-name">Боул с курицей терияки</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Куриная грудка, киноа, томат, эдамамэ, дайкон, кукуруза, соус терияки</div></div>
+              </div></div>
+            </div></div>
+          </div>
+          <div class="meal-block">
+            <button class="meal-toggle" aria-expanded="false">
+              <div class="meal-icon">☀️</div>
+              <div class="meal-toggle-title"><div class="meal-toggle-name">Обед</div><div class="meal-toggle-count">4 блюда</div></div>
+              <div class="meal-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </button>
+            <div class="meal-body"><div class="meal-body-inner">
+              <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
+                <div class="dish-name">Салат грузинский</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Томат, огурец, грецкий орех, укроп, петрушка, кинза, масло растительное</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
+                <div class="dish-name">Уха с томатами</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Судак, треска, картофель, лук, морковь, томаты, рыбный бульон, укроп</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                <div class="dish-name">Фрикасе куриное</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Куриное бедро, лук репчатый, масло растительное, соль, перец, мука</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">4</div><div class="dish-info">
+                <div class="dish-name">Отварной картофель с зеленью</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Картофель, масло сливочное, петрушка, укроп, соль</div></div>
+              </div></div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day panel fri -->
+      <div class="day-panel" id="panel-fri">
+        <div class="meal-accordion">
+          <div class="meal-block open">
+            <button class="meal-toggle" aria-expanded="true">
+              <div class="meal-icon">🌅</div>
+              <div class="meal-toggle-title"><div class="meal-toggle-name">Завтрак</div><div class="meal-toggle-count">4 блюда</div></div>
+              <div class="meal-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </button>
+            <div class="meal-body"><div class="meal-body-inner">
+              <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
+                <div class="dish-name">Каша гречневая 250 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Крупа гречневая, молоко, сливочное масло, соль, сахар</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
+                <div class="dish-name">Шарлотка с яблоками 100 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Яблоки, мука, яйцо, сахар, корица</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                <div class="dish-name">Омлет с ветчиной и томатами 170 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Молоко, яйцо, ветчина, томаты, масло растительное, соль</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">4</div><div class="dish-info">
+                <div class="dish-name">Боул овощной</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Киноа, томаты, огурец, перец болгарский, фриллис, морковь, яйцо</div></div>
+              </div></div>
+            </div></div>
+          </div>
+          <div class="meal-block">
+            <button class="meal-toggle" aria-expanded="false">
+              <div class="meal-icon">☀️</div>
+              <div class="meal-toggle-title"><div class="meal-toggle-name">Обед</div><div class="meal-toggle-count">4 блюда</div></div>
+              <div class="meal-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </button>
+            <div class="meal-body"><div class="meal-body-inner">
+              <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
+                <div class="dish-name">Микс-салат с моцареллой</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Моцарелла, томаты черри, огурец, фриллис, айсберг, руккола, мёд, лимон</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
+                <div class="dish-name">Суп-крем брокколи</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Брокколи, шпинат, картофель, морковь, лук, соль, масло растительное</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                <div class="dish-name">Судак со сливочно-шпинатным соусом</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Филе судака, сливки, шпинат, соль, масло растительное</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">4</div><div class="dish-info">
+                <div class="dish-name">Рис отварной с кукурузой</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Рис длиннозерный, кукуруза, соль</div></div>
+              </div></div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day panel sat -->
+      <div class="day-panel" id="panel-sat">
+        <div class="meal-accordion">
+          <div class="meal-block open">
+            <button class="meal-toggle" aria-expanded="true">
+              <div class="meal-icon">🌅</div>
+              <div class="meal-toggle-title"><div class="meal-toggle-name">Завтрак</div><div class="meal-toggle-count">4 блюда</div></div>
+              <div class="meal-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </button>
+            <div class="meal-body"><div class="meal-body-inner">
+              <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
+                <div class="dish-name">Рисовая каша 250 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Крупа рисовая, молоко, сливочное масло, соль, сахар</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
+                <div class="dish-name">Запеканка творожная 70 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Творог, манная крупа, сметана, яйцо, сахар</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                <div class="dish-name">Омлет с томатами и зеленью 170 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Молоко, яйцо, томат, петрушка, масло растительное, соль</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">4</div><div class="dish-info">
+                <div class="dish-name">Боул с курицей терияки</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Куриная грудка, киноа, томат, эдамамэ, дайкон, кукуруза, соус терияки</div></div>
+              </div></div>
+            </div></div>
+          </div>
+          <div class="meal-block">
+            <button class="meal-toggle" aria-expanded="false">
+              <div class="meal-icon">☀️</div>
+              <div class="meal-toggle-title"><div class="meal-toggle-name">Обед</div><div class="meal-toggle-count">4 блюда</div></div>
+              <div class="meal-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </button>
+            <div class="meal-body"><div class="meal-body-inner">
+              <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
+                <div class="dish-name">Салат тыквенный с сыром</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Тыква запечёная, сыр фета, руккола, тыквенные семечки, масло растительное</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
+                <div class="dish-name">Щи с курицей</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Курица, капуста б/к, картофель, морковь, лук, томатная паста, перец болгарский</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                <div class="dish-name">Индейка духовая в укропном масле</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Филе индейки, соль, перец, масло растительное, укроп, прованские травы</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">4</div><div class="dish-info">
+                <div class="dish-name">Спагетти</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Макаронные изделия спагетти, соль, масло растительное</div></div>
+              </div></div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day panel sun -->
+      <div class="day-panel" id="panel-sun">
+        <div class="meal-accordion">
+          <div class="meal-block open">
+            <button class="meal-toggle" aria-expanded="true">
+              <div class="meal-icon">🌅</div>
+              <div class="meal-toggle-title"><div class="meal-toggle-name">Завтрак</div><div class="meal-toggle-count">4 блюда</div></div>
+              <div class="meal-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </button>
+            <div class="meal-body"><div class="meal-body-inner">
+              <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
+                <div class="dish-name">Каша пшенная 250 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Крупа пшенная, молоко, сливочное масло, соль, сахар</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
+                <div class="dish-name">Тыквенно-морковный кекс 100 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Тыква, морковь, яйцо, мука, сахар, соль, разрыхлитель, масло растительное</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                <div class="dish-name">Омлет овощной 170 г</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Молоко, яйцо, кукуруза, горошек, перец болгарский, зелень, соль, масло</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">4</div><div class="dish-info">
+                <div class="dish-name">Боул овощной</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Киноа, томаты, огурец, перец болгарский, фриллис, морковь, яйцо</div></div>
+              </div></div>
+            </div></div>
+          </div>
+          <div class="meal-block">
+            <button class="meal-toggle" aria-expanded="false">
+              <div class="meal-icon">☀️</div>
+              <div class="meal-toggle-title"><div class="meal-toggle-name">Обед</div><div class="meal-toggle-count">4 блюда</div></div>
+              <div class="meal-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </button>
+            <div class="meal-body"><div class="meal-body-inner">
+              <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
+                <div class="dish-name">Овощной салат</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Айсберг, дайкон, огурец, томаты, перец болгарский, редис, масло растительное</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
+                <div class="dish-name">Тыквенный крем-суп</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Тыква, лук, морковь, соль, масло растительное, мускатный орех, овощной бульон</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">3</div><div class="dish-info">
+                <div class="dish-name">Фрикасе из индейки</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Индейка бедро, лук репчатый, масло растительное, соль, перец, мука</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">4</div><div class="dish-info">
+                <div class="dish-name">Картофель запечённый</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Картофель, паприка, масло растительное, соль</div></div>
+              </div></div>
+            </div></div>
+          </div>
+          <div class="meal-block">
+            <button class="meal-toggle" aria-expanded="false">
+              <div class="meal-icon">🌙</div>
+              <div class="meal-toggle-title"><div class="meal-toggle-name">Ужин</div><div class="meal-toggle-count">2 блюда</div></div>
+              <div class="meal-arrow"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></div>
+            </button>
+            <div class="meal-body"><div class="meal-body-inner">
+              <div class="dish-row"><div class="dish-num">1</div><div class="dish-info">
+                <div class="dish-name">Салат свекольный с сырным муссом</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Свекла, чернослив, мангольд, грецкий орех, апельсиновый сок, фета, сливки</div></div>
+              </div></div>
+              <div class="dish-row"><div class="dish-num">2</div><div class="dish-info">
+                <div class="dish-name">Рулет куриный с сыром и брокколи</div>
+                <div class="dish-toggle-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>состав</div>
+                <div class="dish-comp-wrap"><div class="dish-comp"><span class="dish-comp-label">Состав</span>Куриная грудка и бедро, брокколи, сыр гауда, лук, яйцо, сливки, батон</div></div>
+              </div></div>
+            </div></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /day-panels -->
   </div>
 </section>
-
 <!-- PRICING -->
 <section class="pricing-sec">
   <div class="sec-wrap">
@@ -575,6 +893,41 @@ window.addEventListener('scroll',()=>{if(heroBg)heroBg.style.transform=`translat
 
 /* BTT */
 document.getElementById('btt').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+/* ── DAY TABS ── */
+document.querySelectorAll('.day-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    const day=tab.dataset.day;
+    document.querySelectorAll('.day-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.day-panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    const panel=document.getElementById('panel-'+day);
+    if(panel)panel.classList.add('active');
+  });
+});
+
+/* ── MEAL ACCORDION ── */
+document.querySelectorAll('.meal-toggle').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const block=btn.closest('.meal-block');
+    const isOpen=block.classList.contains('open');
+    block.classList.toggle('open',!isOpen);
+    btn.setAttribute('aria-expanded',String(!isOpen));
+  });
+});
+
+/* ── DISH COMPOSITION TOGGLE (click) ── */
+document.querySelectorAll('.dish-row').forEach(row=>{
+  const hint=row.querySelector('.dish-toggle-hint');
+  const wrap=row.querySelector('.dish-comp-wrap');
+  if(!hint||!wrap)return;
+  const toggle=()=>{
+    const open=row.classList.toggle('di-open');
+    wrap.classList.toggle('open',open);
+  };
+  hint.addEventListener('click',e=>{e.stopPropagation();toggle();});
+  row.addEventListener('click',toggle);
+});
 </script>
 </body>
 </html>
