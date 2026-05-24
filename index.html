@@ -46,8 +46,9 @@ p{font-size:16px;line-height:1.75;color:#555;}
 /* ═══ HEADER ═══ */
 .hdr{position:fixed;top:0;left:0;right:0;z-index:1000;height:76px;padding:0 48px;display:flex;align-items:center;justify-content:space-between;transition:background .5s,box-shadow .5s;}
 .hdr.scrolled{background:rgba(255,255,255,.94);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(0,0,0,.07);}
-.hdr-logo img{height:44px;transition:transform .4s var(--ease);}
+.hdr-logo img{height:44px;transition:transform .4s var(--ease),opacity .4s var(--ease);}
 .hdr-logo:hover img{transform:scale(1.04);}
+.hdr:not(.scrolled) .hdr-logo img{opacity:0;pointer-events:none;}
 .hdr-nav{display:flex;gap:32px;list-style:none;}
 .hdr-nav a{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.75);position:relative;transition:color .3s;}
 .hdr-nav a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--pur);transition:width .35s var(--ease);}
@@ -512,8 +513,8 @@ p{font-size:16px;line-height:1.75;color:#555;}
 <section class="cta-sec" id="contacts">
   <div class="cta-in">
     <div class="cta-tag" data-r>Узнайте стоимость</div>
-    <h2 class="cta-h" data-r>Питание одного сотрудника</h2>
-    <p class="cta-sub" data-r>Оставьте заявку — рассчитаем стоимость питания для вашей компании на одного сотрудника.</p>
+    <h2 class="cta-h" data-r>УЗНАЙ СТОИМОСТЬ ПИТАНИЯ НА ОДНОГО ЧЕЛОВЕКА</h2>
+    <p class="cta-sub" data-r>Оставьте заявку и мы рассчитаем стоимость питания для вашей компании на одного сотрудника.</p>
     <div class="cta-btns" data-r>
       <a href="contacts.html" class="btn-grad">Оставить заявку →</a>
       <a href="tel:88127507000" class="btn-out">Позвонить</a>
