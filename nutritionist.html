@@ -133,36 +133,20 @@ p{font-size:16px;line-height:1.75;color:#555;}
 .diet-row-item:hover .diet-circ{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.5);transform:rotate(45deg);}
 .diet-circ svg{width:16px;height:16px;stroke:#fff;stroke-width:2;fill:none;}
 
-/* extended diets grid (photo bg) */
-.ext-diets{position:relative;padding:120px 0;overflow:hidden;}
-.ext-diets-bg{position:absolute;inset:0;background-image:url('https://sun9-14.userapi.com/s/v1/ig2/-cfDIS970gbFn4MQhHJx3xTjbc6NUCr3Ix93_Q6_97zluufLCL2WsaGFhS-uAkS91_fxNvGWeikfFMWYVhDXlv80.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&cs=960x0');background-size:cover;background-position:center;z-index:0;}
-.ext-diets-ov{position:absolute;inset:0;background:linear-gradient(160deg,rgba(10,3,30,.72) 0%,rgba(20,5,50,.62) 50%,rgba(10,3,30,.68) 100%);z-index:1;}
-.ext-diets-inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 52px;}
-.ext-diets .sec-lbl{color:var(--pink);}
-.ext-diets .sec-lbl::before{background:var(--pink);}
-.ext-diets .sec-h2{color:#fff;}
-.ext-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.1);border-radius:20px;overflow:hidden;margin-top:64px;}
-.ext-item{background:rgba(255,255,255,.04);padding:44px 36px;transition:background .3s;}
-.ext-item:hover{background:rgba(255,255,255,.1);}
-.ext-item-n{font-size:48px;font-weight:800;color:rgba(255,255,255,.1);letter-spacing:-.04em;line-height:1;margin-bottom:10px;}
-.ext-item-title{font-size:16px;font-weight:700;color:#fff;margin-bottom:10px;}
+/* extended diets grid (light) */
+.ext-diets{background:var(--white);padding:120px 0;}
+.ext-diets-inner{max-width:1400px;margin:0 auto;padding:0 52px;}
+.ext-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(147,51,234,.1);border-radius:20px;overflow:hidden;margin-top:64px;}
+.ext-item{background:var(--white);padding:44px 36px;transition:background .3s;}
+.ext-item:hover{background:rgba(147,51,234,.03);}
+.ext-item-n{font-size:48px;font-weight:800;color:rgba(147,51,234,.08);letter-spacing:-.04em;line-height:1;margin-bottom:10px;}
+.ext-item-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:10px;}
 .ext-item-line{width:28px;height:2px;background:var(--grad);border-radius:2px;margin-bottom:14px;}
-.ext-item p{font-size:14px;color:rgba(255,255,255,.65);line-height:1.75;}
-
-/* ═══ DEGUSTATION CTA ═══ */
-.degustation-cta{position:relative;padding:120px 0;overflow:hidden;}
-.degustation-cta-bg{position:absolute;inset:0;background-image:url('https://sun9-4.userapi.com/s/v1/ig2/DPOGRqfUd90_QNgW117Bq0VZ6xuAPnPgUn4F07etvlsRMyT1nO7o6XZW5cvXGrtsoXkkz1d3daMm71sGkxjjFqLy.jpg?quality=95&as=32x48,48x72,72x108,108x162,160x240,240x360,360x540,480x720,540x809,640x959,720x1079,1024x1535&from=bu&cs=1024x0');background-size:cover;background-position:center;z-index:0;}
-.degustation-cta-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.75) 100%);z-index:1;}
-.degustation-cta-in{position:relative;z-index:2;max-width:700px;margin:0 auto;padding:0 52px;text-align:center;}
-.degustation-cta-tag{font-size:10px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:12px;}
-.degustation-cta-tag::before,.degustation-cta-tag::after{content:'';flex:1;max-width:36px;height:1px;background:rgba(255,255,255,.25);}
-.degustation-cta h2{font-size:clamp(32px,4vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1;color:#fff;margin-bottom:16px;text-shadow:0 4px 24px rgba(0,0,0,.6);}
-.degustation-cta p{font-size:16px;color:rgba(255,255,255,.75);line-height:1.85;margin-bottom:40px;}
-.degustation-cta .cta-note{color:rgba(255,255,255,.4);margin-top:18px;font-size:12px;letter-spacing:.05em;}
+.ext-item p{font-size:14px;color:var(--muted);line-height:1.75;}
 
 /* ═══ APPROACH (guarantee style, photo bg) ═══ */
 .approach{position:relative;padding:140px 0;overflow:hidden;color:#fff;}
-.approach-bg{position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('https://sun9-51.userapi.com/s/v1/ig2/c0Wt0s2y_Z-XjKFSvzd6lyQncv7TvJ08TL5vkwOlx01e151Ki-6_Zu4Ob78IQDIKFI6g0R_xFAql0F-08KfpMOxt.jpg?quality=95&as=32x14,48x22,72x32,108x49,160x72,240x108,360x162,480x216,540x243,640x288,720x324,1080x486,1280x576&from=bu&cs=1280x0');background-size:cover;background-position:center;z-index:0;}
+.approach-bg{position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('https://sun9-36.userapi.com/s/v1/ig2/jwbEcfvY07EKlJBlSiSFO0gK35PWMqqHfCtQVrMhaWTGj0RKobATIfMOIahAjnVBiOiQFYTMHDd3z7m1iBSfUrHL.jpg?quality=95&as=32x33,48x50,72x75,108x112,160x166,240x249,360x373,480x497,533x552&from=bu&cs=533x0');background-size:cover;background-position:center;z-index:0;}
 .approach-ov{position:absolute;inset:0;background:linear-gradient(160deg,rgba(15,5,40,.62) 0%,rgba(25,8,60,.52) 50%,rgba(15,5,40,.58) 100%);z-index:1;}
 .approach-in{position:relative;z-index:2;max-width:1400px;margin:0 auto;padding:0 52px;}
 .approach-head{display:flex;align-items:flex-end;justify-content:space-between;gap:48px;margin-bottom:72px;}
@@ -261,6 +245,17 @@ p{font-size:16px;line-height:1.75;color:#555;}
   .menu-grid{grid-template-columns:1fr;}
   .approach-grid{grid-template-columns:1fr;}
 }
+
+/* ═══ DEGUSTATION CTA ═══ */
+.degustation-cta{position:relative;padding:120px 0;overflow:hidden;color:#fff;text-align:center;}
+.degustation-cta-bg{position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('https://sun9-4.userapi.com/s/v1/ig2/DPOGRqfUd90_QNgW117Bq0VZ6xuAPnPgUn4F07etvlsRMyT1nO7o6XZW5cvXGrtsoXkkz1d3daMm71sGkxjjFqLy.jpg?quality=95&as=32x48,48x72,72x108,108x162,160x240,240x360,360x540,480x720,540x809,640x959,720x1079,1024x1535&from=bu&cs=1024x0');background-size:cover;background-position:center;z-index:0;}
+.degustation-cta-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.75) 100%);z-index:1;}
+.degustation-cta-in{position:relative;z-index:2;max-width:700px;margin:0 auto;padding:0 52px;}
+.degustation-cta-tag{font-size:10px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:12px;}
+.degustation-cta-tag::before,.degustation-cta-tag::after{content:'';flex:1;max-width:36px;height:1px;background:rgba(255,255,255,.25);}
+.degustation-cta h2{font-size:clamp(32px,4vw,52px);font-weight:800;letter-spacing:-.03em;line-height:1.05;color:#fff;margin-bottom:16px;text-shadow:0 4px 24px rgba(0,0,0,.6);}
+.degustation-cta p{font-size:16px;color:rgba(255,255,255,.78);line-height:1.85;margin-bottom:40px;}
+.degustation-cta .cta-note{color:rgba(255,255,255,.38);margin-top:18px;font-size:12px;letter-spacing:.05em;}
 </style>
 </head>
 <body>
@@ -314,7 +309,7 @@ p{font-size:16px;line-height:1.75;color:#555;}
       <div data-r="l">
         <div class="sec-lbl">Философия</div>
 
-        <p class="nutri-intro-quote">Большинство успешных компаний-брендов и их собственники выбирают проверенных годами поставщиков готового питания, с гарантией постоянного качества, сервисом и на основе живых рекомендаций.</p>
+        <p class="nutri-intro-quote">Большинство успешных компаний и их владельцы выбирают проверенных годами поставщиков готового питания, с гарантией постоянного качества, сервисом и на основе живых рекомендаций.</p>
         <div class="nutri-intro-attr">— Команда ORGANI'CARE</div>
       </div>
       <div class="nutri-intro-img" data-r="r">
@@ -461,8 +456,6 @@ p{font-size:16px;line-height:1.75;color:#555;}
 
 <!-- EXTENDED DIETS (stats-grid style) -->
 <section class="ext-diets">
-  <div class="ext-diets-bg"></div>
-  <div class="ext-diets-ov"></div>
   <div class="ext-diets-inner">
     <div data-r>
       <div class="sec-lbl">Расширенный перечень</div>
@@ -609,16 +602,17 @@ p{font-size:16px;line-height:1.75;color:#555;}
   </div>
 </section>
 
-<!-- DEGUSTATION CTA -->
+
+<!-- DEGUSTATION -->
 <section class="degustation-cta">
   <div class="degustation-cta-bg"></div>
   <div class="degustation-cta-ov"></div>
   <div class="degustation-cta-in">
     <div class="degustation-cta-tag" data-r>Дегустация</div>
-    <h2 data-r>ПОПРОБУЙТЕ НАШЕ ЛЕЧЕБНОЕ ПИТАНИЕ</h2>
-    <p data-r>Организуем дегустацию блюд лечебного меню для вашей команды — оцените вкус и качество до подписания договора.</p>
+    <h2 data-r>ПОПРОБУЙТЕ НАШЕ ПИТАНИЕ ДО ПОДПИСАНИЯ ДОГОВОРА</h2>
+    <p data-r>Мы привезём 15 самых популярных блюд из рациона с короткой презентацией услуг компании. Для встречи необходимо выделить 30 минут. Рекомендуем собрать фокус-группу минимум из 5 человек для дегустации. Стоимость услуги — 5 000 руб.</p>
     <div data-r><a href="contacts.html" class="btn-grad">Записаться на дегустацию →</a></div>
-    <p class="cta-note" data-r>Бесплатно для корпоративных клиентов</p>
+    <p class="cta-note" data-r>Привезём блюда в удобное для вас время</p>
   </div>
 </section>
 
