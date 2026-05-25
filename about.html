@@ -175,6 +175,19 @@ p{font-size:16px;line-height:1.75;color:#555;}
   .page-cta-in{padding:0 24px;}
 }
 @media(max-width:640px){.leaders-grid{grid-template-columns:1fr;}}
+
+/* ═══ PROMO BLOCK ═══ */
+.promo-block{position:relative;padding:140px 0;overflow:hidden;color:#fff;text-align:center;}
+.promo-block-bg{position:absolute;top:0;left:0;width:100%;height:100%;background-image:url('https://sun9-66.userapi.com/s/v1/ig2/OtmAwRZ8vmMkz2_mVXlIj5FTHJ7PQpD3pjcU2sHz9ncpOR4fiyMgTTSWBu1rQ0nL54DcWOxspEOkuYFdlFxF3vgF.jpg?quality=95&as=32x21,48x32,72x48,108x72,160x106,240x160,360x240,480x319,540x359,640x426,720x479,1080x719,1280x852,1440x958,2000x1331&from=bu&cs=1280x0');background-size:cover;background-position:center;z-index:0;}
+.promo-block-ov{position:absolute;inset:0;background:linear-gradient(160deg,rgba(0,0,0,.55) 0%,rgba(15,5,40,.65) 100%);z-index:1;}
+.promo-block-in{position:relative;z-index:2;max-width:800px;margin:0 auto;padding:0 52px;}
+.promo-tag{font-size:10px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--pink);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:10px;}
+.promo-tag::before,.promo-tag::after{content:'';flex:0 0 24px;height:1px;background:var(--pink);}
+.promo-h2{font-size:clamp(28px,4vw,52px);font-weight:800;letter-spacing:-.02em;line-height:1.08;margin-bottom:28px;text-shadow:0 4px 20px rgba(0,0,0,.6);text-transform:uppercase;}
+.promo-text{font-size:17px;line-height:1.85;color:rgba(255,255,255,.82);margin-bottom:44px;max-width:640px;margin-left:auto;margin-right:auto;}
+.promo-btn{margin-top:0;}
+@media(max-width:900px){.promo-block-in{padding:0 24px;}.promo-block{padding:100px 0;}}
+
 </style>
 </head>
 <body>
@@ -332,6 +345,20 @@ p{font-size:16px;line-height:1.75;color:#555;}
     <p class="cta-note" data-r>Ответим в течение 1 рабочего часа</p>
   </div>
 </section>
+<!-- PRESENTATION CTA -->
+<section class="promo-block">
+  <div class="promo-block-bg"></div>
+  <div class="promo-block-ov"></div>
+  <div class="promo-block-in">
+    <div class="promo-block-content" data-r>
+      <div class="promo-tag">Специальное предложение</div>
+      <h2 class="promo-h2">закажи презентацию блюд в офис</h2>
+      <p class="promo-text">мы привезем самые популярные блюда из рациона с короткой презентацией услуг компании. для встречи необходимо выделить 30 минут. стоимость услуги 5 000 руб. Рекомендуем собрать фокус группу минимум из 5 человек для дегустации</p>
+      <a href="contacts.html" class="btn-grad promo-btn">Заказать презентацию →</a>
+    </div>
+  </div>
+</section>
+
 
 <!-- FOOTER -->
 <footer class="ft">
