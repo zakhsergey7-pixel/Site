@@ -182,9 +182,6 @@ p{font-size:16px;line-height:1.75;color:#555;}
 .svc-head-lbl::before{content:'';width:24px;height:1px;background:rgba(255,255,255,.3);}
 .svc-h2{font-size:clamp(32px,4vw,54px);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-.02em;}
 .svc-desc{font-size:14px;color:rgba(255,255,255,.42);line-height:1.75;max-width:260px;text-align:right;}
-#svc-prev{position:fixed;z-index:800;width:300px;height:210px;border-radius:16px;overflow:hidden;pointer-events:none;opacity:0;transform:translate(-50%,-50%) scale(.88);transition:opacity .35s var(--ease),transform .35s var(--ease);box-shadow:0 28px 70px rgba(0,0,0,.45);}
-#svc-prev.show{opacity:1;transform:translate(-50%,-50%) scale(1);}
-#svc-prev img{width:100%;height:100%;object-fit:cover;}
 .svc-list{border-top:1px solid rgba(255,255,255,.12);}
 .svc-row{display:grid;grid-template-columns:72px 1fr 60px;align-items:center;gap:32px;padding:30px 0;border-bottom:1px solid rgba(255,255,255,.12);position:relative;overflow:hidden;transition:padding-left .5s var(--ease);}
 .svc-row::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:rgba(255,255,255,.07);z-index:0;transition:width .6s var(--ease2);}
@@ -460,7 +457,6 @@ p{font-size:16px;line-height:1.75;color:#555;}
 <section class="services" id="services">
   <div class="services-bg"></div>
   <div class="services-ov"></div>
-  <div id="svc-prev"><img id="svcImg" src="" alt=""></div>
   <div class="services-in">
     <div class="svc-head" data-r>
       <div><div class="svc-head-lbl">Наши услуги</div><h2 class="svc-h2">Что мы предлагаем</h2></div>
@@ -586,17 +582,6 @@ const burger=document.getElementById('burger'),mob=document.getElementById('mobN
 burger.addEventListener('click',()=>{burger.classList.toggle('o');mob.classList.toggle('o');document.body.style.overflow=mob.classList.contains('o')?'hidden':'';});
 mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{burger.classList.remove('o');mob.classList.remove('o');document.body.style.overflow='';}));
 
-/* SERVICES cursor-follow preview */
-(function(){
-  const prev=document.getElementById('svc-prev'),img=document.getElementById('svcImg');
-  let px=0,py=0,cx=window.innerWidth/2,cy=window.innerHeight/2;
-  document.addEventListener('mousemove',e=>{cx=e.clientX;cy=e.clientY;});
-  (function ap(){px+=(cx-px)*.12;py+=(cy-py)*.12;prev.style.left=px+'px';prev.style.top=py+'px';requestAnimationFrame(ap);})();
-  document.querySelectorAll('.svc-row').forEach(row=>{
-    row.addEventListener('mouseenter',()=>{img.src=row.dataset.img;prev.classList.add('show');});
-    row.addEventListener('mouseleave',()=>prev.classList.remove('show'));
-  });
-})();
 
 /* SCROLL REVEAL */
 (function(){
