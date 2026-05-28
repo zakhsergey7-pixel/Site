@@ -233,6 +233,476 @@ p{font-size:16px;line-height:1.75;color:#555;}
   .yr-card.square{width:260px;height:260px;}
   .yr-card.port{width:190px;height:300px;}
 }
+
+/* ═══════════════════════════════════════
+   PROJECTS SECTION
+═══════════════════════════════════════ */
+.about-projects {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  background: var(--white);
+}
+
+/* Hero banner */
+.proj-hero {
+  position: relative;
+  height: 56vh;
+  min-height: 400px;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.proj-hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center 30%;
+  background-image: url('https://sun9-74.userapi.com/s/v1/ig2/Z5cTW7C5ELd2I6baWMUeZuwmsh-xv_eiTSmLqJRYUBzjIz9ua0Oa9vS70HbeSmhj0WxwLFttXL9-ujrVTVdgMmBE.jpg?quality=95&as=32x37,48x56,72x83,108x125,160x185,240x278,360x417,480x556,540x625,640x741,720x834,1080x1251,1280x1483,1440x1668&from=bu&cs=1280x0');
+  transform: scale(1.05);
+  transition: transform 12s ease;
+  z-index: 0;
+}
+.about-projects:hover .proj-hero-bg {
+  transform: scale(1);
+}
+.proj-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,.25) 50%,
+    rgba(26,26,46,.95) 100%
+  );
+  z-index: 1;
+}
+.proj-hero-caption {
+  position: relative;
+  z-index: 2;
+  padding: 0 52px 48px;
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+}
+.proj-hero-left .sec-lbl {
+  color: rgba(255,255,255,.4);
+}
+.proj-hero-left .sec-lbl::before { background: rgba(255,255,255,.3); }
+.proj-hero-title {
+  font-size: clamp(48px, 7vw, 96px);
+  font-weight: 800;
+  letter-spacing: -.04em;
+  line-height: .95;
+  color: #fff;
+  text-shadow: 0 4px 40px rgba(0,0,0,.4);
+}
+.proj-hero-title em {
+  font-style: normal;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.proj-hero-count {
+  font-size: clamp(72px, 10vw, 128px);
+  font-weight: 800;
+  letter-spacing: -.06em;
+  color: rgba(255,255,255,.06);
+  line-height: 1;
+  user-select: none;
+}
+
+/* Cards Grid */
+.proj-body {
+  background: var(--ink);
+  padding: 0 0 100px;
+}
+.proj-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 64px 52px 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Each company card / "плашка" */
+.proj-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.07);
+  transition: border-color .4s var(--ease), box-shadow .4s var(--ease), transform .4s var(--ease);
+  aspect-ratio: 1 / 1.1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.proj-card:hover {
+  border-color: rgba(147,51,234,.5);
+  box-shadow: 0 24px 60px rgba(147,51,234,.22), 0 0 0 1px rgba(147,51,234,.15) inset;
+  transform: translateY(-6px);
+}
+
+/* Ambient glow behind logo */
+.proj-card-glow {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(147,51,234,.18), transparent 70%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity .5s var(--ease);
+  pointer-events: none;
+}
+.proj-card:hover .proj-card-glow { opacity: 1; }
+
+/* Logo wrapper */
+.proj-logo-wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 0 32px;
+  text-align: center;
+}
+.proj-logo-img {
+  height: 52px;
+  object-fit: contain;
+  filter: none;
+  opacity: .85;
+  transition: opacity .4s var(--ease), transform .4s var(--ease);
+  max-width: 180px;
+}
+.proj-card:hover .proj-logo-img {
+  opacity: 1;
+  transform: scale(1.06);
+}
+
+/* Fallback text logo */
+.proj-logo-text {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -.03em;
+  color: rgba(255,255,255,.65);
+  transition: color .4s var(--ease);
+}
+.proj-card:hover .proj-logo-text { color: #fff; }
+
+.proj-card-name {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.25);
+  transition: color .4s;
+}
+.proj-card:hover .proj-card-name { color: rgba(255,255,255,.6); }
+
+/* "Открыть" indicator */
+.proj-card-open {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(.7) rotate(-45deg);
+  transition: opacity .4s var(--ease), transform .4s var(--ease), background .3s;
+  z-index: 2;
+}
+.proj-card-open svg { width: 14px; height: 14px; stroke: #fff; stroke-width: 2; fill: none; }
+.proj-card:hover .proj-card-open {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  background: rgba(147,51,234,.5);
+}
+
+/* External link badge */
+.proj-ext-link {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  padding: 5px 10px;
+  border-radius: 999px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity .35s var(--ease), transform .35s var(--ease);
+  z-index: 3;
+  pointer-events: none;
+}
+.proj-card:hover .proj-ext-link { opacity: 1; transform: none; }
+
+/* Photo count badge */
+.proj-photo-count {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  color: rgba(255,255,255,.5);
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(8px);
+  padding: 5px 12px;
+  border-radius: 999px;
+  z-index: 3;
+  transition: color .3s;
+}
+.proj-card:hover .proj-photo-count { color: #fff; }
+
+/* ── LIGHTBOX / ALBUM OVERLAY ── */
+.proj-album-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .5s var(--ease);
+}
+.proj-album-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Dark backdrop */
+.proj-album-bd {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 8, 20, .96);
+  backdrop-filter: blur(12px);
+}
+
+/* Album header */
+.proj-album-header {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 52px 20px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  flex-shrink: 0;
+}
+.proj-album-info {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.proj-album-logo {
+  height: 36px;
+  object-fit: contain;
+  filter: none;
+  opacity: .9;
+  max-width: 140px;
+}
+.proj-album-logo-text {
+  font-size: 20px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -.02em;
+}
+.proj-album-divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(255,255,255,.15);
+}
+.proj-album-subtitle {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.3);
+}
+.proj-album-site-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.5);
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  padding: 10px 20px;
+  border-radius: 999px;
+  transition: all .35s var(--ease);
+  text-decoration: none;
+}
+.proj-album-site-btn:hover {
+  color: #fff;
+  background: rgba(147,51,234,.5);
+  border-color: transparent;
+  box-shadow: 0 8px 28px rgba(147,51,234,.4);
+}
+.proj-album-site-btn svg { width: 12px; height: 12px; stroke: currentColor; stroke-width: 2; fill: none; }
+
+.proj-album-close {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all .3s var(--ease);
+  margin-left: 16px;
+  flex-shrink: 0;
+}
+.proj-album-close:hover { background: rgba(255,80,80,.3); border-color: rgba(255,80,80,.4); }
+.proj-album-close svg { width: 16px; height: 16px; stroke: #fff; stroke-width: 2; fill: none; }
+
+/* Grid of photos */
+.proj-album-body {
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  overflow-y: auto;
+  padding: 40px 52px 52px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(147,51,234,.4) transparent;
+}
+.proj-album-body::-webkit-scrollbar { width: 4px; }
+.proj-album-body::-webkit-scrollbar-track { background: transparent; }
+.proj-album-body::-webkit-scrollbar-thumb { background: rgba(147,51,234,.4); border-radius: 4px; }
+
+/* Masonry-style photo grid */
+.proj-photos-grid {
+  columns: 3;
+  column-gap: 16px;
+}
+.proj-photo-item {
+  break-inside: avoid;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px) scale(.97);
+  transition: opacity .5s var(--ease), transform .5s var(--ease);
+}
+.proj-photo-item.reveal {
+  opacity: 1;
+  transform: none;
+}
+.proj-photo-item img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform .6s var(--ease), filter .6s var(--ease);
+  filter: brightness(.88);
+}
+.proj-photo-item:hover img {
+  transform: scale(1.04);
+  filter: brightness(1);
+}
+
+/* Full-screen photo viewer */
+.proj-photo-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .4s var(--ease);
+}
+.proj-photo-viewer.open { opacity: 1; pointer-events: all; }
+.proj-photo-viewer-bd {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.92);
+}
+.proj-photo-viewer img {
+  position: relative;
+  z-index: 1;
+  max-width: 92vw;
+  max-height: 88vh;
+  border-radius: 12px;
+  box-shadow: 0 40px 120px rgba(0,0,0,.8);
+  object-fit: contain;
+  transform: scale(.9);
+  transition: transform .4s var(--ease);
+}
+.proj-photo-viewer.open img { transform: scale(1); }
+.proj-photo-viewer-close {
+  position: absolute;
+  top: 28px; right: 28px;
+  z-index: 2;
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background .3s;
+}
+.proj-photo-viewer-close:hover { background: rgba(255,80,80,.3); }
+.proj-photo-viewer-close svg { width: 18px; height: 18px; stroke: #fff; stroke-width: 2; fill: none; }
+
+/* "Coming soon" placeholder cards */
+.proj-card-soon {
+  opacity: .35;
+  cursor: default;
+}
+.proj-card-soon:hover {
+  transform: none;
+  border-color: rgba(255,255,255,.07);
+  box-shadow: none;
+}
+.proj-soon-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.2);
+  margin-top: 8px;
+}
+
+@media(max-width:900px){
+  .proj-grid { grid-template-columns: 1fr 1fr; padding: 40px 24px 0; gap: 16px; }
+  .proj-hero-caption { padding: 0 24px 36px; flex-direction: column; align-items: flex-start; gap: 8px; }
+  .proj-album-header { padding: 20px 24px 16px; }
+  .proj-album-body { padding: 28px 24px 40px; }
+  .proj-photos-grid { columns: 2; }
+  .proj-album-info { gap: 12px; }
+}
+@media(max-width:540px){
+  .proj-grid { grid-template-columns: 1fr; }
+  .proj-photos-grid { columns: 1; }
+}
 </style>
 </head>
 <body>
@@ -514,6 +984,255 @@ p{font-size:16px;line-height:1.75;color:#555;}
     </div>
   </div>
 </section>
+
+<!-- ════════════════════════════════════
+     PROJECTS SECTION
+════════════════════════════════════ -->
+<section class="about-projects" id="projects">
+
+  <!-- Hero banner с фото -->
+  <div class="proj-hero">
+    <div class="proj-hero-bg" id="projHeroBg"></div>
+    <div class="proj-hero-caption">
+      <div class="proj-hero-left">
+        <div class="sec-lbl" data-r>Партнёрство</div>
+        <h2 class="proj-hero-title" data-r>Наши<br><em>Проекты</em></h2>
+      </div>
+      <div class="proj-hero-count" aria-hidden="true">03</div>
+    </div>
+  </div>
+
+  <!-- Cards -->
+  <div class="proj-body">
+    <div class="proj-grid" data-stag>
+
+      <!-- PLAYRIX -->
+      <div class="proj-card" data-r data-company="playrix" role="button" tabindex="0" aria-label="Открыть фотоальбом Playrix">
+        <div class="proj-card-glow"></div>
+        <span class="proj-ext-link">playrix.com ↗</span>
+        <span class="proj-photo-count">3 фото</span>
+        <div class="proj-logo-wrap">
+          <img class="proj-logo-img"
+            src="https://thb.tildacdn.com/tild3861-3236-4632-b538-666333303763/Playrix-Logowine.png"
+            alt="Playrix" loading="lazy">
+          <span class="proj-card-name">Playrix</span>
+        </div>
+        <div class="proj-card-open">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        </div>
+      </div>
+
+      <!-- ARRIVAL -->
+      <div class="proj-card" data-r data-company="arrival" role="button" tabindex="0" aria-label="Открыть фотоальбом Arrival">
+        <div class="proj-card-glow"></div>
+        <span class="proj-ext-link">arrival.com ↗</span>
+        <span class="proj-photo-count">Скоро</span>
+        <div class="proj-logo-wrap">
+          <img class="proj-logo-img"
+            src="https://thb.tildacdn.com/tild3231-3764-4666-b937-663564646466/arrival-logo-1300x70.png"
+            alt="Arrival" loading="lazy">
+          <span class="proj-card-name">Arrival</span>
+        </div>
+        <div class="proj-card-open">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        </div>
+      </div>
+
+      <!-- POLYTECH -->
+      <div class="proj-card" data-r data-company="polytech" role="button" tabindex="0" aria-label="Открыть фотоальбом СПбПУ">
+        <div class="proj-card-glow"></div>
+        <span class="proj-ext-link">spbstu.ru ↗</span>
+        <span class="proj-photo-count">Скоро</span>
+        <div class="proj-logo-wrap">
+          <span class="proj-logo-text">СПбПУ</span>
+          <span class="proj-card-name">Политех. университет</span>
+        </div>
+        <div class="proj-card-open">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── PHOTO ALBUM OVERLAY ── -->
+<div class="proj-album-overlay" id="projAlbum" role="dialog" aria-modal="true" aria-label="Фотоальбом проекта">
+  <div class="proj-album-bd" id="projAlbumBd"></div>
+  <div class="proj-album-header">
+    <div class="proj-album-info">
+      <img class="proj-album-logo" id="projAlbumLogo" src="" alt="">
+      <span class="proj-album-logo-text" id="projAlbumLogoText" style="display:none;"></span>
+      <div class="proj-album-divider"></div>
+      <span class="proj-album-subtitle" id="projAlbumSubtitle">Фотоальбом</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;flex-shrink:0;">
+      <a class="proj-album-site-btn" id="projAlbumSite" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M2 12h20M12 2c-2.5 3-4 6.3-4 10s1.5 7 4 10M12 2c2.5 3 4 6.3 4 10s-1.5 7-4 10"/></svg>
+        Перейти на сайт
+      </a>
+      <div class="proj-album-close" id="projAlbumClose" role="button" tabindex="0" aria-label="Закрыть">
+        <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </div>
+    </div>
+  </div>
+  <div class="proj-album-body" id="projAlbumBody">
+    <div class="proj-photos-grid" id="projPhotosGrid"></div>
+  </div>
+</div>
+
+<!-- ── FULL-SCREEN PHOTO VIEWER ── -->
+<div class="proj-photo-viewer" id="projViewer">
+  <div class="proj-photo-viewer-bd" id="projViewerBd"></div>
+  <img id="projViewerImg" src="" alt="">
+  <div class="proj-photo-viewer-close" id="projViewerClose" role="button" tabindex="0" aria-label="Закрыть">
+    <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════
+// PROJECTS — album data & logic
+// ══════════════════════════════════
+(function(){
+  const COMPANIES = {
+    playrix: {
+      name: 'Playrix',
+      logoImg: 'https://thb.tildacdn.com/tild3861-3236-4632-b538-666333303763/Playrix-Logowine.png',
+      subtitle: 'Корпоративное питание · Санкт-Петербург',
+      site: 'https://www.playrix.com',
+      photos: [
+        { src: 'https://sun9-54.userapi.com/s/v1/ig2/B2MHg9lStoSIUE4ovLOATKaE-nGl2PbeqWKyPNkyhq5iO6imr5PJO2S7o_v-QjjA20i4Dxnxrr6kvIfgu6MvkV7Z.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&cs=960x0', caption: 'В офисе Playrix' },
+        { src: 'https://sun9-2.userapi.com/s/v1/ig2/1Ce_Zo5lMnq-Jbk8Y0L0u1Y0JKc23AFUJtzpyFRRdvgQcomH2Z2HqRjMYE4swi_nI0U7Jz3oK6wh-oglcjgRxM0B.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960&from=bu&cs=1280x0', caption: 'Обед команды' },
+        { src: 'https://sun9-36.userapi.com/s/v1/ig2/nGus8UeM09EVB5CHNcZBSCczd-CkcDJ_jf9hN6W3uTXgqJdd0-frxrZja456tkZSbU2OS7u9vZSTmc1OcPLT9F5d.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1080x1080,1280x1280&from=bu&cs=1280x0', caption: 'Гастрономия' }
+      ]
+    },
+    arrival: {
+      name: 'Arrival',
+      logoImg: 'https://thb.tildacdn.com/tild3231-3764-4666-b937-663564646466/arrival-logo-1300x70.png',
+      subtitle: 'Корпоративное питание · Санкт-Петербург',
+      site: 'https://www.arrival.com',
+      photos: []
+    },
+    polytech: {
+      name: 'Политехнический университет СПб',
+      logoText: 'СПбПУ',
+      subtitle: 'Лечебное и учебное питание · СПбПУ',
+      site: 'https://www.spbstu.ru',
+      photos: []
+    }
+  };
+
+  const overlay    = document.getElementById('projAlbum');
+  const albumBd    = document.getElementById('projAlbumBd');
+  const albumClose = document.getElementById('projAlbumClose');
+  const albumLogo  = document.getElementById('projAlbumLogo');
+  const albumLogoT = document.getElementById('projAlbumLogoText');
+  const albumSub   = document.getElementById('projAlbumSubtitle');
+  const albumSite  = document.getElementById('projAlbumSite');
+  const photosGrid = document.getElementById('projPhotosGrid');
+  const viewer     = document.getElementById('projViewer');
+  const viewerImg  = document.getElementById('projViewerImg');
+  const viewerBd   = document.getElementById('projViewerBd');
+  const viewerClose= document.getElementById('projViewerClose');
+
+  let lockScroll = false;
+
+  function openAlbum(key) {
+    const co = COMPANIES[key];
+    if (!co) return;
+
+    // Set header
+    if (co.logoImg) {
+      albumLogo.src = co.logoImg;
+      albumLogo.style.display = '';
+      albumLogoT.style.display = 'none';
+    } else {
+      albumLogoT.textContent = co.logoText;
+      albumLogoT.style.display = '';
+      albumLogo.style.display = 'none';
+    }
+    albumSub.textContent  = co.subtitle;
+    albumSite.href        = co.site;
+
+    // Build photo grid
+    photosGrid.innerHTML = '';
+
+    if (co.photos.length === 0) {
+      photosGrid.innerHTML = `
+        <div style="grid-column:1/-1;text-align:center;padding:80px 0;color:rgba(255,255,255,.25);">
+          <div style="font-size:40px;margin-bottom:16px;">📷</div>
+          <div style="font-size:13px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;">Фотографии появятся скоро</div>
+        </div>`;
+    } else {
+      co.photos.forEach((p, i) => {
+        const item = document.createElement('div');
+        item.className = 'proj-photo-item';
+        item.style.transitionDelay = (i * 0.08) + 's';
+        item.innerHTML = `<img src="${p.src}" alt="${p.caption}" loading="lazy">`;
+        item.addEventListener('click', () => openViewer(p.src));
+        photosGrid.appendChild(item);
+        // Trigger reveal with slight delay
+        setTimeout(() => item.classList.add('reveal'), 60 + i * 80);
+      });
+    }
+
+    // Scroll body to top
+    document.getElementById('projAlbumBody').scrollTop = 0;
+
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeAlbum() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+    // Reset reveals
+    setTimeout(() => {
+      document.querySelectorAll('.proj-photo-item').forEach(el => el.classList.remove('reveal'));
+    }, 500);
+  }
+
+  function openViewer(src) {
+    viewerImg.src = src;
+    viewer.classList.add('open');
+  }
+  function closeViewer() {
+    viewer.classList.remove('open');
+    setTimeout(() => { viewerImg.src = ''; }, 400);
+  }
+
+  // Card click
+  document.querySelectorAll('.proj-card[data-company]').forEach(card => {
+    card.addEventListener('click', () => {
+      openAlbum(card.dataset.company);
+    });
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openAlbum(card.dataset.company); }
+    });
+  });
+
+  albumClose.addEventListener('click', closeAlbum);
+  albumClose.addEventListener('keydown', e => { if (e.key === 'Enter') closeAlbum(); });
+  albumBd.addEventListener('click', closeAlbum);
+
+  viewerClose.addEventListener('click', closeViewer);
+  viewerBd.addEventListener('click', closeViewer);
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      if (viewer.classList.contains('open')) closeViewer();
+      else if (overlay.classList.contains('open')) closeAlbum();
+    }
+  });
+
+  // Cursor hover for project cards
+  document.querySelectorAll('.proj-card').forEach(card => {
+    card.addEventListener('mouseenter', () => document.getElementById('cRing').classList.add('big'));
+    card.addEventListener('mouseleave', () => document.getElementById('cRing').classList.remove('big'));
+  });
+})();
+</script>
 
 <!-- CLIENTS -->
 <section class="about-clients">
