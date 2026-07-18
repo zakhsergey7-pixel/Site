@@ -950,33 +950,9 @@ p{font-size:16px;line-height:1.75;color:#555;}
 
 <!-- TEAM QUOTE -->
 <section class="about-team-quote">
-  <iframe id="teamVideoFrame"
-    src="https://player.vimeo.com/video/1197289299?background=1&loop=0"
-    allow="autoplay; fullscreen; picture-in-picture" frameborder="0" tabindex="-1" aria-hidden="true"
+  <iframe src="https://kinescope.io/embed/3uBR2zUxJZGFVS16yfa2pY?seek=42&duration=30&autoplay=1&muted=1&loop=1&controls=0&ui=0"
+    allow="autoplay; fullscreen; picture-in-picture; encrypted-media; gyroscope; accelerometer; clipboard-write; screen-wake-lock;" frameborder="0" tabindex="-1" aria-hidden="true" allowfullscreen
     style="position:absolute;top:50%;left:50%;width:177.78vh;min-width:100%;height:56.25vw;min-height:100%;transform:translate(-50%,-50%);border:none;z-index:0;"></iframe>
-  <script src="https://player.vimeo.com/api/player.js"></script>
-  <script>
-  (function(){
-    const START = 42, END = 72;
-    const player = new Vimeo.Player('teamVideoFrame');
-    let seeked = false;
-
-    // не форсируем play() сами — background=1 включает автоплей нативно.
-    // Как только видео реально начало играть, переносим на нужный тайминг.
-    player.on('play', function(){
-      if (!seeked) {
-        seeked = true;
-        player.setCurrentTime(START);
-      }
-    });
-
-    player.on('timeupdate', function(data){
-      if(data.seconds >= END){
-        player.setCurrentTime(START);
-      }
-    });
-  })();
-  </script>
   <div class="about-team-quote-in" data-r>
     <p class="about-team-quote-text">В нашем штате собрались люди разных профессий — квалифицированные повара горячих и холодных цехов, кондитеры, управляющий, менеджеры и бухгалтера, сотрудники отдела доставки, клининга и безопасности.</p>
   </div>
