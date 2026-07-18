@@ -951,7 +951,7 @@ p{font-size:16px;line-height:1.75;color:#555;}
 <!-- TEAM QUOTE -->
 <section class="about-team-quote">
   <iframe id="teamVideoFrame"
-    src="https://player.vimeo.com/video/1197289299?autoplay=1&muted=1&loop=0&controls=0&background=1#t=42"
+    src="https://player.vimeo.com/video/1197289299?background=1&loop=0"
     allow="autoplay; fullscreen; picture-in-picture" frameborder="0" tabindex="-1" aria-hidden="true"
     style="position:absolute;top:50%;left:50%;width:177.78vh;min-width:100%;height:56.25vw;min-height:100%;transform:translate(-50%,-50%);border:none;z-index:0;"></iframe>
   <script src="https://player.vimeo.com/api/player.js"></script>
@@ -959,22 +959,21 @@ p{font-size:16px;line-height:1.75;color:#555;}
   (function(){
     const START = 42, END = 72;
     const player = new Vimeo.Player('teamVideoFrame');
+    let seeked = false;
 
-    player.ready().then(function(){
-      player.setCurrentTime(START);
-      player.play();
+    // не форсируем play() сами — background=1 включает автоплей нативно.
+    // Как только видео реально начало играть, переносим на нужный тайминг.
+    player.on('play', function(){
+      if (!seeked) {
+        seeked = true;
+        player.setCurrentTime(START);
+      }
     });
 
     player.on('timeupdate', function(data){
       if(data.seconds >= END){
         player.setCurrentTime(START);
-        player.play();
       }
-    });
-
-    player.on('ended', function(){
-      player.setCurrentTime(START);
-      player.play();
     });
   })();
   </script>
