@@ -24,8 +24,13 @@ jobs:
       - name: Установить Pillow
         run: pip install pillow
 
+      - name: Проверка доступа к VK
+        run: |
+          U=$(grep -rhoE "https://sun9-[0-9]+\.(userapi\.com|vkuserphoto\.ru)[^\"' )>]+" --include=*.html . | head -1)
+          curl -sS -m 20 -o /dev/null -w "HTTP %{http_code}, %{size_download} байт, %{time_total} c\n" "$U" || echo "VK не ответил"
+
       - name: Скачать фото и заменить ссылки
-        run: python scripts/migrate_vk_images.py
+        run: python -u scripts/migrate_vk_images.py
 
       - name: Сохранить изменения
         run: |

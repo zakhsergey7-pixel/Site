@@ -25,9 +25,9 @@ URL_RE = re.compile(
 
 def fetch(url: str) -> bytes:
     req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    for attempt in range(4):
+    for attempt in range(2):
         try:
-            with urllib.request.urlopen(req, timeout=60) as r:
+            with urllib.request.urlopen(req, timeout=25) as r:
                 return r.read()
         except Exception as e:  # noqa: BLE001
             print(f"  попытка {attempt + 1} не удалась: {e}")
