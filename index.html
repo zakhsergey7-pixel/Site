@@ -278,6 +278,24 @@ p{font-size:16px;line-height:1.75;color:#555;}
 @keyframes mqr{from{transform:translateX(-50%);}to{transform:translateX(0);}}
 @keyframes logoS{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
+/* ═══ KITCHEN — dishes gallery ═══ */
+.kitchen{background:var(--cream);padding:120px 0;}
+.kitchen-top{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-bottom:64px;}
+.kitchen-h2{font-size:clamp(32px,4vw,52px);font-weight:800;letter-spacing:-.02em;line-height:1.1;color:var(--ink);}
+.kitchen-sub{font-size:15px;color:var(--muted);line-height:1.85;max-width:400px;justify-self:end;text-align:right;}
+.kitchen-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px 24px;}
+.dish{display:block;}
+.dish-ph{position:relative;aspect-ratio:1100/1210;overflow:hidden;border-radius:12px;background:#c3a3e6;}
+.dish-ph img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .9s var(--ease);}
+.dish:hover .dish-ph img{transform:scale(1.05);}
+.dish-cap{display:flex;align-items:baseline;gap:14px;margin-top:20px;padding-top:16px;border-top:1px solid rgba(0,0,0,.08);position:relative;}
+.dish-cap::before{content:'';position:absolute;top:-1px;left:0;right:0;height:1px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease);}
+.dish:hover .dish-cap::before{transform:scaleX(1);}
+.dish-n{font-size:12px;font-weight:400;color:var(--pur);letter-spacing:.08em;flex:none;}
+.dish-name{font-size:17px;font-weight:400;color:var(--ink);line-height:1.45;}
+@media(max-width:1100px){.kitchen-top{grid-template-columns:1fr;gap:20px;}.kitchen-sub{justify-self:start;text-align:left;max-width:none;}}
+@media(max-width:900px){.kitchen{padding:80px 0;}.kitchen-top{margin-bottom:40px;}.kitchen-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 14px;}.dish-cap{gap:10px;margin-top:12px;padding-top:12px;}.dish-name{font-size:14px;}.dish-n{font-size:11px;}}
+
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:1100px){
   .diff-top{grid-template-columns:1fr;}.diff-sub{text-align:left;max-width:none;}
@@ -524,6 +542,45 @@ p{font-size:16px;line-height:1.75;color:#555;}
         <div class="svc-body"><span class="svc-name">Корпоративное питание</span><span class="svc-sub">Питание для сотрудников компаний, организация школьного питания, микромаркеты. Ресторанное качество.</span></div>
         <span class="svc-circ"><svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- 6.5 KITCHEN -->
+<section class="kitchen" id="kitchen">
+  <div class="sec-wrap">
+    <div class="kitchen-top">
+      <div data-r="l">
+        <div class="sec-lbl">Наша кухня</div>
+        <h2 class="kitchen-h2">Готовим из-под ножа каждый день</h2>
+      </div>
+      <p class="kitchen-sub" data-r="r">Авторские блюда нашей кухни — сбалансированные, сытные и красиво поданные в эко-упаковке.</p>
+    </div>
+    <div class="kitchen-grid" data-stag>
+      <figure class="dish" data-r>
+        <div class="dish-ph"><img src="/img/kitchen/meatballs-1100.jpg" srcset="/img/kitchen/meatballs-600.jpg 600w, /img/kitchen/meatballs-1100.jpg 1100w" sizes="(max-width:900px) 50vw, 33vw" width="1100" height="1210" loading="lazy" decoding="async" alt="Тефтели в перечном соусе"></div>
+        <figcaption class="dish-cap"><span class="dish-n">01</span><span class="dish-name">Тефтели в перечном соусе</span></figcaption>
+      </figure>
+      <figure class="dish" data-r>
+        <div class="dish-ph"><img src="/img/kitchen/beef-1100.jpg" srcset="/img/kitchen/beef-600.jpg 600w, /img/kitchen/beef-1100.jpg 1100w" sizes="(max-width:900px) 50vw, 33vw" width="1100" height="1210" loading="lazy" decoding="async" alt="Говядина демигляс с картофельным пюре"></div>
+        <figcaption class="dish-cap"><span class="dish-n">02</span><span class="dish-name">Говядина демигляс с картофельным пюре</span></figcaption>
+      </figure>
+      <figure class="dish" data-r>
+        <div class="dish-ph"><img src="/img/kitchen/paella-1100.jpg" srcset="/img/kitchen/paella-600.jpg 600w, /img/kitchen/paella-1100.jpg 1100w" sizes="(max-width:900px) 50vw, 33vw" width="1100" height="1210" loading="lazy" decoding="async" alt="Паэлья с морепродуктами"></div>
+        <figcaption class="dish-cap"><span class="dish-n">03</span><span class="dish-name">Паэлья с морепродуктами</span></figcaption>
+      </figure>
+      <figure class="dish" data-r>
+        <div class="dish-ph"><img src="/img/kitchen/poke-1100.jpg" srcset="/img/kitchen/poke-600.jpg 600w, /img/kitchen/poke-1100.jpg 1100w" sizes="(max-width:900px) 50vw, 33vw" width="1100" height="1210" loading="lazy" decoding="async" alt="Поке с кальмаром"></div>
+        <figcaption class="dish-cap"><span class="dish-n">04</span><span class="dish-name">Поке с кальмаром</span></figcaption>
+      </figure>
+      <figure class="dish" data-r>
+        <div class="dish-ph"><img src="/img/kitchen/turkey-1100.jpg" srcset="/img/kitchen/turkey-600.jpg 600w, /img/kitchen/turkey-1100.jpg 1100w" sizes="(max-width:900px) 50vw, 33vw" width="1100" height="1210" loading="lazy" decoding="async" alt="Индейка в укропном масле с картофельными дольками"></div>
+        <figcaption class="dish-cap"><span class="dish-n">05</span><span class="dish-name">Индейка в укропном масле с картофельными дольками</span></figcaption>
+      </figure>
+      <figure class="dish" data-r>
+        <div class="dish-ph"><img src="/img/kitchen/souffle-1100.jpg" srcset="/img/kitchen/souffle-600.jpg 600w, /img/kitchen/souffle-1100.jpg 1100w" sizes="(max-width:900px) 50vw, 33vw" width="1100" height="1210" loading="lazy" decoding="async" alt="Куриное суфле с пюре из сельдерея"></div>
+        <figcaption class="dish-cap"><span class="dish-n">06</span><span class="dish-name">Куриное суфле с пюре из сельдерея</span></figcaption>
+      </figure>
     </div>
   </div>
 </section>
