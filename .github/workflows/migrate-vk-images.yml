@@ -4,12 +4,15 @@ on:
   push:
     branches: [main]
     paths:
-      - ".github/workflows/migrate-vk-images.yml"
-      - "scripts/migrate_vk_images.py"
+      - "img/vk-src/**"
   workflow_dispatch:
 
 permissions:
   contents: write
+
+concurrency:
+  group: migrate-vk-images
+  cancel-in-progress: false
 
 jobs:
   migrate:
@@ -24,12 +27,7 @@ jobs:
       - name: Установить Pillow
         run: pip install pillow
 
-      - name: Проверка доступа к VK
-        run: |
-          U=$(grep -rhoE "https://sun9-[0-9]+\.(userapi\.com|vkuserphoto\.ru)[^\"' )>]+" --include=*.html . | head -1)
-          curl -sS -m 20 -o /dev/null -w "HTTP %{http_code}, %{size_download} байт, %{time_total} c\n" "$U" || echo "VK не ответил"
-
-      - name: Скачать фото и заменить ссылки
+      - name: Сжать фото и заменить ссылки
         run: python -u scripts/migrate_vk_images.py
 
       - name: Сохранить изменения
@@ -40,6 +38,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "Изменений нет"
           else
-            git commit -m "Перенос фото с серверов VK в img/vk"
+            git commit -m "Фото с VK перенесены в img/vk, ссылки заменены"
+            git pull --rebase
             git push
           fi
