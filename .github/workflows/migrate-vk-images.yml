@@ -1,0 +1,40 @@
+name: Перенос фото с VK на GitHub
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/migrate-vk-images.yml"
+      - "scripts/migrate_vk_images.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Установить Pillow
+        run: pip install pillow
+
+      - name: Скачать фото и заменить ссылки
+        run: python scripts/migrate_vk_images.py
+
+      - name: Сохранить изменения
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898333+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "Изменений нет"
+          else
+            git commit -m "Перенос фото с серверов VK в img/vk"
+            git push
+          fi
