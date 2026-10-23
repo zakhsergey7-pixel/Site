@@ -157,6 +157,21 @@ const link = (hash, label, cls='') => `<a class="btn ${cls}" href="#/${hash}">${
 const compact = () => localStorage.getItem('compact') === '1';
 const setCrumb = t => { crumb.textContent = t || 'Состав и КБЖУ блюд на каждый день'; };
 
+/* ── Счётчик посещений (отчёт приходит в @Orgcare_bot) ── */
+(() => {
+  try {
+    if (sessionStorage.getItem('oc_hit')) return;
+    sessionStorage.setItem('oc_hit', '1');
+    const qs = new URLSearchParams(location.search), ref = document.referrer;
+    let src = qs.get('src');
+    if (!src) src = !ref ? 'direct' : /organicare\.ru/.test(ref) ? 'site' : 'other';
+    let vid = localStorage.getItem('oc_vid'), isNew = !vid;
+    if (!vid) { vid = Math.random().toString(36).slice(2, 12); localStorage.setItem('oc_vid', vid); }
+    const p = new URLSearchParams({src, vid, new: isNew ? '1' : '0', n: localStorage.getItem('oc_name') || '', r: ref.slice(0, 150), t: Date.now()});
+    new Image().src = 'https://185-171-83-103.sslip.io:8444/oc/hit?' + p;
+  } catch (e) {}
+})();
+
 /* ── Вход по номеру телефона ── */
 const digits = s => s.replace(/\D/g, '');
 function normPhone(raw) {
