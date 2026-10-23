@@ -80,9 +80,9 @@ summary{cursor:pointer;color:var(--pur);font-weight:700;font-size:12px;letter-sp
 /* PHONE GATE */
 .field{margin:6px 0 14px;}
 .field label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;}
-.field input[type=tel]{width:100%;font-family:inherit;font-size:20px;font-weight:600;letter-spacing:.02em;padding:14px 16px;border:1.5px solid var(--line);border-radius:14px;background:var(--cream);color:var(--ink);outline:none;transition:border-color .3s;}
-.field input[type=tel]:focus{border-color:var(--pur);background:#fff;}
-.field.err input[type=tel]{border-color:#e5484d;}
+.field input[type=tel],.field input[type=text]{width:100%;font-family:inherit;font-size:20px;font-weight:600;letter-spacing:.02em;padding:14px 16px;border:1.5px solid var(--line);border-radius:14px;background:var(--cream);color:var(--ink);outline:none;transition:border-color .3s;}
+.field input[type=tel]:focus,.field input[type=text]:focus{border-color:var(--pur);background:#fff;}
+.field.err input{border-color:#e5484d;}
 .err-msg{display:none;color:#e5484d;font-size:12px;margin-top:6px;}
 .field.err .err-msg{display:block;}
 .field textarea{width:100%;min-height:120px;resize:vertical;font-family:inherit;font-size:15px;line-height:1.5;padding:12px 14px;border:1.5px solid var(--line);border-radius:14px;background:var(--cream);color:var(--ink);outline:none;transition:border-color .3s;}
@@ -146,7 +146,7 @@ summary{cursor:pointer;color:var(--pur);font-weight:700;font-size:12px;letter-sp
 
 <script>
 const DAYS = ['ПН','ВТ','СР','ЧТ','ПТ','СБ','ВС'];
-const PHONE_KEY = 'oc_phone';
+const PHONE_KEY = 'oc_phone', NAME_KEY = 'oc_name';
 let D = null;
 const app = document.getElementById('app'), crumb = document.getElementById('crumb');
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -175,18 +175,25 @@ function fmtPhone(raw) {
   return out;
 }
 const savedPhone = () => localStorage.getItem(PHONE_KEY);
+const savedName = () => localStorage.getItem(NAME_KEY);
+const loggedIn = () => !!(savedPhone() && savedName());
 
 function gate() {
-  setCrumb('Чтобы открыть меню, укажите номер телефона');
+  setCrumb('Чтобы открыть меню, представьтесь');
   app.innerHTML = `
     <div class="card">
       <div class="sec-lbl">Вход</div>
-      <h2>Ваш номер телефона</h2>
-      <p class="muted" style="margin-bottom:14px">Меню доступно нашим гостям. Номер нужен один раз — на этом устройстве мы его запомним.</p>
+      <h2>Ваше имя и телефон</h2>
+      <p class="muted" style="margin-bottom:14px">Меню доступно нашим гостям. Данные нужны один раз — на этом устройстве мы их запомним, и в следующий раз меню откроется сразу.</p>
       <form id="gf" novalidate>
+        <div class="field" id="nfld">
+          <label for="nm">Имя</label>
+          <input id="nm" type="text" autocomplete="name" maxlength="60" placeholder="Как к вам обращаться" value="${esc(savedName() || '')}">
+          <div class="err-msg">Укажите имя</div>
+        </div>
         <div class="field" id="fld">
           <label for="ph">Мобильный номер</label>
-          <input id="ph" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__">
+          <input id="ph" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" value="${savedPhone() ? esc(fmtPhone(savedPhone())) : ''}">
           <div class="err-msg">Введите мобильный номер полностью: +7 (9XX) XXX-XX-XX</div>
         </div>
         <label class="consent"><input type="checkbox" id="ok" checked>
@@ -194,22 +201,26 @@ function gate() {
         <button class="btn primary" style="width:100%" id="go">Открыть меню</button>
       </form>
     </div>`;
-  const ph = document.getElementById('ph'), fld = document.getElementById('fld'),
+  const nm = document.getElementById('nm'), nfld = document.getElementById('nfld'),
+        ph = document.getElementById('ph'), fld = document.getElementById('fld'),
         ok = document.getElementById('ok'), go = document.getElementById('go');
   ph.addEventListener('input', () => { ph.value = digits(ph.value) ? fmtPhone(ph.value) : ''; fld.classList.remove('err'); });
+  nm.addEventListener('input', () => nfld.classList.remove('err'));
   ok.addEventListener('change', () => { go.disabled = !ok.checked; });
   document.getElementById('gf').addEventListener('submit', e => {
     e.preventDefault();
-    const p = normPhone(ph.value);
+    const n = nm.value.trim().replace(/\s+/g, ' '), p = normPhone(ph.value);
+    if (n.length < 2) { nfld.classList.add('err'); nm.focus(); return; }
     if (!p) { fld.classList.add('err'); ph.focus(); return; }
+    localStorage.setItem(NAME_KEY, n);
     localStorage.setItem(PHONE_KEY, p);
     render();
   });
-  ph.focus();
+  (nm.value ? ph : nm).focus();
 }
 
-function logout() { localStorage.removeItem(PHONE_KEY); location.hash = '#/'; render(); }
-const who = () => `<div class="who"><span>📱 ${esc(fmtPhone(savedPhone()))}</span><button onclick="logout()">Сменить номер</button></div>`;
+function logout() { localStorage.removeItem(PHONE_KEY); localStorage.removeItem(NAME_KEY); location.hash = '#/'; render(); }
+const who = () => `<div class="who"><span>👤 ${esc(savedName())} · ${esc(fmtPhone(savedPhone()))}</span><button onclick="logout()">Выйти</button></div>`;
 
 /* ── Экраны (повторяют @Orgcare_bot) ── */
 function home() {
@@ -296,7 +307,7 @@ function feedback() {
           <textarea id="fbt" maxlength="3000" placeholder="Что понравилось, что улучшить…"></textarea>
           <div class="err-msg">Напишите хотя бы пару слов</div>
         </div>
-        <p class="muted" style="margin-bottom:14px">Телефон для связи: <b>${esc(fmtPhone(savedPhone() || ''))}</b></p>
+        <p class="muted" style="margin-bottom:14px">От: <b>${esc(savedName() || '')}</b>, <b>${esc(fmtPhone(savedPhone() || ''))}</b></p>
         <button class="btn primary" style="width:100%" id="fbgo">✉️ Отправить отзыв</button>
         <div class="fb-status" id="fbst"></div>
       </form></div>
@@ -316,7 +327,7 @@ function feedback() {
       const r = await fetch('https://api.web3forms.com/submit', {
         method: 'POST', headers: {'Content-Type': 'application/json', Accept: 'application/json'},
         body: JSON.stringify({access_key: W3F_KEY, subject: 'Отзыв о лечебном питании (organicare.ru/menu)',
-          from_name: "Меню ORGANI'CARE", phone: savedPhone() || '', rating: rating ? '⭐'.repeat(rating) + ` (${rating}/5)` : 'не указана',
+          from_name: "Меню ORGANI'CARE", name: savedName() || '', phone: savedPhone() || '', rating: rating ? '⭐'.repeat(rating) + ` (${rating}/5)` : 'не указана',
           message: text})
       });
       const j = await r.json();
@@ -347,7 +358,7 @@ function notFound() { setCrumb(); app.innerHTML = `<div class="card"><p style="m
 
 function render() {
   window.scrollTo(0, 0);
-  if (!savedPhone()) return gate();
+  if (!loggedIn()) return gate();
   if (!D) return;
   const parts = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean).map(decodeURIComponent);
   if (!parts.length) return home();
@@ -361,12 +372,12 @@ function render() {
 }
 
 window.addEventListener('hashchange', render);
-if (!savedPhone()) gate();
+if (!loggedIn()) gate();
 fetch('menu.json', {cache: 'no-cache'}).then(r => r.json()).then(j => {
   D = j;
   document.getElementById('upd').textContent = `Меню обновлено ${D.updated}`;
-  if (savedPhone()) render();
-}).catch(() => { if (savedPhone()) app.innerHTML = '<div class="card">Не удалось загрузить меню. Обновите страницу.</div>'; });
+  if (loggedIn()) render();
+}).catch(() => { if (loggedIn()) app.innerHTML = '<div class="card">Не удалось загрузить меню. Обновите страницу.</div>'; });
 </script>
 </body>
 </html>
