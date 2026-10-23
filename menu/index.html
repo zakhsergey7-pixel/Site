@@ -178,6 +178,20 @@ const savedPhone = () => localStorage.getItem(PHONE_KEY);
 const savedName = () => localStorage.getItem(NAME_KEY);
 const loggedIn = () => !!(savedPhone() && savedName());
 
+const W3F_KEY = 'eef997d7-5ab3-496b-b090-340e5aa117f2'; // Web3Forms: отзывы и новые гости (тот же ключ, что в /contacts/)
+const W3F_URL = 'https://api.web3forms.com/submit';
+
+// Новый гость → письмо (один раз на устройство для каждой пары имя+телефон)
+function reportGuest(n, p) {
+  const sig = n + '|' + p;
+  if (localStorage.getItem('oc_reported') === sig) return;
+  fetch(W3F_URL, {
+    method: 'POST', keepalive: true, headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+    body: JSON.stringify({access_key: W3F_KEY, subject: `Новый гость меню: ${n}, ${fmtPhone(p)}`,
+      from_name: "Меню ORGANI'CARE", name: n, phone: fmtPhone(p), message: 'Гость открыл меню лечебного питания на organicare.ru/menu'})
+  }).then(r => r.json()).then(j => { if (j.success) localStorage.setItem('oc_reported', sig); }).catch(() => {});
+}
+
 function gate() {
   setCrumb('Чтобы открыть меню, представьтесь');
   app.innerHTML = `
@@ -214,6 +228,7 @@ function gate() {
     if (!p) { fld.classList.add('err'); ph.focus(); return; }
     localStorage.setItem(NAME_KEY, n);
     localStorage.setItem(PHONE_KEY, p);
+    reportGuest(n, p);
     render();
   });
   (nm.value ? ph : nm).focus();
@@ -286,8 +301,6 @@ function exclusions() {
     <div class="card">${link('', '🔙 Назад')}</div>`;
 }
 
-const W3F_KEY = 'eef997d7-5ab3-496b-b090-340e5aa117f2'; // Web3Forms → iron@organicare.ru (тот же ключ, что в /contacts/)
-
 function feedback() {
   setCrumb('Обратная связь');
   app.innerHTML = `<div class="card"><div class="sec-lbl">Связаться с нами</div><h2>✉️ Обратная связь</h2>
@@ -324,7 +337,7 @@ function feedback() {
     if (text.length < 2) { fld.classList.add('err'); t.focus(); return; }
     go.disabled = true; go.textContent = 'Отправляем…'; st.className = 'fb-status';
     try {
-      const r = await fetch('https://api.web3forms.com/submit', {
+      const r = await fetch(W3F_URL, {
         method: 'POST', headers: {'Content-Type': 'application/json', Accept: 'application/json'},
         body: JSON.stringify({access_key: W3F_KEY, subject: 'Отзыв о лечебном питании (organicare.ru/menu)',
           from_name: "Меню ORGANI'CARE", name: savedName() || '', phone: savedPhone() || '', rating: rating ? '⭐'.repeat(rating) + ` (${rating}/5)` : 'не указана',
