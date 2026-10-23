@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/brand/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<title>Меню лечебного питания — ORGANI'CARE</title>
+<meta name="description" content="Меню на неделю с составом и КБЖУ блюд — ORGANI'CARE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pur:#9333ea;--vio:#c451ff;--pink:#e879f9;
+  --light:#fdf5ff;--cream:#faf9f7;--white:#fff;
+  --ink:#1a1a2e;--muted:#6b6b8a;--line:#ece6f3;
+  --grad:linear-gradient(135deg,#9333ea,#c451ff,#e879f9);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Montserrat',sans-serif;background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+p{font-size:15px;line-height:1.7;color:#555;}
+
+/* HEADER */
+.hdr{position:sticky;top:0;z-index:100;height:64px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;background:var(--ink);}
+.hdr-logo img{height:34px;}
+.hdr-link{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff;background:var(--grad);padding:10px 20px;border-radius:999px;transition:all .4s var(--ease);}
+.hdr-link:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(147,51,234,.45);}
+
+/* HERO */
+.hero{position:relative;color:#fff;text-align:center;overflow:hidden;padding:56px 20px 64px;}
+.hero-bg{position:absolute;inset:0;background:url('/img/kitchen/poke-1100.jpg') center/cover;z-index:0;}
+.hero::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,26,46,.55),rgba(26,26,46,.85));z-index:1;}
+.hero-in{position:relative;z-index:2;max-width:720px;margin:0 auto;}
+.lbl{font-size:10px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:14px;}
+.lbl::before,.lbl::after{content:'';width:28px;height:1px;background:rgba(255,255,255,.35);}
+.hero h1{font-size:clamp(28px,6vw,48px);font-weight:800;letter-spacing:-.03em;line-height:1.08;}
+.hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:15px;color:rgba(255,255,255,.8);margin-top:12px;line-height:1.6;}
+
+/* LAYOUT */
+main{flex:1;width:100%;max-width:720px;margin:-32px auto 0;padding:0 16px 48px;position:relative;z-index:3;}
+.card{background:var(--white);border-radius:22px;padding:22px;margin-bottom:14px;box-shadow:0 10px 40px rgba(26,26,46,.07);}
+.sec-lbl{font-size:10px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:var(--pur);display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.sec-lbl::before{content:'';width:22px;height:1.5px;background:var(--pur);}
+h2{font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px;}
+.muted{color:var(--muted);font-size:13px;line-height:1.6;}
+.muted a,.txt a{color:var(--pur);font-weight:600;}
+
+/* BUTTONS */
+.grid{display:grid;gap:10px;grid-template-columns:repeat(4,1fr);}
+.grid.two{grid-template-columns:1fr 1fr;}
+.grid.one{grid-template-columns:1fr;}
+.btn{display:flex;align-items:center;justify-content:center;text-align:center;gap:6px;min-height:50px;padding:10px 12px;border-radius:16px;background:var(--light);color:var(--ink);font-family:inherit;font-weight:600;font-size:14px;border:1.5px solid transparent;cursor:pointer;transition:all .3s var(--ease);}
+.btn:hover{border-color:rgba(147,51,234,.35);color:var(--pur);}
+.btn.primary{background:var(--grad);color:#fff;box-shadow:0 8px 28px rgba(147,51,234,.3);border:0;}
+.btn.primary:hover{transform:translateY(-2px);box-shadow:0 14px 36px rgba(147,51,234,.45);color:#fff;}
+.btn.today{border-color:var(--pur);color:var(--pur);}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none;}
+.nav{display:flex;gap:8px;margin-bottom:14px;}
+.nav .btn{flex:1;font-size:12px;min-height:46px;background:var(--white);box-shadow:0 4px 18px rgba(26,26,46,.06);}
+
+/* CONTENT */
+.meal-body{font-size:15px;line-height:1.65;}
+.meal-body b{font-weight:700;}
+.meal-body hr{border:0;border-top:1px dashed var(--line);margin:14px 0;}
+details{margin:6px 0 10px;padding:8px 12px;border-left:3px solid var(--vio);background:var(--light);border-radius:10px;font-size:13px;color:var(--muted);line-height:1.55;}
+summary{cursor:pointer;color:var(--pur);font-weight:700;font-size:12px;letter-spacing:.04em;}
+.excl{border-bottom:1px solid var(--line);padding:12px 0;font-size:14px;line-height:1.6;}
+.excl:last-child{border:0;}
+.photos{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.photos img{width:100%;border-radius:14px;aspect-ratio:3/4;object-fit:cover;cursor:zoom-in;}
+.lightbox{position:fixed;inset:0;background:rgba(26,26,46,.92);display:flex;align-items:center;justify-content:center;z-index:200;padding:16px;cursor:zoom-out;}
+.lightbox img{max-height:100%;border-radius:12px;}
+
+/* PHONE GATE */
+.field{margin:6px 0 14px;}
+.field label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:6px;}
+.field input[type=tel]{width:100%;font-family:inherit;font-size:20px;font-weight:600;letter-spacing:.02em;padding:14px 16px;border:1.5px solid var(--line);border-radius:14px;background:var(--cream);color:var(--ink);outline:none;transition:border-color .3s;}
+.field input[type=tel]:focus{border-color:var(--pur);background:#fff;}
+.field.err input[type=tel]{border-color:#e5484d;}
+.err-msg{display:none;color:#e5484d;font-size:12px;margin-top:6px;}
+.field.err .err-msg{display:block;}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:16px;cursor:pointer;}
+.consent input{margin-top:2px;width:18px;height:18px;accent-color:var(--pur);flex-shrink:0;}
+.who{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,.8);margin-bottom:14px;padding:0 4px;}
+.who button{background:none;border:0;font:inherit;color:var(--pink);font-weight:600;cursor:pointer;}
+
+/* FOOTER */
+.ft{background:var(--ink);color:rgba(255,255,255,.55);text-align:center;font-size:12px;padding:24px 16px;line-height:1.8;}
+.ft a{color:rgba(255,255,255,.8);}
+.ft a:hover{color:var(--vio);}
+
+@media(max-width:420px){
+  .grid{grid-template-columns:repeat(4,1fr);gap:8px;}
+  .btn{font-size:13px;padding:8px;}
+  .card{padding:18px;border-radius:18px;}
+  .hdr-link{padding:9px 14px;}
+}
+</style>
+</head>
+<body>
+<header class="hdr">
+  <a href="/" class="hdr-logo"><img src="logo.png" alt="ORGANI'CARE"></a>
+  <a href="/nutritionist" class="hdr-link">Лечебное питание</a>
+</header>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-in">
+    <div class="lbl">ORGANI'CARE</div>
+    <h1>Меню <span>лечебного питания</span></h1>
+    <p class="hero-sub" id="crumb">Состав и КБЖУ блюд на каждый день</p>
+  </div>
+</section>
+
+<main id="app"><div class="card">Загрузка меню…</div></main>
+
+<footer class="ft">
+  <div id="upd"></div>
+  <a href="mailto:iron@organicare.ru">iron@organicare.ru</a> · <a href="tel:+79117345344">+7 911 734-53-44</a><br>
+  © 2026 ORGANI'CARE · <a href="/">organicare.ru</a>
+</footer>
+
+<script>
+const DAYS = ['ПН','ВТ','СР','ЧТ','ПТ','СБ','ВС'];
+const PHONE_KEY = 'oc_phone';
+let D = null;
+const app = document.getElementById('app'), crumb = document.getElementById('crumb');
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const todayAbbr = () => DAYS[(new Date().getDay() + 6) % 7];
+const link = (hash, label, cls='') => `<a class="btn ${cls}" href="#/${hash}">${label}</a>`;
+const compact = () => localStorage.getItem('compact') === '1';
+const setCrumb = t => { crumb.textContent = t || 'Состав и КБЖУ блюд на каждый день'; };
+
+/* ── Вход по номеру телефона ── */
+const digits = s => s.replace(/\D/g, '');
+function normPhone(raw) {
+  let d = digits(raw);
+  if (d.length === 11 && (d[0] === '8' || d[0] === '7')) d = d.slice(1);
+  return d.length === 10 && d[0] === '9' ? '+7' + d : null;
+}
+function fmtPhone(raw) {
+  let d = digits(raw);
+  if (d[0] === '8' || d[0] === '7') d = d.slice(1);
+  d = d.slice(0, 10);
+  let out = '+7';
+  if (d.length) out += ' (' + d.slice(0, 3);
+  if (d.length >= 3) out += ')';
+  if (d.length > 3) out += ' ' + d.slice(3, 6);
+  if (d.length > 6) out += '-' + d.slice(6, 8);
+  if (d.length > 8) out += '-' + d.slice(8, 10);
+  return out;
+}
+const savedPhone = () => localStorage.getItem(PHONE_KEY);
+
+function gate() {
+  setCrumb('Чтобы открыть меню, укажите номер телефона');
+  app.innerHTML = `
+    <div class="card">
+      <div class="sec-lbl">Вход</div>
+      <h2>Ваш номер телефона</h2>
+      <p class="muted" style="margin-bottom:14px">Меню доступно нашим гостям. Номер нужен один раз — на этом устройстве мы его запомним.</p>
+      <form id="gf" novalidate>
+        <div class="field" id="fld">
+          <label for="ph">Мобильный номер</label>
+          <input id="ph" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__">
+          <div class="err-msg">Введите мобильный номер полностью: +7 (9XX) XXX-XX-XX</div>
+        </div>
+        <label class="consent"><input type="checkbox" id="ok" checked>
+          <span>Согласен на обработку персональных данных в соответствии с 152-ФЗ</span></label>
+        <button class="btn primary" style="width:100%" id="go">Открыть меню</button>
+      </form>
+    </div>`;
+  const ph = document.getElementById('ph'), fld = document.getElementById('fld'),
+        ok = document.getElementById('ok'), go = document.getElementById('go');
+  ph.addEventListener('input', () => { ph.value = digits(ph.value) ? fmtPhone(ph.value) : ''; fld.classList.remove('err'); });
+  ok.addEventListener('change', () => { go.disabled = !ok.checked; });
+  document.getElementById('gf').addEventListener('submit', e => {
+    e.preventDefault();
+    const p = normPhone(ph.value);
+    if (!p) { fld.classList.add('err'); ph.focus(); return; }
+    localStorage.setItem(PHONE_KEY, p);
+    render();
+  });
+  ph.focus();
+}
+
+function logout() { localStorage.removeItem(PHONE_KEY); location.hash = '#/'; render(); }
+const who = () => `<div class="who"><span>📱 ${esc(fmtPhone(savedPhone()))}</span><button onclick="logout()">Сменить номер</button></div>`;
+
+/* ── Экраны (повторяют @Orgcare_bot) ── */
+function home() {
+  setCrumb();
+  const t = todayAbbr();
+  app.innerHTML = `${who()}
+    <div class="card">
+      <div class="sec-lbl">Меню недели</div>
+      <div class="grid one" style="margin-bottom:10px">${link(encodeURIComponent(t), '📅 Меню на сегодня', 'primary')}</div>
+      <div class="grid">${DAYS.map(d => link(encodeURIComponent(d), d, d === t ? 'today' : '')).join('')}</div>
+    </div>
+    <div class="card">
+      <div class="grid two">${link('exclusions', '📋 Исключения')}${link('feedback', '✉️ Обратная связь')}</div>
+      <div class="grid one" style="margin-top:10px">${link('photos', '📸 Наше меню')}</div>
+    </div>
+    <div class="card">
+      <p style="margin-bottom:8px">Помогаем отслеживать калорийность блюд вашего лечебного питания и знакомим с ежедневным меню от шеф-повара Юрия Сорокина.</p>
+      <p class="muted">Меню разработано в соответствии с <a href="https://base.garant.ru/74703746/" target="_blank" rel="noopener">приказом</a> Минздрава РФ от 23 сентября 2020 г. N 1008н.</p>
+    </div>`;
+}
+
+function day(abbr) {
+  const dd = D.days[abbr];
+  if (!dd) return notFound();
+  setCrumb(dd.name);
+  const meals = D.meal_order.map(m => link(`${encodeURIComponent(abbr)}/${encodeURIComponent(m)}`, `${D.meal_emoji[m]} ${m}`)).join('');
+  app.innerHTML = `
+    <div class="card"><div class="sec-lbl">${esc(dd.name)}</div><h2>Выберите приём пищи</h2><div class="grid two">${meals}</div></div>
+    <div class="card"><div class="grid two">${link(`${encodeURIComponent(abbr)}/kbju`, '📊 КБЖУ дня')}${link('', '🔙 Назад')}</div></div>`;
+}
+
+function meal(abbr, m) {
+  const dd = D.days[abbr];
+  if (!dd || !dd.meals[m]) return notFound();
+  setCrumb(`${dd.name} · ${m}`);
+  const i = D.meal_order.indexOf(m), prev = D.meal_order[i-1], next = D.meal_order[i+1];
+  const a = encodeURIComponent(abbr);
+  const nav = `<div class="nav">
+      ${prev ? link(`${a}/${encodeURIComponent(prev)}`, `◀️ ${prev}`) : ''}
+      <button class="btn" id="toggle">🔎 ${compact() ? 'Подробно' : 'Кратко'}</button>
+      ${next ? link(`${a}/${encodeURIComponent(next)}`, `${next} ▶️`) : ''}
+    </div>`;
+  app.innerHTML = `${nav}
+    <div class="card"><div class="sec-lbl">${esc(dd.name)}</div><h2>${D.meal_emoji[m]} ${esc(m)}</h2>
+      <div class="meal-body">${dd.meals[m][compact() ? 'short' : 'full'] || '<span class="muted">Нет данных</span>'}</div></div>
+    <div class="card"><div class="grid two">${link(`${a}/kbju`, '📊 КБЖУ дня')}${link(a, '🔙 К приёмам пищи')}</div></div>`;
+  document.getElementById('toggle').onclick = () => { localStorage.setItem('compact', compact() ? '0' : '1'); render(); };
+}
+
+function kbju(abbr) {
+  const dd = D.days[abbr];
+  if (!dd) return notFound();
+  setCrumb(`${dd.name} · КБЖУ дня`);
+  app.innerHTML = `<div class="card"><div class="sec-lbl">${esc(dd.name)}</div><h2>📊 КБЖУ дня</h2><div class="meal-body">${dd.kbju}</div></div>
+    <div class="card"><div class="grid two">${link(encodeURIComponent(abbr), '🔙 К приёмам пищи')}${link('', '🏠 Главное меню')}</div></div>`;
+}
+
+function exclusions() {
+  setCrumb('Исключения по меню');
+  const items = D.exclusions.map(e => `<div class="excl"><b>${esc(e.name)}</b><br>
+      ${e.kbju ? `🔥 ${esc(e.kbju)}<br>` : ''}${e.sostav ? `<details><summary>Состав</summary>${esc(e.sostav)}</details>` : ''}</div>`).join('');
+  app.innerHTML = `<div class="card"><div class="sec-lbl">Замены</div><h2>📋 Исключения по меню</h2>${items || '<span class="muted">Список пуст</span>'}</div>
+    <div class="card">${link('', '🔙 Назад')}</div>`;
+}
+
+function feedback() {
+  setCrumb('Обратная связь');
+  app.innerHTML = `<div class="card"><div class="sec-lbl">Связаться с нами</div><h2>✉️ Обратная связь</h2>
+      <p class="txt" style="margin-bottom:12px">Лечебное питание с учетом индивидуальных особенностей и современной гастрономией:</p>
+      <p class="txt" style="margin-bottom:16px">📧 <a href="mailto:iron@organicare.ru">iron@organicare.ru</a><br>
+         🌐 <a href="/">organicare.ru</a><br>
+         📞 <a href="tel:+79117345344">+7 911 734-53-44</a></p>
+      <div class="grid two">
+        <a class="btn primary" href="mailto:iron@organicare.ru?subject=${encodeURIComponent('Отзыв о питании')}&body=${encodeURIComponent('Телефон: ' + (savedPhone() || '') + '\n\n')}">✉️ Оставить отзыв</a>
+        <a class="btn" href="https://t.me/Orgcare_bot" target="_blank" rel="noopener">🤖 Бот в Telegram</a>
+      </div></div>
+    <div class="card">${link('', '🔙 Главное меню')}</div>`;
+}
+
+function photos() {
+  setCrumb('Наше меню');
+  app.innerHTML = `<div class="card"><div class="sec-lbl">Фото</div><h2>📸 Наше меню</h2>
+      <div class="photos">${D.photos.map(p => `<img loading="lazy" src="${esc(p)}" alt="">`).join('')}</div>
+      ${D.photos.length ? '' : '<span class="muted">Фото пока не добавлены.</span>'}</div>
+    <div class="card">${link('', '🔙 Назад')}</div>`;
+  app.querySelectorAll('.photos img').forEach(img => img.onclick = () => {
+    const lb = document.createElement('div');
+    lb.className = 'lightbox'; lb.innerHTML = `<img src="${img.src}" alt="">`;
+    lb.onclick = () => lb.remove(); document.body.appendChild(lb);
+  });
+}
+
+function notFound() { setCrumb(); app.innerHTML = `<div class="card"><p style="margin-bottom:12px">Страница не найдена.</p>${link('', '🏠 Главное меню')}</div>`; }
+
+function render() {
+  window.scrollTo(0, 0);
+  if (!savedPhone()) return gate();
+  if (!D) return;
+  const parts = location.hash.replace(/^#\/?/, '').split('/').filter(Boolean).map(decodeURIComponent);
+  if (!parts.length) return home();
+  if (parts[0] === 'exclusions') return exclusions();
+  if (parts[0] === 'feedback') return feedback();
+  if (parts[0] === 'photos') return photos();
+  if (parts[0] === 'today') return day(todayAbbr());
+  if (parts.length === 1) return day(parts[0]);
+  if (parts[1] === 'kbju') return kbju(parts[0]);
+  return meal(parts[0], parts[1]);
+}
+
+window.addEventListener('hashchange', render);
+if (!savedPhone()) gate();
+fetch('menu.json', {cache: 'no-cache'}).then(r => r.json()).then(j => {
+  D = j;
+  document.getElementById('upd').textContent = `Меню обновлено ${D.updated}`;
+  if (savedPhone()) render();
+}).catch(() => { if (savedPhone()) app.innerHTML = '<div class="card">Не удалось загрузить меню. Обновите страницу.</div>'; });
+</script>
+</body>
+</html>
