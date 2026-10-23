@@ -102,6 +102,8 @@ summary{cursor:pointer;color:var(--pur);font-weight:700;font-size:12px;letter-sp
 /* LINKS */
 .links{width:100%;max-width:720px;margin:-24px auto 0;padding:0 16px 28px;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .links .btn{background:var(--white);box-shadow:0 4px 18px rgba(26,26,46,.06);}
+.site-btn img{height:26px;filter:brightness(0);transition:filter .3s var(--ease);}
+.site-btn:hover img{filter:brightness(0) saturate(100%) invert(26%) sepia(83%) saturate(4400%) hue-rotate(268deg) brightness(92%);}
 
 /* FOOTER */
 .ft{background:var(--ink);color:rgba(255,255,255,.55);text-align:center;font-size:12px;padding:24px 16px;line-height:1.8;}
@@ -135,7 +137,7 @@ summary{cursor:pointer;color:var(--pur);font-weight:700;font-size:12px;letter-sp
 
 <nav class="links">
   <a class="btn" href="https://t.me/Orgcare_bot" target="_blank" rel="noopener">🤖 Бот в Telegram</a>
-  <a class="btn" href="/">🌿 Сайт organicare.ru</a>
+  <a class="btn site-btn" href="/">Сайт <img src="logo.png" alt="ORGANI'CARE"></a>
 </nav>
 
 <footer class="ft">
