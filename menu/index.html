@@ -140,7 +140,7 @@ summary{cursor:pointer;color:var(--pur);font-weight:700;font-size:12px;letter-sp
 
 <footer class="ft">
   <div id="upd"></div>
-  <a href="mailto:iron@organicare.ru">iron@organicare.ru</a> · <a href="tel:+79117345344">+7 911 734-53-44</a> · <a href="https://t.me/Orgcare_bot" target="_blank" rel="noopener">@Orgcare_bot</a><br>
+  <span style="user-select:all">iron@organicare.ru</span> · <a href="tel:+79117345344">+7 911 734-53-44</a> · <a href="https://t.me/Orgcare_bot" target="_blank" rel="noopener">@Orgcare_bot</a><br>
   © 2026 ORGANI'CARE · <a href="/">organicare.ru</a>
 </footer>
 
@@ -281,7 +281,7 @@ function feedback() {
   setCrumb('Обратная связь');
   app.innerHTML = `<div class="card"><div class="sec-lbl">Связаться с нами</div><h2>✉️ Обратная связь</h2>
       <p class="txt" style="margin-bottom:12px">Лечебное питание с учетом индивидуальных особенностей и современной гастрономией:</p>
-      <p class="txt" style="margin-bottom:16px">📧 <a href="mailto:iron@organicare.ru">iron@organicare.ru</a><br>
+      <p class="txt" style="margin-bottom:16px">📧 <span style="user-select:all">iron@organicare.ru</span><br>
          🌐 <a href="/">organicare.ru</a><br>
          📞 <a href="tel:+79117345344">+7 911 734-53-44</a></p>
       <div class="grid two">
@@ -324,7 +324,7 @@ function feedback() {
       f.innerHTML = '<div class="fb-status ok">Спасибо! Отзыв отправлен, мы обязательно его прочитаем.</div>';
     } catch (err) {
       st.className = 'fb-status err';
-      st.innerHTML = 'Не удалось отправить. Попробуйте ещё раз или напишите на <a href="mailto:iron@organicare.ru">iron@organicare.ru</a>.';
+      st.innerHTML = 'Не удалось отправить. Попробуйте ещё раз или позвоните: <a href="tel:+79117345344">+7 911 734-53-44</a>.';
       go.disabled = false; go.textContent = '✉️ Отправить отзыв';
     }
   });
