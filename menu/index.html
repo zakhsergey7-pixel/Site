@@ -165,12 +165,20 @@ const setCrumb = t => { crumb.textContent = t || 'Состав и КБЖУ бл�
     const qs = new URLSearchParams(location.search), ref = document.referrer;
     let src = qs.get('src');
     if (!src) src = !ref ? 'direct' : /organicare\.ru/.test(ref) ? 'site' : 'other';
+    sessionStorage.setItem('oc_src', src);
     let vid = localStorage.getItem('oc_vid'), isNew = !vid;
     if (!vid) { vid = Math.random().toString(36).slice(2, 12); localStorage.setItem('oc_vid', vid); }
-    const p = new URLSearchParams({src, vid, new: isNew ? '1' : '0', n: localStorage.getItem('oc_name') || '', r: ref.slice(0, 150), t: Date.now()});
-    new Image().src = 'https://185-171-83-103.sslip.io:8444/oc/hit?' + p;
+    ocHit({src, new: isNew ? '1' : '0', r: ref.slice(0, 150)});
   } catch (e) {}
 })();
+// Отправка события в счётчик; имя и телефон берутся из формы входа (если гость уже представился)
+function ocHit(extra) {
+  try {
+    const p = new URLSearchParams({vid: localStorage.getItem('oc_vid') || '', n: localStorage.getItem('oc_name') || '',
+      p: localStorage.getItem('oc_phone') || '', t: Date.now(), ...extra});
+    new Image().src = 'https://185-171-83-103.sslip.io:8444/oc/hit?' + p;
+  } catch (e) {}
+}
 
 /* ── Вход по номеру телефона ── */
 const digits = s => s.replace(/\D/g, '');
@@ -246,6 +254,7 @@ function gate() {
     localStorage.setItem(NAME_KEY, n);
     localStorage.setItem(PHONE_KEY, p);
     reportGuest(n, p);
+    ocHit({ev: 'reg', src: sessionStorage.getItem('oc_src') || 'direct', new: '0'});
     render();
   });
   (nm.value ? ph : nm).focus();
