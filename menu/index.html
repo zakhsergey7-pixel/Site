@@ -85,6 +85,15 @@ summary{cursor:pointer;color:var(--pur);font-weight:700;font-size:12px;letter-sp
 .field.err input[type=tel]{border-color:#e5484d;}
 .err-msg{display:none;color:#e5484d;font-size:12px;margin-top:6px;}
 .field.err .err-msg{display:block;}
+.field textarea{width:100%;min-height:120px;resize:vertical;font-family:inherit;font-size:15px;line-height:1.5;padding:12px 14px;border:1.5px solid var(--line);border-radius:14px;background:var(--cream);color:var(--ink);outline:none;transition:border-color .3s;}
+.field textarea:focus{border-color:var(--pur);background:#fff;}
+.field.err textarea{border-color:#e5484d;}
+.stars{display:flex;gap:6px;margin-bottom:14px;}
+.stars button{background:none;border:0;font-size:30px;line-height:1;cursor:pointer;filter:grayscale(1);opacity:.4;transition:all .2s;}
+.stars button.on{filter:none;opacity:1;}
+.fb-status{display:none;font-size:13px;line-height:1.5;margin-top:12px;padding:10px 14px;border-radius:12px;}
+.fb-status.ok{display:block;background:#e9f9ee;color:#1a7f3c;}
+.fb-status.err{display:block;background:#fdecec;color:#c42b30;}
 .consent{display:flex;gap:10px;align-items:flex-start;font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:16px;cursor:pointer;}
 .consent input{margin-top:2px;width:18px;height:18px;accent-color:var(--pur);flex-shrink:0;}
 .who{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:rgba(255,255,255,.8);margin-bottom:14px;padding:0 4px;}
@@ -266,6 +275,8 @@ function exclusions() {
     <div class="card">${link('', '🔙 Назад')}</div>`;
 }
 
+const W3F_KEY = 'eef997d7-5ab3-496b-b090-340e5aa117f2'; // Web3Forms → iron@organicare.ru (тот же ключ, что в /contacts/)
+
 function feedback() {
   setCrumb('Обратная связь');
   app.innerHTML = `<div class="card"><div class="sec-lbl">Связаться с нами</div><h2>✉️ Обратная связь</h2>
@@ -274,10 +285,49 @@ function feedback() {
          🌐 <a href="/">organicare.ru</a><br>
          📞 <a href="tel:+79117345344">+7 911 734-53-44</a></p>
       <div class="grid two">
-        <a class="btn primary" href="mailto:iron@organicare.ru?subject=${encodeURIComponent('Отзыв о питании')}&body=${encodeURIComponent('Телефон: ' + (savedPhone() || '') + '\n\n')}">✉️ Оставить отзыв</a>
         <a class="btn" href="https://t.me/Orgcare_bot" target="_blank" rel="noopener">🤖 Бот в Telegram</a>
+        <a class="btn" href="tel:+79117345344">📞 Позвонить</a>
       </div></div>
+    <div class="card"><div class="sec-lbl">Отзыв</div><h2>⭐ Оставить отзыв</h2>
+      <form id="fbf" novalidate>
+        <div class="stars" id="stars">${[1,2,3,4,5].map(n => `<button type="button" data-n="${n}" aria-label="${n}">⭐</button>`).join('')}</div>
+        <div class="field" id="fbfld">
+          <label for="fbt">Ваш отзыв о питании</label>
+          <textarea id="fbt" maxlength="3000" placeholder="Что понравилось, что улучшить…"></textarea>
+          <div class="err-msg">Напишите хотя бы пару слов</div>
+        </div>
+        <p class="muted" style="margin-bottom:14px">Телефон для связи: <b>${esc(fmtPhone(savedPhone() || ''))}</b></p>
+        <button class="btn primary" style="width:100%" id="fbgo">✉️ Отправить отзыв</button>
+        <div class="fb-status" id="fbst"></div>
+      </form></div>
     <div class="card">${link('', '🔙 Главное меню')}</div>`;
+  let rating = 0;
+  const stars = [...document.querySelectorAll('#stars button')];
+  stars.forEach(b => b.onclick = () => { rating = +b.dataset.n; stars.forEach(x => x.classList.toggle('on', +x.dataset.n <= rating)); });
+  const f = document.getElementById('fbf'), t = document.getElementById('fbt'), fld = document.getElementById('fbfld'),
+        go = document.getElementById('fbgo'), st = document.getElementById('fbst');
+  t.addEventListener('input', () => fld.classList.remove('err'));
+  f.addEventListener('submit', async e => {
+    e.preventDefault();
+    const text = t.value.trim();
+    if (text.length < 2) { fld.classList.add('err'); t.focus(); return; }
+    go.disabled = true; go.textContent = 'Отправляем…'; st.className = 'fb-status';
+    try {
+      const r = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST', headers: {'Content-Type': 'application/json', Accept: 'application/json'},
+        body: JSON.stringify({access_key: W3F_KEY, subject: 'Отзыв о лечебном питании (organicare.ru/menu)',
+          from_name: "Меню ORGANI'CARE", phone: savedPhone() || '', rating: rating ? '⭐'.repeat(rating) + ` (${rating}/5)` : 'не указана',
+          message: text})
+      });
+      const j = await r.json();
+      if (!j.success) throw new Error(j.message || 'fail');
+      f.innerHTML = '<div class="fb-status ok">Спасибо! Отзыв отправлен, мы обязательно его прочитаем.</div>';
+    } catch (err) {
+      st.className = 'fb-status err';
+      st.innerHTML = 'Не удалось отправить. Попробуйте ещё раз или напишите на <a href="mailto:iron@organicare.ru">iron@organicare.ru</a>.';
+      go.disabled = false; go.textContent = '✉️ Отправить отзыв';
+    }
+  });
 }
 
 function photos() {
