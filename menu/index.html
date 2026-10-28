@@ -118,6 +118,16 @@ summary{cursor:pointer;color:var(--pur);font-weight:700;font-size:12px;letter-sp
   .hdr-link{padding:9px 14px;}
 }
 </style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+(window,document,"script","https://mc.yandex.ru/metrika/tag.js?id=113852694","ym");
+ym(113852694,"init",{ssr:true,webvisor:true,clickmap:true,accurateTrackBounce:true,trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/113852694" style="position:absolute;left:-9999px;" alt=""></div></noscript>
+<!-- /Yandex.Metrika counter -->
 </head>
 <body>
 <header class="hdr">
@@ -227,12 +237,12 @@ function gate() {
       <form id="gf" novalidate>
         <div class="field" id="nfld">
           <label for="nm">Имя</label>
-          <input id="nm" type="text" autocomplete="name" maxlength="60" placeholder="Как к вам обращаться" value="${esc(savedName() || '')}">
+          <input id="nm" class="ym-disable-keys" type="text" autocomplete="name" maxlength="60" placeholder="Как к вам обращаться" value="${esc(savedName() || '')}">
           <div class="err-msg">Укажите имя</div>
         </div>
         <div class="field" id="fld">
           <label for="ph">Мобильный номер</label>
-          <input id="ph" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" value="${savedPhone() ? esc(fmtPhone(savedPhone())) : ''}">
+          <input id="ph" class="ym-disable-keys" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__" value="${savedPhone() ? esc(fmtPhone(savedPhone())) : ''}">
           <div class="err-msg">Введите мобильный номер полностью: +7 (9XX) XXX-XX-XX</div>
         </div>
         <label class="consent"><input type="checkbox" id="ok" checked>
@@ -255,6 +265,7 @@ function gate() {
     localStorage.setItem(PHONE_KEY, p);
     reportGuest(n, p);
     ocHit({ev: 'reg', src: sessionStorage.getItem('oc_src') || 'direct', new: '0'});
+    try { ym(113852694, 'reachGoal', 'menu_reg'); } catch (e) {}
     render();
   });
   (nm.value ? ph : nm).focus();
